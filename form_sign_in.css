@@ -1,0 +1,44 @@
+/* Style pour le fieldset et sa légende */
+fieldset {
+    border: 2px solid #094b65; /* Bordure solide */
+    border-radius: 10px; /* Coins arrondis */
+    padding: 25px; /* Espacement intérieur */
+    width: 25%;
+    margin-top: 50px;
+}
+
+main form legend {
+    font-size: 24px; /* Taille de police */
+    font-weight: bold; /* Texte en gras */
+    color: white; /* Couleur du texte blanc */
+    background-color:#094b65; /* Couleur de fond gris */
+    padding: 10px 20px; /* Espacement intérieur */
+    border-radius: 5px; /* Coins arrondis */
+}
+
+/* Style pour les champs du formulaire */
+ main form input[type="text"],
+ main form input[type="tel"],
+ main form input[type="number"],
+ main form input[type="password"],
+ main form input[type="submit"] {
+    width: 100%; /* Largeur de 100% */
+    padding: 10px; /* Espacement intérieur */
+    border: 2px solid #094b65; /* Bordure solide */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 16px; /* Taille de police */
+    color: #094b65; /* Couleur du texte */
+    margin-bottom: 10px; /* Marge inférieure */
+}
+
+/* Style pour le bouton de connexion en orange */
+main form input[type="submit"] {
+    background-color: orange; /* Couleur de fond orange */
+    color: white; /* Couleur du texte blanche */
+    cursor: pointer; /* Curseur pointeur */
+}
+
+/* Style pour modifier l'apparence du bouton de connexion au survol */
+main form input[type="submit"]:hover {
+    background-color: darkorange; /* Couleur de fond plus foncée au survol */
+}
