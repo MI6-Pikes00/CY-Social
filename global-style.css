@@ -13,7 +13,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 30px 100px;
+    padding: 30px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,13 +23,13 @@ header .logo {
     color: #094b65;
     font-weight: 700;
     text-decoration: none;
-    font-size: 2em;
+    font-size: 40px;
 }
 header ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 25px;
 }
 header ul li {
     list-style: none;
@@ -41,8 +41,19 @@ header ul li a {
     border-radius: 20px;
 }
 
+header input[type="text"],
+header input[type="submit"] {
+display: inline;
+   width: 100%; /* Largeur de 100% */
+   padding: 10px; /* Espacement intérieur */
+   border: 2px solid #094b65; /* Bordure solide */
+   border-radius: 5px; /* Coins arrondis */
+   color: #094b65; /* Couleur du texte */
+   margin-bottom: 10px; /* Marge inférieure */
+}
+
 main{
-    padding: 90px 20px;
+    padding: 150px 20px;
     color: #094b65;
 }
 
