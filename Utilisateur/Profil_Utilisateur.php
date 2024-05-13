@@ -11,10 +11,10 @@
         <a href="#" class="logo">CY-Social</a>
         <nav>
             <ul>
-                <li><a href="../Accueil.html">Accueil</a></li>
-                <li><a href="Conseils.html">Nos conseils</a></li>
-                <li><a href="Formulaire_soumission.html">Donner un conseils</a></li>
-                <li><a href="../Utilisateur/Connection.html">Connexion</a>/<a href="../Utilisateur/Inscription.html">Inscription</a></li>
+                <li><a href="../Accueil.php">Accueil</a></li>
+                <li><a href="../Conseils/Conseils.php">Nos conseils</a></li>
+                <li><a href="../Conseils/Formulaire_soumission.php">Donner un conseils</a></li>
+                <li><a href="Connection.php">Connexion</a>/<a href="Inscription.php">Inscription</a></li>
                 <li><input type="text" placeholder="Rechercher..."><input type="submit" name="rechercher" value="Rechercher" /></li>
             </ul>
         </nav>
