@@ -1,3 +1,16 @@
+<?php
+// Vérification si l'email de connexion a été passé en paramètre
+if (isset($_GET['email'])) {
+    // Récupération de l'email de connexion depuis les paramètres GET
+    $email = $_GET['email'];
+
+    // Vous pouvez maintenant utiliser l'email de connexion dans cette page
+    echo "L'utilisateur connecté est : $email";
+} else {
+    echo "Aucun email de connexion passé en paramètre.";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

@@ -19,12 +19,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Vérifie si l'ouverture du fichier a réussi
         if ($handle !== false) {
             // Lit chaque ligne du fichier CSV
-            while (($ligne = fgetcsv($handle)) !== false) {
+            while (($ligne = fgetcsv($handle, 1000, ',')) !== false) {
                 // Vérifie si l'email et le mot de passe correspondent
                 if ($ligne[2] === $email && $ligne[5] === $password) { // L'email est en index 2 et le mot de passe en index 5 (vous pouvez ajuster cela selon votre structure de fichier CSV)
                     echo "Connexion réussie pour $email.";
+                    header('Location: Profil_Utilisateur.php?email=' . urlencode($email));
+                    exit;
                     // Ici, vous pouvez rediriger l'utilisateur vers une autre page ou effectuer d'autres actions nécessaires après la connexion
-                    break;
                 }
             }
 
@@ -41,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Erreur : Accès non autorisé.";
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">

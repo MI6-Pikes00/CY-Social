@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Vérifie si l'ouverture du fichier a réussi
             if ($handle !== false) {
                 // Écriture des données dans le fichier CSV
-                $ligne = array($nom, $prenom, $email, $age, $telephone);
+                $ligne = array($nom, $prenom, $email, $age, $telephone, $password);
                 fputcsv($handle, $ligne);
 
                 // Fermeture du fichier
