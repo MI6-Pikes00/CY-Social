@@ -33,7 +33,10 @@ main form input[type="email"],
 main form input[type="tel"],
 main form input[type="number"],
 main form input[type="password"],
-main form input[type="submit"] {
+main form input[type="submit"],
+main form input[type="file"],
+main form textarea,
+main form select {
   width: 100%; /* Largeur de 100% */
   padding: 10px; /* Espacement intérieur */
   border: 2px solid #094b65; /* Bordure solide */
