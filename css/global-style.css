@@ -13,7 +13,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 30px 50px;
+    padding: 20px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,13 +23,14 @@ header .logo {
     color: #094b65;
     font-weight: 700;
     text-decoration: none;
+    padding-left: 7px;
     font-size: 40px;
 }
 header ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 25px;
+    gap: 18px;
 }
 header ul li {
     list-style: none;
@@ -56,6 +57,22 @@ main{
     padding: 150px 20px;
     color: #094b65;
 }
+
+.welcome{
+    background-image: url(back-image.jpeg);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 552px;
+}
+.welcome h1{
+    color: #000;
+    text-align: center;
+    font-size: 45px;
+    letter-spacing: 3px;
+    padding-top: 80px;
+}
+
 
 section{
     text-align: justify;
