@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CY-Social</title>
     <link rel="stylesheet" type="text/css" href="../css/global-style.css">
 </head>
+
 <body>
     <header id="header">
-        <a href="#" class="logo">CY-Social</a>
+        <a href="../Accueil.php" class="logo">CY-Social</a>
         <nav>
             <ul>
                 <li><a href="../Accueil.php">Accueil</a></li>
@@ -20,7 +22,7 @@
         </nav>
     </header>
     <main>
-       <p>A venir ...</p>
+        <p>A venir ...</p>
     </main>
     <footer>
         <p>
@@ -30,4 +32,5 @@
         </p>
     </footer>
 </body>
+
 </html>

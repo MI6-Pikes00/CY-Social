@@ -14,16 +14,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($password !== $confirm_password) {
         echo "Les mots de passe ne correspondent pas.";
     } else {
-        // Chemin relatif vers le dossier 'user-information'
-        $dossier = 'user-information';
+        // Chemin relatif vers le dossier 'data'
+        $dossier = '../data';
 
-        // Crée le dossier s'il n'existe pas déjà
-        if (!file_exists($dossier)) {
-            mkdir($dossier, 0777, true);
+        // Chemin complet du fichier CSV dans le dossier 'data'
+        $dossier_utilisateur = $dossier . '/' . md5($email);
+
+        // Vérifie si le dossier utilisateur existe, sinon le crée
+        if (!file_exists($dossier_utilisateur)) {
+            mkdir($dossier_utilisateur, 0777, true); // Crée le dossier avec les permissions 0777
         }
 
-        // Chemin complet du fichier CSV dans le dossier 'user-information'
-        $nom_fichier = $dossier . '/' . md5($email) . '.csv'; // Utilise l'email pour le nom de fichier, mais vous pouvez utiliser un autre identifiant unique
+        // Chemin complet du fichier CSV dans le dossier utilisateur
+        $nom_fichier = $dossier_utilisateur . '/info-user.csv'; // Utilise l'email pour le nom de fichier, mais vous pouvez utiliser un autre identifiant unique
 
         // Vérifie si l'utilisateur existe déjà
         if (file_exists($nom_fichier)) {
@@ -47,6 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
+    //header("Location: Connection.php");
+    exit;
 } else {
     // Gestion d'un accès direct au script
     echo "Erreur : Accès non autorisé.";
@@ -56,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,9 +69,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/form_design.css">
     <title>Connexion</title>
 </head>
+
 <body>
     <header id="header">
-        <a href="#" class="logo">CY-Social</a>
+        <a href="../Accueil.php" class="logo">CY-Social</a>
         <nav>
             <ul>
                 <li><a href="../Accueil.php">Accueil</a></li>
@@ -77,19 +84,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </nav>
     </header>
     <main>
-        <form name="inscription" method="post" action="#">
-            <fieldset>
+        <div class="container_inscription">
+            <fieldset class="formulaire">
                 <legend>Inscription</legend>
-                    <input type="text" name="nom" placeholder="Nom" required="required"/>
-                    <input type="text" name="prenom" placeholder="Prénom" required="required"/>
-                    <input type="text" name="email" placeholder="Email" required="required"/>
-                    <input type="number" name="age" placeholder="Age" min="18" max="100" required="required"/>
-                    <input type="tel" name="telephone" placeholder="Téléphone"/>
+                <form name="inscription" method="post" action="#">
+                    <input type="text" name="nom" placeholder="Nom" required="required" />
+                    <input type="text" name="prenom" placeholder="Prénom" required="required" />
+                    <input type="email" name="email" placeholder="Email" required="required" />
+                    <input type="number" name="age" placeholder="Age" min="18" max="100" required="required" />
+                    <input type="tel" name="telephone" placeholder="Téléphone" />
                     <input type="password" name="password" placeholder="Mot de passe" required="required">
                     <input type="password" name="confirm_password" placeholder="Confirmer le mot de passe" required="required">
-                    <input type="submit" name="inscription" value="S'inscrire"/>
+                    <input type="submit" name="inscription" value="S'inscrire" />
+                </form>
             </fieldset>
-        </form>
+        </div>
     </main>
     <footer>
         <p>
@@ -97,6 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 Copyrights 2024 - Luc Letailleur et Thomas Herriau
             </small>
         </p>
-    </footer> 
+    </footer>
 </body>
+
 </html>

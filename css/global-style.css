@@ -1,102 +1,115 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Rancho&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Rancho&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
 }
 header .logo {
-    color: #094b65;
-    font-weight: 700;
-    text-decoration: none;
-    padding-left: 7px;
-    font-size: 40px;
+  color: #094b65;
+  font-weight: 700;
+  text-decoration: none;
+  padding-left: 7px;
+  font-size: 40px;
 }
 header ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
 }
 header ul li {
-    list-style: none;
+  list-style: none;
 }
 header ul li a {
-    text-decoration: none;
-    padding: 6px 15px;
-    color: #094b65;
-    border-radius: 20px;
+  text-decoration: none;
+  padding: 6px 15px;
+  color: #094b65;
+  border-radius: 20px;
 }
 
 header input[type="text"],
 header input[type="submit"] {
-display: inline;
-   width: 100%; /* Largeur de 100% */
-   padding: 10px; /* Espacement intérieur */
-   border: 2px solid #094b65; /* Bordure solide */
-   border-radius: 5px; /* Coins arrondis */
-   color: #094b65; /* Couleur du texte */
-   margin-bottom: 10px; /* Marge inférieure */
+  display: inline;
+  width: 100%; /* Largeur de 100% */
+  padding: 10px; /* Espacement intérieur */
+  border: 2px solid #094b65; /* Bordure solide */
+  border-radius: 5px; /* Coins arrondis */
+  color: #094b65; /* Couleur du texte */
+  margin-bottom: 10px; /* Marge inférieure */
 }
 
-main{
-    padding: 150px 20px;
-    color: #094b65;
+main {
+  padding: 150px 20px;
+  color: #094b65;
 }
 
-.welcome{
-    background-image: url(back-image.jpeg);
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 552px;
+.welcome {
+  background-image: url(back-image.jpeg);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 552px;
 }
-.welcome h1{
-    color: #000;
-    text-align: center;
-    font-size: 45px;
-    letter-spacing: 3px;
-    padding-top: 80px;
+.welcome h1 {
+  color: #000;
+  text-align: center;
+  font-size: 45px;
+  letter-spacing: 3px;
+  padding-top: 80px;
 }
 
-
-section{
-    text-align: justify;
+section {
+  text-align: justify;
 }
 
 footer {
-    padding-left: 20px;
-    color: #094b65;
+  padding-left: 20px;
+  color: #094b65;
 }
 
-h1{
-    text-align: center;
+h1 {
+  text-align: center;
 }
 
-h2{
-    text-decoration: underline;
+h2 {
+  text-decoration: underline;
 }
 
-.carre{
-	width:auto;
-	height:500px;
-	border: 5px solid lightblue;
-    text-align: center;
-    align-content: center;
-    font-weight: bold;
-    color: black;
+.container_user {
+  display: flex;
+}
+
+.container_connection {
+  display: flex;
+  justify-content: center;
+}
+
+.container_inscription {
+  display: flex;
+  justify-content: center;
+}
+
+.carre {
+  width: auto;
+  height: 500px;
+  border: 5px solid lightblue;
+  text-align: center;
+  align-content: center;
+  font-weight: bold;
+  color: black;
 }
