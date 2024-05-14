@@ -34,7 +34,7 @@
             <div class="search-container">
                 <form action="" method="get" class="search-bar" autocomplete="off">
                         <input type="text" name="q" placeholder="Conseil...">
-                        <button type="submit"><img src="/Ressources/search.png"></button>
+                        <button type="submit"><img src="./Ressources/search.png"></button>
                     </div>
                 </form>
             </div>
