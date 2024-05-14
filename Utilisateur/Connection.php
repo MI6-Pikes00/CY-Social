@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Chemin complet du fichier CSV dans le dossier utilisateur
-    $nom_fichier = $dossier_utilisateur . '/info-user.csv';
+    $nom_fichier = $dossier_utilisateur . '/user-info.csv';
 
     // Vérifie si le fichier utilisateur existe
     if (file_exists($nom_fichier)) {

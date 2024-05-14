@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Chemin complet du fichier CSV dans le dossier utilisateur
-        $nom_fichier = $dossier_utilisateur . '/info-user.csv'; // Utilise l'email pour le nom de fichier, mais vous pouvez utiliser un autre identifiant unique
+        $nom_fichier = $dossier_utilisateur . '/user-info.csv'; // Utilise l'email pour le nom de fichier, mais vous pouvez utiliser un autre identifiant unique
 
         // Vérifie si l'utilisateur existe déjà
         if (file_exists($nom_fichier)) {
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
-    //header("Location: Connection.php");
+    header("Location: ./Connection.php");
     exit;
 } else {
     // Gestion d'un accès direct au script

@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 // Vérifier si l'utilisateur est connecté en vérifiant si les informations de l'utilisateur sont présentes dans la session
 if (isset($_SESSION['user'])) {
     // Récupérer les données de l'utilisateur à partir de la session
@@ -69,7 +68,6 @@ function getArticles($user_email)
     return $articles;
 }
 
-
 ?>
 
 <!DOCTYPE html>
@@ -130,14 +128,20 @@ function getArticles($user_email)
                         <p>Catégorie: <?php echo $article['categorie']; ?></p>
                         <div><?php echo $article['instructions']; ?></div>
                         <div class="container_button_modifiez_supprimer">
-                            <button class="bouton_modifier">Modifiez</button>
-                            <button class="bouton_supprimer">Supprimer</button>
+                            <form action="../Article_management/modifier_article.php" method="post">
+                                <input type="hidden" name="email" value="<?php echo $user['email']; ?>">
+                                <input type="hidden" name="num_article" value="<?php echo $article['numero_article']; ?>">
+                                <button type="submit" name="submit" class="bouton_modifier">Modifier</button>
+                            </form>
+                            <form action="../Article_management/supprimer_article.php" method="post">
+                                <input type="hidden" name="email" value="<?php echo $user['email']; ?>">
+                                <input type="hidden" name="num_article" value="<?php echo $article['numero_article']; ?>">
+                                <button type="submit" name="submit" class="bouton_supprimer">Supprimer</button>
+                            </form>
                         </div>
                     </fieldset>
                     <br>
-
                 <?php endforeach; ?>
-
             </fieldset>
         </div>
 
