@@ -34,6 +34,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Génération d'un identifiant unique pour l'article
     $num_article = uniqid();
 
+    // Date et heure de création de l'article
+    $date_creation = date("Y-m-d H:i:s");
+
+    // Nom de l'auteur de l'article
+    $auteur = $user['nom'] . ' ' . $user['prenom'];
+
     // Chemin complet du fichier JSON dans le dossier utilisateur avec un numéro aléatoire unique
     $nom_fichier = $dossier_utilisateur . '/' . "article-" . $num_article . '.json';
 
@@ -51,6 +57,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Enregistrement des informations de l'article au format JSON
     $article_data = array(
+        'numero_article' => $num_article,
+        'date_creation' => $date_creation,
+        'auteur' => $auteur,
         'titre' => $titre,
         'categorie' => $categorie,
         'instructions' => $instructions
@@ -62,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Article envoyé";
 } else {
     // Redirection si le formulaire n'a pas été soumis pour l'instant juste un message
-    echo "formulaire pas envoyé";
+    echo "Formulaire non envoyé";
 }
 ?>
 
