@@ -10,6 +10,7 @@
 
 <body>
 
+    
     <header id="header">
         <a href="Accueil.php" class="logo">CY-Social</a>
         <nav>
@@ -18,21 +19,29 @@
                 <li><a href="./Conseils/Conseils.php">Nos conseils</a></li>
                 <li><a href="./Conseils/Formulaire_soumission.php">Donner un conseils</a></li>
                 <li><a href="./Utilisateur/Connection.php">Connexion</a>/<a href="./Utilisateur/Inscription.php">Inscription</a></li>
-                <!-- <li><input type="text" placeholder="Rechercher..."><input type="submit" name="rechercher" value="Rechercher" /></li> -->
+                <!--COMMENTAIRE : 
+                <li><input type="text" placeholder="Rechercher..."><input type="submit" name="rechercher" value="Rechercher" /></li>
+                -->
             </ul>
         </nav>
     </header>
+    
 
     <main>
         <div class="welcome">
             <h1>Bienvenue sur CY-Social</h1>
+            
+            <div class="search-container">
+                <form action="" method="get" class="search-bar" autocomplete="off">
+                        <input type="text" name="q" placeholder="Conseil...">
+                        <button type="submit"><img src="/Ressources/search.png"></button>
+                    </div>
+                </form>
+            </div>
+
         </div>
 
-        <form autocomplete="off">
-            <div class="autocomplete" style="width:300px;">
-                <input id="myInput" type="text" name="advice-type" placeholder="Conseil...">
-            </div>
-        </form>
+
 
         <section>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae hic non nemo, porro nesciunt deleniti voluptatem delectus ut maiores neque commodi sunt voluptatum exercitationem facilis quo harum similique blanditiis. Quo!</p>
