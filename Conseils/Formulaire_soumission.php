@@ -94,8 +94,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <li><a href="../Accueil.php">Accueil</a></li>
                 <li><a href="Conseils.php">Nos conseils</a></li>
                 <li><a href="Formulaire_soumission.php">Donner un conseils</a></li>
-                <li><a href="../Utilisateur/Connection.php">Connexion</a>/<a href="../Utilisateur/Inscription.php">Inscription</a></li>
-                <li><input type="text" placeholder="Rechercher..."><input type="submit" name="rechercher" value="Rechercher" /></li>
+                <li>
+                    <?php if (isset($_SESSION['user'])) { ?>
+                        <a href="./Utilisateur/Profil_Utilisateur.php">Profil</a>
+                    <?php } else { ?>
+                        <a href="./Utilisateur/Connection.php">Connexion</a>/<a href="./Utilisateur/Inscription.php">Inscription</a>
+                    <?php } ?>
+                </li>
             </ul>
         </nav>
     </header>

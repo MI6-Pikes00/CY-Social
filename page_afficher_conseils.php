@@ -4,16 +4,6 @@ session_start();
 $numero_article = $_POST['num_article'];
 echo $numero_article . "<br>";
 
-// Vérifier si l'utilisateur est connecté en vérifiant si les informations de l'utilisateur sont présentes dans la session
-if (isset($_SESSION['user'])) {
-    // Récupérer les données de l'utilisateur à partir de la session
-    $user = $_SESSION['user'];
-} else {
-    // Rediriger l'utilisateur vers la page de connexion si les informations de l'utilisateur ne sont pas présentes dans la session
-    header('Location: ../Accueil.php');
-    exit;
-}
-
 function getOneArticle($nb_article)
 {
     // Initialisation d'un tableau pour stocker les articles
@@ -75,10 +65,13 @@ $articleOne = getOneArticle($numero_article);
                 <li><a href="Accueil.php">Accueil</a></li>
                 <li><a href="./Conseils/Conseils.php">Nos conseils</a></li>
                 <li><a href="./Conseils/Formulaire_soumission.php">Donner un conseils</a></li>
-                <li><a href="./Utilisateur/Connection.php">Connexion</a>/<a href="./Utilisateur/Inscription.php">Inscription</a></li>
-                <!--COMMENTAIRE : 
-                    <li><input type="text" placeholder="Rechercher..."><input type="submit" name="rechercher" value="Rechercher" /></li>
-                -->
+                <li>
+                    <?php if (isset($_SESSION['user'])) { ?>
+                        <a href="./Utilisateur/Profil_Utilisateur.php">Profil</a>
+                    <?php } else { ?>
+                        <a href="./Utilisateur/Connection.php">Connexion</a>/<a href="./Utilisateur/Inscription.php">Inscription</a>
+                    <?php } ?>
+                </li>
             </ul>
         </nav>
     </header>
