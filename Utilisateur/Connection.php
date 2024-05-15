@@ -1,4 +1,7 @@
+<!-- Ici le php permet de connecter un user qui est inscrit via son mail et mot de passe
+Elle ajoute tout les information nécessaire dans la session-->
 <?php
+// Création de la session pour dire que l'user est connecté
 session_start();
 
 // Vérification si le formulaire a été soumis
@@ -7,11 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Chemin relatif vers le dossier 'data'
-    $dossier = '../data';
-
     // Chemin complet du fichier CSV dans le dossier 'data'
-    $dossier_utilisateur = $dossier . '/' . md5($email);
+    $dossier_utilisateur = '../data/' . md5($email);
 
     // Vérifie si le dossier utilisateur existe, sinon le crée
     if (!file_exists($dossier_utilisateur)) {
@@ -32,9 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             while (($ligne = fgetcsv($handle, 1000, ',')) !== false) {
                 // Vérifie si l'email et le mot de passe correspondent
                 if ($ligne[2] === $email && $ligne[5] === $password) { // L'email est en index 2 et le mot de passe en index 5 (vous pouvez ajuster cela selon votre structure de fichier CSV)
-                    echo "Connexion réussie pour $email.";
 
-                    // Stocke toutes les données de l'utilisateur dans la session
+                    // Message d'information que l'user est bien connecter a son compte
+                    error_log("Connexion réussie pour $email.");
+
+                    // Stocke toutes les données de l'utilisateur dans la session pour des utilisations future
                     $_SESSION['user'] = array(
                         'nom' => $ligne[0],
                         'prenom' => $ligne[1],
@@ -45,13 +47,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     );
 
                     // Redirige l'utilisateur vers la page de profil
-                    header('Location: Profil_Utilisateur.php');
-                    exit;
+                    return header('Location: Profil_Utilisateur.php');
                 }
             }
-
             // Si l'utilisateur n'est pas trouvé
             echo "Identifiants incorrects.";
+
             // Fermeture du fichier
             fclose($handle);
         } else {
@@ -60,13 +61,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Aucun compte trouvé pour $email.";
     }
-} else {
-    // Gestion d'un accès direct au script
-    echo "Erreur : Accès non autorisé.";
 }
 ?>
 
-
+<!-- Ici commence le code de la page html -->
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -80,6 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+    <!-- Section pour la barre de navigation -->
     <header id="header">
         <a href="../Accueil.php" class="logo">CY-Social</a>
         <nav>
@@ -94,6 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <main>
         <div class="container_connection">
             <fieldset style="width: 25%;">
+                <!-- Formulaire de connection qui va exécuter le scripts si dessus quand on clique sur le bouton submit -->
                 <legend>Connection</legend>
                 <form name="#" method="post">
                     <input type="email" name="email" placeholder="Email" required="required" />
@@ -104,6 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </main>
     <footer>
+        <!-- Section qui affiche les auteurs du site web -->
         <p>
             <small>
                 Copyrights 2024 - Luc Letailleur et Thomas Herriau

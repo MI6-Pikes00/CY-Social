@@ -1,9 +1,14 @@
+<!-- ICI le php à plusieurs fonction, premièrement il vérifie qu'un utilisateur soit bien connecter puis il permet d'afficher ses information, ses articles, de pourvoir les modifiers -->
 <?php
+// Démarre la session PHP pour permettre le stockage de données de session
 session_start();
+
 // Vérifier si l'utilisateur est connecté en vérifiant si les informations de l'utilisateur sont présentes dans la session
 if (isset($_SESSION['user'])) {
     // Récupérer les données de l'utilisateur à partir de la session
-    $user = $_SESSION['user'];
+    $user_session_info = $_SESSION['user'];
+    // Messages d'information dans la console php
+    error_log("User récupéré sur Profil_Utilisateur.php");
 } else {
     // Rediriger l'utilisateur vers la page de connexion si les informations de l'utilisateur ne sont pas présentes dans la session
     header('Location: ../Accueil.php');
@@ -18,25 +23,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user['email'] = $_POST['email'];
     $user['age'] = $_POST['age'];
     $user['telephone'] = $_POST['telephone'];
-    $user['password'];
+
+    // Récupérer le mot de passe de l'utilisateur
+    $user['password'] = $user_session_info['password'];
 
     // Chemin complet du fichier CSV dans le dossier 'user-information'
     $nom_fichier = '../data/' . md5($user['email']) . '/user-info.csv';
-    echo " nom fichier: $nom_fichier";
 
     // Modifier les données dans le fichier CSV
     if (file_exists($nom_fichier)) {
+        // Ouvre le fichier de destination pour écrire en écrasant les anciennes données
         $handle = fopen($nom_fichier, 'w');
+
+        // Écrit les données en langage csv pour les accent et caractère spéciaux pour une meilleur retranscription par la suite
         fputcsv($handle, $user);
+
+        // Enregistre puis ferme le fichier
         fclose($handle);
-        echo "Les données ont été mises à jour avec succès.";
+
+        // Messages d'information dans la console php
+        error_log("Les données ont été mises à jour avec succès.");
     } else {
-        echo "Erreur : le fichier utilisateur n'existe pas.";
+        // Messages d'information dans la console php
+        error_log("Erreur : le fichier utilisateur n'existe pas.");
     }
+    // CHANGER LES INFORMATION DE SESSION, RECONNECTER L'USER AUTOMATIQUEMENT
 }
 
+// Fonction qui va récupérer tout les articles de l'utilisateur via son e-mail
 function getArticles($user_email)
 {
+    // Message d'information
+    error_log("Récupération des données de l'article en cours...");
+
     // Chemin relatif vers le dossier 'data'
     $dossier = '../data';
 
@@ -48,6 +67,7 @@ function getArticles($user_email)
 
     // Vérifie si le dossier utilisateur existe
     if (file_exists($dossier_utilisateur) && is_dir($dossier_utilisateur)) {
+
         // Récupération de tous les fichiers dans le dossier utilisateur
         $fichiers = glob($dossier_utilisateur . '/article-*');
 
@@ -62,13 +82,18 @@ function getArticles($user_email)
             // Ajout de l'article au tableau d'articles
             $articles[] = $article;
         }
+        // Message d'information
+        error_log("Récupération des données de l'article terminé.");
+
+        // Retourne le tableau d'articles
+        return $articles;
+    } else {
+        return error_log("Le fichier $dossier_utilisateur n'existe pas");
     }
-
-    // Retourne le tableau d'articles
-    return $articles;
 }
-
 ?>
+
+<!-- Ici commence le code de la page html -->
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -82,6 +107,7 @@ function getArticles($user_email)
 </head>
 
 <body>
+        <!-- Section pour la barre de navigation -->
     <header id="header">
         <a href="../Accueil.php" class="logo">CY-Social</a>
         <nav>
@@ -95,50 +121,57 @@ function getArticles($user_email)
         </nav>
     </header>
     <main>
+        <!-- Section qui affiche dans un formulaire les informations de l'utilisateur et ses articles -->
         <h1>Profil Utilisateur</h1>
 
         <div class="container_user">
+            <!-- Permet d'afficher et de modifier les informations d'utilisateur -->
             <fieldset class="formulaire">
                 <legend>Information personnel</legend>
                 <form action="" method="post">
                     <label for="nom">Nom:</label>
-                    <input type="text" id="nom" name="nom" value="<?php echo $user['nom']; ?>"><br>
+                    <input type="text" id="nom" name="nom" value="<?php echo $user_session_info['nom']; ?>"><br>
 
                     <label for="prenom">Prénom:</label>
-                    <input type="text" id="prenom" name="prenom" value="<?php echo $user['prenom']; ?>"><br>
+                    <input type="text" id="prenom" name="prenom" value="<?php echo $user_session_info['prenom']; ?>"><br>
 
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="<?php echo $user['email']; ?>"><br>
+                    <input type="email" id="email" name="email" value="<?php echo $user_session_info['email']; ?>"><br>
 
                     <label for="age">Âge:</label>
-                    <input type="number" id="age" name="age" value="<?php echo $user['age']; ?>"><br>
+                    <input type="number" id="age" name="age" value="<?php echo $user_session_info['age']; ?>"><br>
 
                     <label for="telephone">Téléphone:</label>
-                    <input type="tel" id="telephone" name="telephone" value="<?php echo $user['telephone']; ?>"><br>
+                    <input type="tel" id="telephone" name="telephone" value="<?php echo $user_session_info['telephone']; ?>"><br>
 
                     <input type="submit" value="Modifier">
                 </form>
             </fieldset>
-
+            <!-- Affichage les différents articles, et option pour les visualiser, les modifier ou les supprimer -->
             <fieldset class="article">
                 <legend>Mes articles</legend>
-                <?php foreach (getArticles($user['email']) as $article) : ?>
+                <?php foreach (getArticles($user_session_info['email']) as $article) : ?>
                     <fieldset>
                         <legend><?php echo $article['titre']; ?></legend>
                         <p>Catégorie: <?php echo $article['categorie']; ?></p>
                         <div><?php echo $article['instructions']; ?></div>
+                        
+                        <!-- Section de formulaire pour faire des buttons interactif -->
                         <div class="container_button_modifiez_supprimer">
+                            <!-- Button pour voir -->
                             <form action="../page_afficher_conseils.php" method="post">
                                 <input type="hidden" name="num_article" value="<?php echo $article['numero_article']; ?>">
                                 <button type="submit" name="submit" class="bouton_voir">Voir</button>
                             </form>
+                            <!-- Button pour modifier -->
                             <form action="../Article_management/modifier_article.php" method="post">
-                                <input type="hidden" name="email" value="<?php echo $user['email']; ?>">
+                                <input type="hidden" name="email" value="<?php echo $user_session_info['email']; ?>">
                                 <input type="hidden" name="num_article" value="<?php echo $article['numero_article']; ?>">
                                 <button type="submit" name="submit" class="bouton_modifier">Modifier</button>
                             </form>
+                            <!-- Button pour supprimer -->
                             <form action="../Article_management/supprimer_article.php" method="post">
-                                <input type="hidden" name="email" value="<?php echo $user['email']; ?>">
+                                <input type="hidden" name="email" value="<?php echo $user_session_info['email']; ?>">
                                 <input type="hidden" name="num_article" value="<?php echo $article['numero_article']; ?>">
                                 <button type="submit" name="submit" class="bouton_supprimer">Supprimer</button>
                             </form>
@@ -151,9 +184,10 @@ function getArticles($user_email)
 
     </main>
     <footer>
+        <!-- Section qui affiche les auteurs du site web -->
         <p>
             <small>
-                Copyrights 2024 - Luc Letailleur eet Thomas Herriau
+                Copyrights 2024 - Luc Letailleur et Thomas Herriau
             </small>
         </p>
     </footer>

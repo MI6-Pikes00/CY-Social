@@ -45,6 +45,14 @@ header ul li a {
   
 }
 
+.connexion-border {
+  border: 2px solid #094b65;
+  border-radius: 10px;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: inline-block;
+}
+
 header input[type="text"],
 header input[type="submit"] {
   display: inline;

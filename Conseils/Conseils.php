@@ -1,6 +1,8 @@
 <?php
+// Démarre la session PHP pour permettre le stockage de données de session
 session_start();
 
+// Fonction qui récupère tous les articles présent dans la base de donnée pour ensuite pour les afficher
 function getAllArticles()
 {
     // Chemin relatif vers le dossier 'data'
@@ -38,6 +40,7 @@ function getAllArticles()
 }
 ?>
 
+<!-- Ici commence le code de la page html -->
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -51,6 +54,7 @@ function getAllArticles()
 </head>
 
 <body>
+    <!-- Section pour la barre de navigation -->
     <header id="header">
         <a href="../Accueil.php" class="logo">CY-Social</a>
         <nav>
@@ -59,16 +63,18 @@ function getAllArticles()
                 <li><a href="Conseils.php">Nos conseils</a></li>
                 <li><a href="Formulaire_soumission.php">Donner un conseils</a></li>
                 <li>
+                    <!-- Permet d'afficher un bouton d'action différents selon si un utilisateur est connecté à un compte -->
                     <?php if (isset($_SESSION['user'])) { ?>
-                        <a href="./Utilisateur/Profil_Utilisateur.php">Profil</a>
+                        <a href="../Utilisateur/Profil_Utilisateur.php">Profil</a>
                     <?php } else { ?>
-                        <a href="./Utilisateur/Connection.php">Connexion</a>/<a href="./Utilisateur/Inscription.php">Inscription</a>
+                        <a href="../Utilisateur/Connection.php">Connexion</a>/<a href="./Utilisateur/Inscription.php">Inscription</a>
                     <?php } ?>
                 </li>
             </ul>
         </nav>
     </header>
     <main>
+        <!-- Affichage les différents articles, et option pour les visualiser -->
         <fieldset class="article">
             <legend>Mes articles</legend>
             <?php foreach (getAllArticles() as $article) : ?>
@@ -88,9 +94,10 @@ function getAllArticles()
         </fieldset>
     </main>
     <footer>
+        <!-- Section qui affiche les auteurs du site web -->
         <p>
             <small>
-                Copyrights 2024 - Luc Letailleur eet Thomas Herriau
+                Copyrights 2024 - Luc Letailleur et Thomas Herriau
             </small>
         </p>
     </footer>

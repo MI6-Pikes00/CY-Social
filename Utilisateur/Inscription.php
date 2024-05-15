@@ -1,3 +1,4 @@
+<!-- Ici le php sert a s'inscrire sur CY-Social il redirige ensuite vers le portail de connexion -->
 <?php
 // Vérification si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -10,15 +11,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
+    // Messages d'information dans la console php
+    error_log("Données du formulaire récupéré");
+
     // Vérification si les mots de passe correspondent
     if ($password !== $confirm_password) {
         echo "Les mots de passe ne correspondent pas.";
     } else {
-        // Chemin relatif vers le dossier 'data'
-        $dossier = '../data';
 
         // Chemin complet du fichier CSV dans le dossier 'data'
-        $dossier_utilisateur = $dossier . '/' . md5($email);
+        $dossier_utilisateur = '../data/' . md5($email);
 
         // Vérifie si le dossier utilisateur existe, sinon le crée
         if (!file_exists($dossier_utilisateur)) {
@@ -30,8 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Vérifie si l'utilisateur existe déjà
         if (file_exists($nom_fichier)) {
-            echo "L'utilisateur existe déjà.";
+            // Messages d'information dans la console php 
+            error_log("L'utilisateur existe déjà.");
+            // Renvoie vers le formulaire de connexion
+            return header("Location: ./Connection.php");
         } else {
+
             // Ouvre le fichier CSV en mode écriture, en créant le fichier s'il n'existe pas
             $handle = fopen($nom_fichier, 'a');
 
@@ -39,25 +45,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($handle !== false) {
                 // Écriture des données dans le fichier CSV
                 $ligne = array($nom, $prenom, $email, $age, $telephone, $password);
+
+                // Écrit les données en langage csv pour les accent et caractère spéciaux pour une meilleur retranscription par la suite
                 fputcsv($handle, $ligne);
 
                 // Fermeture du fichier
                 fclose($handle);
 
-                echo "Les données ont été enregistrées dans le fichier $nom_fichier avec succès.";
+                // Message de confirmation de l'enregistrement de l'user
+                error_log("Les données ont été enregistrées dans le fichier $nom_fichier avec succès.");
             } else {
                 echo "Erreur lors de l'ouverture du fichier $nom_fichier.";
             }
         }
     }
-    header("Location: ./Connection.php");
-    exit;
+    // Envoie vers le formulaire de connexion une fois l'inscription terminé
+    return header("Location: ./Connection.php");
 } else {
     // Gestion d'un accès direct au script
     echo "Erreur : Accès non autorisé.";
 }
 ?>
 
+<!-- Ici commence le code de la page html -->
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -71,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+    <!-- Section pour la barre de navigation -->
     <header id="header">
         <a href="../Accueil.php" class="logo">CY-Social</a>
         <nav>
@@ -86,6 +97,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container_inscription">
             <fieldset class="formulaire">
                 <legend>Inscription</legend>
+                <!-- Formulaire d’inscription avec des inputs de type différents suivant l'information que l'on veut collecté et
+                    qui va exécuter le scripts si dessus quand on clique sur le bouton submit -->
                 <form name="inscription" method="post" action="#">
                     <input type="text" name="nom" placeholder="Nom" required="required" />
                     <input type="text" name="prenom" placeholder="Prénom" required="required" />
@@ -100,6 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </main>
     <footer>
+        <!-- Section qui affiche les auteurs du site web -->
         <p>
             <small>
                 Copyrights 2024 - Luc Letailleur et Thomas Herriau
