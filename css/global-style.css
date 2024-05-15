@@ -10,7 +10,7 @@
 
 header {
   background-color: #fff;
-  height: 72px;
+  height: 82px;
   width: 100%;  
   top: 0;
   left: 0;
@@ -43,13 +43,6 @@ header ul li a {
   color: #094b65;
   border-radius: 20px;
   
-}
-.connexion-border {
-  border: 2px solid #094b65;
-  border-radius: 10px;
-  padding: 8px 12px;
-  text-decoration: none;
-  display: inline-block;
 }
 
 header input[type="text"],
@@ -97,7 +90,7 @@ main {
 .search-bar {
   width: 100%;
   max-width: 700px;
-  background: rgb(255, 2555, 255, 0.2);
+  background: rgb(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   border-radius: 60px;
