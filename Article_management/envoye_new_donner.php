@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Préparation des données pour le format JSON
         $article_data = array(
             'numero_article' => $num_article,
-            'date_creation' => $date_modification,
+            'date_modification' => $date_modification,
             'auteur' => $auteur,
             'titre' => $titre,
             'categorie' => $categorie,

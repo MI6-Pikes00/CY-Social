@@ -128,6 +128,10 @@ function getArticles($user_email)
                         <p>Catégorie: <?php echo $article['categorie']; ?></p>
                         <div><?php echo $article['instructions']; ?></div>
                         <div class="container_button_modifiez_supprimer">
+                            <form action="../page_afficher_conseils.php" method="post">
+                                <input type="hidden" name="num_article" value="<?php echo $article['numero_article']; ?>">
+                                <button type="submit" name="submit" class="bouton_voir">Voir</button>
+                            </form>
                             <form action="../Article_management/modifier_article.php" method="post">
                                 <input type="hidden" name="email" value="<?php echo $user['email']; ?>">
                                 <input type="hidden" name="num_article" value="<?php echo $article['numero_article']; ?>">

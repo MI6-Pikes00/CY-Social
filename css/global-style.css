@@ -159,9 +159,10 @@ h2 {
 }
 
 .carre {
+  padding-top: 20%;
   width: auto;
   height: 500px;
-  border: 5px solid lightblue;
+  border: 5px solid purple;
   text-align: center;
   align-content: center;
   font-weight: bold;
@@ -173,7 +174,16 @@ h2 {
   justify-content: flex-end;
 }
 
+.bouton_voir {
+  padding: 10px 20px;
+  background-color: green;
+  color: #fff;
+  border: 2px solid #094b65; /* Bordure solide */
+  border-radius: 5px; /* Coins arrondis */
+}
 .bouton_modifier {
+  margin-left: 2%;
+  margin-right: 5%;
   padding: 10px 20px;
   background-color: orange;
   color: #fff;
@@ -182,10 +192,29 @@ h2 {
 }
 
 .bouton_supprimer {
-  margin-left: 1%;
   padding: 10px 20px;
   background-color: red;
   color: #fff;
   border: 2px solid #094b65; /* Bordure solide */
   border-radius: 5px; /* Coins arrondis */
+}
+
+.container_titre{
+  display: flex;
+  justify-content: left;
+  margin-top: 5%;
+}
+
+.container_main{
+  display: flex;
+}
+
+.affiche_text{
+  margin-top: 2%;
+  width: 73%;
+}
+
+.affiche_image{
+  margin: 2%;
+  width: 25%;
 }

@@ -63,7 +63,7 @@
     <footer>
         <p>
             <small>
-                Copyrights 2024 - Luc Letailleur eet Thomas Herriau
+                Copyrights 2024 - Luc Letailleur et Thomas Herriau
             </small>
         </p>
     </footer>
