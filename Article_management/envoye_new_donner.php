@@ -1,4 +1,3 @@
-<!-- Ici le php à plusieurs fonction, premièrement il vérifie qu'un utilisateur soit bien connecter puis il permet d'afficher l'article que l'on souhaites modifier -->
 <?php
 session_start();
 // Vérification de l'authentification de l'utilisateur
@@ -7,9 +6,8 @@ if (!isset($_SESSION['user'])) {
     header("Location: ../Utilisateur/Connection.php");
     exit;
 } else {
-
     //Récupération des données pour effectuer le traitement
-    $user_email = $_SESSION['email'];
+    $user_email = $_SESSION['user']['email'];
     $num_article = $_POST['num_article'];
 
     // Vérification si le formulaire a été soumis
@@ -19,46 +17,39 @@ if (!isset($_SESSION['user'])) {
         $categorie = $_POST['categorie'];
         $instructions = $_POST['instructions'];
 
-        $nom_fichier = '../data/' . md5($user_email) . '/' . "article-" . $num_article . '.json';
 
+        // Chemin complet du dossier utilisateur
+        $dossier_utilisateur = '../data/' . md5($user_email);
+
+        // Vérifie si le dossier utilisateur existe, sinon le crée
+        if (!file_exists($dossier_utilisateur)) {
+            mkdir($dossier_utilisateur, 0777, true);
+        }
+
+        // Chemin complet du fichier JSON dans le dossier utilisateur
+        $nom_fichier = $dossier_utilisateur . '/article-' . $num_article . "/article-" . $num_article . '.json';
+        // Vérifie si le fichier existe
         if (file_exists($nom_fichier)) {
-            // Date et heure de modification de l'article
-            $date_modification = date("Y-m-d H:i:s");
+            // Lit le contenu du fichier JSON
+            $contenu = file_get_contents($nom_fichier);
 
-            // Nom de l'auteur de l'article
-            $auteur = $user_session_info['nom'] . ' ' . $user_session_info['prenom'];
-            // Traitement de l'image
-            $image_nom = $_FILES['image']['name'];
-            $image_tmp = $_FILES['image']['tmp_name'];
-            $image_dossier = "uploads/$user_email/images/";
-            move_uploaded_file($image_tmp, $image_dossier . $num_article . "_" . $image_nom);
+            // Décodage des données JSON
+            $article = json_decode($contenu, true);
 
-            // Traitement de la vidéo
-            $video_nom = $_FILES['video']['name'];
-            $video_tmp = $_FILES['video']['tmp_name'];
-            $video_dossier = "uploads/$user_email/videos/";
-            move_uploaded_file($video_tmp, $video_dossier . $num_article . "_" . $video_nom);
+            $article['titre'] = $titre;
+            $article['categorie'] = $categorie;
+            $article['instructions'] = $instructions;
 
-            // Préparation des données pour le format JSON
-            $article_data = array(
-                'numero_article' => $num_article,
-                'date_modification' => $date_modification,
-                'auteur' => $auteur,
-                'titre' => $titre,
-                'categorie' => $categorie,
-                'instructions' => $instructions
-            );
-            $article_json = json_encode($article_data);
+            $article_json = json_encode($article);
+
             // Enregistrement des informations de l'article au format JSON
             file_put_contents($nom_fichier, $article_json);
 
-            // Redirection après soumission de l'article pour l'instant juste un message
-            echo "Article modifié";
+            // Redirection après soumission de l'article
             header("Location: ../Utilisateur/Profil_Utilisateur.php");
         } else {
-            echo "Formulaire non existant";
-            header("Location: ../Conseils/Formulaire_soumission.php");
+            // Le fichier n'existe pas, redirige vers le profil
+            return header("Location: ../Utilisateur/Profil_Utilisateur.php");
         }
     }
 }
-?>

@@ -1,4 +1,3 @@
-<!-- Ici le php à plusieurs fonction, premièrement il vérifie qu'un utilisateur soit bien connecter puis il permet d'afficher l'article que l'on souhaites modifier -->
 <?php
 // Démarre la session PHP pour permettre le stockage de données de session
 session_start();
@@ -17,8 +16,8 @@ if (isset($_SESSION['user'])) {
     //Récupération des données pour effectuer le traitement à partir des données de formulaire
     $num_article = $_POST['num_article'];
 
-    // Chemin complet du fichier JSON dans le dossier utilisateur
-    $nom_fichier = '../data/' . md5($user_email) . '/article-' . $num_article . '.json';
+    // Chemin complet du fichier JSON de l'article
+    $nom_fichier = '../data/' . md5($user_email) . '/article-' . $num_article . "/article-" . $num_article . '.json';
 
     // Vérifie si le fichier existe
     if (file_exists($nom_fichier)) {
@@ -29,7 +28,7 @@ if (isset($_SESSION['user'])) {
         $article = json_decode($contenu, true);
     } else {
         // Le fichier n'existe pas, redirige vers le profil
-        return header("Location: ../Utilisateur/Profil_Utilisateur");
+        return header("Location: ../Utilisateur/Profil_Utilisateur.php");
     }
 
     // Récupère les valeurs transmises via la variable $article 
@@ -37,6 +36,8 @@ if (isset($_SESSION['user'])) {
     $categorie = $article['categorie'];
     $instructions = $article['instructions'];
     $num_article = $article['numero_article'];
+    $images_filepaths[]= $article['images'];
+    $videos_filepaths[]= $article['videos'];
 } else {
     // Rediriger l'utilisateur vers la page de connexion si les informations de l'utilisateur ne sont pas présentes dans la session
     return header('Location: ../Utilisateur/Connexion.php');
@@ -63,8 +64,8 @@ if (isset($_SESSION['user'])) {
         <nav>
             <ul>
                 <li><a href="../Accueil.php">Accueil</a></li>
-                <li><a href="Conseils.php">Nos conseils</a></li>
-                <li><a href="Formulaire_soumission.php">Donner un conseils</a></li>
+                <li><a href="../Conseils/Conseils.php">Nos conseils</a></li>
+                <li><a href="../Conseils/Formulaire_soumission.php">Donner un conseils</a></li>
                 <li>
                     <?php if (isset($_SESSION['user'])) { ?>
                         <a href="../Utilisateur/Profil_Utilisateur.php">Profil</a>
@@ -76,10 +77,9 @@ if (isset($_SESSION['user'])) {
         </nav>
     </header>
     <main>
-        <!-- Section qui affiche dans un formulaire les données de l'article que l'on souhaites modifier -->
+        <!-- Section qui affiche dans un formulaire les données de l'article que l'on souhaite modifier -->
         <fieldset>
             <legend>Modifier l'article</legend>
-            <!-- Modifiez l'action du formulaire pour qu'il envoie les données à votre script PHP -->
             <form action="./envoye_new_donner.php" method="post" enctype="multipart/form-data">
                 <label for="titre">Titre :</label>
                 <!-- Utilise les variables PHP pour remplir les valeurs des champs -->
@@ -97,11 +97,16 @@ if (isset($_SESSION['user'])) {
                 <label for="instructions">Instructions :</label>
                 <textarea id="instructions" name="instructions" required><?php echo $instructions; ?></textarea>
 
+                <!-- NE FONCTIONNE PAS -->
+                <!-- 
+                <!- Section pour modifier DES images // taille max du fichier on ajoutera après maxlength="5242880" ->
                 <label for="image">Image :</label>
-                <input type="file" id="image" name="image" accept="image/*">
+                <input type="file" name="images[]" multiple> 
 
+                <!- Section pour modifier LA vidéo ->
                 <label for="video">Vidéo :</label>
-                <input type="file" id="video" name="video" accept="video/*">
+                <input type="file" id="video" name="video" accept="video/*"> 
+-->
 
                 <input type="hidden" name="email" value="<?php echo $user_session_info['email']; ?>">
                 <input type="hidden" name="num_article" value="<?php echo $num_article; ?>">

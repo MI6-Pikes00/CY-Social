@@ -65,29 +65,39 @@ function getArticles($user_email)
     // Vérifie si le dossier utilisateur existe
     if (file_exists($dossier_utilisateur) && is_dir($dossier_utilisateur)) {
 
-        // Récupération de tous les fichiers dans le dossier utilisateur
-        $fichiers = glob($dossier_utilisateur . '/article-*');
+        // Récupération de tous les dossiers d'articles dans le dossier utilisateur
+        $dossiers_articles = glob($dossier_utilisateur . '/article-*', GLOB_ONLYDIR);
 
-        // Parcours de chaque fichier pour récupérer les données des articles
-        foreach ($fichiers as $fichier) {
-            // Récupération du contenu du fichier
-            $contenu = file_get_contents($fichier);
+        // Parcours de chaque dossier d'article pour récupérer les données des articles
+        foreach ($dossiers_articles as $dossier_article) {
+            // Récupération du chemin du fichier JSON de l'article
+            $nom_fichier = $dossier_article . '/' . basename($dossier_article) . '.json';
 
-            // Décodage des données JSON
-            $article = json_decode($contenu, true);
+            // Vérifie si le fichier JSON de l'article existe
+            if (file_exists($nom_fichier)) {
+                // Récupération du contenu du fichier
+                $contenu = file_get_contents($nom_fichier);
 
-            // Ajout de l'article au tableau d'articles
-            $articles[] = $article;
+                // Décodage des données JSON
+                $article = json_decode($contenu, true);
+
+                // Ajout de l'article au tableau d'articles
+                $articles[] = $article;
+            }
         }
+
         // Message d'information
         error_log("Récupération des données de l'article terminé.");
 
         // Retourne le tableau d'articles
         return $articles;
     } else {
-        return error_log("Le fichier $dossier_utilisateur n'existe pas");
+        // Message d'erreur
+        error_log("Le dossier $dossier_utilisateur n'existe pas");
+        return $articles; // Retourne un tableau vide en cas d'erreur
     }
 }
+
 ?>
 
 <!-- Ici commence le code de la page html -->
@@ -157,7 +167,7 @@ function getArticles($user_email)
                         <!-- Section de formulaire pour faire des buttons interactif -->
                         <div class="container_button_modifiez_supprimer">
                             <!-- Button pour voir -->
-                            <form action="../page_afficher_conseils.php" method="post">
+                            <form action="../Article_management/page_afficher_conseils.php" method="post">
                                 <input type="hidden" name="num_article" value="<?php echo $article['numero_article']; ?>">
                                 <button type="submit" name="submit" class="bouton_voir">Voir</button>
                             </form>

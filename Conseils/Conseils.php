@@ -82,7 +82,7 @@ function getAllArticles()
                     <legend><?php echo $article['titre']; ?></legend>
                     <p>Catégorie: <?php echo $article['categorie']; ?></p>
                     <div><?php echo $article['instructions']; ?></div>
-                    <form action="../page_afficher_conseils.php" method="post">
+                    <form action="../Article_management/page_afficher_conseils.php" method="post">
                         <input type="hidden" name="num_article" value="<?php echo $article['numero_article']; ?>">
                         <button type="submit" name="submit" class="bouton_voir">Voir</button>
                     </form>
