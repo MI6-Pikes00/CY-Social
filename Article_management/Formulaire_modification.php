@@ -1,22 +1,49 @@
+<!-- Ici le php à plusieurs fonction, premièrement il vérifie qu'un utilisateur soit bien connecter puis il permet d'afficher l'article que l'on souhaites modifier -->
 <?php
-// Vérifie si des données ont été transmises via l'URL
-if (isset($_GET['titre']) && isset($_GET['categorie']) && isset($_GET['instructions'])) {
-    // Récupère les valeurs transmises via l'URL
-    $titre = htmlspecialchars($_GET['titre']);
-    $categorie = htmlspecialchars($_GET['categorie']);
-    $instructions = htmlspecialchars($_GET['instructions']);
-    $user_email = htmlspecialchars($_GET['email']);
-    $num_article = htmlspecialchars($_GET['num_article']);
+// Démarre la session PHP pour permettre le stockage de données de session
+session_start();
 
+// Vérifier si l'utilisateur est connecté en vérifiant si les informations de l'utilisateur sont présentes dans la session pour 
+// pour créer une "sécurité" des données 
+if (isset($_SESSION['user'])) {
+
+    // Récupérer les données de l'utilisateur à partir de la session
+    $user_session_info = $_SESSION['user'];
+    $user_email = $user_session_info['email'];
+
+    // Messages d'information dans la console php
+    error_log("User récupéré sur Formulaire_modification.php");
+
+    //Récupération des données pour effectuer le traitement à partir des données de formulaire
+    $num_article = $_POST['num_article'];
+
+    // Chemin complet du fichier JSON dans le dossier utilisateur
+    $nom_fichier = '../data/' . md5($user_email) . '/article-' . $num_article . '.json';
+
+    // Vérifie si le fichier existe
+    if (file_exists($nom_fichier)) {
+        // Lit le contenu du fichier JSON
+        $contenu = file_get_contents($nom_fichier);
+
+        // Décodage des données JSON
+        $article = json_decode($contenu, true);
+    } else {
+        // Le fichier n'existe pas, redirige vers le profil
+        return header("Location: ../Utilisateur/Profil_Utilisateur");
+    }
+
+    // Récupère les valeurs transmises via la variable $article 
+    $titre = $article['titre'];
+    $categorie = $article['categorie'];
+    $instructions = $article['instructions'];
+    $num_article = $article['numero_article'];
 } else {
-    // Si aucune donnée n'a été transmise, initialise les variables à une valeur par défaut
-    $titre = "";
-    $categorie = "";
-    $instructions = "";
-    $user_email = "";
-    $num_article = "";
+    // Rediriger l'utilisateur vers la page de connexion si les informations de l'utilisateur ne sont pas présentes dans la session
+    return header('Location: ../Utilisateur/Connexion.php');
 }
 ?>
+
+<!-- Ici commence le code de la page html -->
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -30,6 +57,7 @@ if (isset($_GET['titre']) && isset($_GET['categorie']) && isset($_GET['instructi
 </head>
 
 <body>
+    <!-- Section pour la barre de navigation -->
     <header id="header">
         <a href="../Accueil.php" class="logo">CY-Social</a>
         <nav>
@@ -48,12 +76,13 @@ if (isset($_GET['titre']) && isset($_GET['categorie']) && isset($_GET['instructi
         </nav>
     </header>
     <main>
+        <!-- Section qui affiche dans un formulaire les données de l'article que l'on souhaites modifier -->
         <fieldset>
             <legend>Modifier l'article</legend>
             <!-- Modifiez l'action du formulaire pour qu'il envoie les données à votre script PHP -->
-            <form action="envoye_new_donner.php" method="post" enctype="multipart/form-data">
+            <form action="./envoye_new_donner.php" method="post" enctype="multipart/form-data">
                 <label for="titre">Titre :</label>
-                <!-- Utilisez les variables PHP pour remplir les valeurs des champs -->
+                <!-- Utilise les variables PHP pour remplir les valeurs des champs -->
                 <input type="text" id="titre" name="titre" required value="<?php echo $titre; ?>">
 
                 <label for="categorie">Catégorie :</label>
@@ -63,7 +92,6 @@ if (isset($_GET['titre']) && isset($_GET['categorie']) && isset($_GET['instructi
                     <option value="Santé" <?php if ($categorie == "Santé") echo "selected"; ?>>Santé</option>
                     <option value="Cuisine" <?php if ($categorie == "Cuisine") echo "selected"; ?>>Cuisine</option>
                     <option value="Autre" <?php if ($categorie == "Autre") echo "selected"; ?>>Autre</option>
-                    <!-- Ajoutez d'autres options de catégorie selon vos besoins -->
                 </select>
 
                 <label for="instructions">Instructions :</label>
@@ -75,7 +103,7 @@ if (isset($_GET['titre']) && isset($_GET['categorie']) && isset($_GET['instructi
                 <label for="video">Vidéo :</label>
                 <input type="file" id="video" name="video" accept="video/*">
 
-                <input type="hidden" name="email" value="<?php echo $user_email; ?>">
+                <input type="hidden" name="email" value="<?php echo $user_session_info['email']; ?>">
                 <input type="hidden" name="num_article" value="<?php echo $num_article; ?>">
 
                 <input type="submit" name="envoyer" value="Modifier">
@@ -83,6 +111,7 @@ if (isset($_GET['titre']) && isset($_GET['categorie']) && isset($_GET['instructi
         </fieldset>
     </main>
     <footer>
+        <!-- Section qui affiche les auteurs du site web -->
         <p>
             <small>
                 Copyrights 2024 - Luc Letailleur et Thomas Herriau

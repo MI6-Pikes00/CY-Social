@@ -1,4 +1,4 @@
-<!-- ICI le php à plusieurs fonction, premièrement il vérifie qu'un utilisateur soit bien connecter puis il permet d'afficher ses information, ses articles, de pourvoir les modifiers -->
+<!-- Ici le php à plusieurs fonction, premièrement il vérifie qu'un utilisateur soit bien connecter puis il permet d'afficher ses information, ses articles, de pourvoir les modifiers -->
 <?php
 // Démarre la session PHP pour permettre le stockage de données de session
 session_start();
@@ -56,11 +56,8 @@ function getArticles($user_email)
     // Message d'information
     error_log("Récupération des données de l'article en cours...");
 
-    // Chemin relatif vers le dossier 'data'
-    $dossier = '../data';
-
     // Chemin complet du dossier utilisateur
-    $dossier_utilisateur = $dossier . '/' . md5($user_email);
+    $dossier_utilisateur = '../data/' . md5($user_email);
 
     // Initialisation d'un tableau pour stocker les articles
     $articles = array();
@@ -130,6 +127,7 @@ function getArticles($user_email)
                 <legend>Information personnel</legend>
                 <form action="" method="post">
                     <label for="nom">Nom:</label>
+                    <!-- Utilise les variables PHP pour remplir les valeurs des champs -->
                     <input type="text" id="nom" name="nom" value="<?php echo $user_session_info['nom']; ?>"><br>
 
                     <label for="prenom">Prénom:</label>
@@ -164,14 +162,12 @@ function getArticles($user_email)
                                 <button type="submit" name="submit" class="bouton_voir">Voir</button>
                             </form>
                             <!-- Button pour modifier -->
-                            <form action="../Article_management/modifier_article.php" method="post">
-                                <input type="hidden" name="email" value="<?php echo $user_session_info['email']; ?>">
+                            <form action="../Article_management/Formulaire_modification.php" method="post">
                                 <input type="hidden" name="num_article" value="<?php echo $article['numero_article']; ?>">
                                 <button type="submit" name="submit" class="bouton_modifier">Modifier</button>
                             </form>
                             <!-- Button pour supprimer -->
                             <form action="../Article_management/supprimer_article.php" method="post">
-                                <input type="hidden" name="email" value="<?php echo $user_session_info['email']; ?>">
                                 <input type="hidden" name="num_article" value="<?php echo $article['numero_article']; ?>">
                                 <button type="submit" name="submit" class="bouton_supprimer">Supprimer</button>
                             </form>
