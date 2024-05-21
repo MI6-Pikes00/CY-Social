@@ -1,149 +1,156 @@
+/* Import des polices depuis Google Fonts */
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Rancho&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
 
+/* Réinitialisation des styles de base */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  margin: 0; /* Définit la marge externe à zéro */
+  padding: 0; /* Définit le rembourrage à zéro */
+  box-sizing: border-box; /* Utilisation de la boîte de modélisation de bordure pour inclure la bordure et le rembourrage dans la largeur et la hauteur */
+  font-family: "Poppins", sans-serif; /* Utilisation de la police Poppins par défaut pour tout le document */
 }
 
+/* Styles pour l'en-tête */
 header {
-  background-color: #fff;
-  height: 82px;
-  width: 100%;  
-  top: 0;
-  left: 0;
-  position: fixed;
-  padding: 20px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;
+  background-color: #fff; /* Couleur de fond de l'en-tête en blanc */
+  height: 82px; /* Hauteur de l'en-tête */
+  width: 100%; /* Largeur de l'en-tête */
+  top: 0; /* Position de l'en-tête au sommet */
+  left: 0; /* Position de l'en-tête à gauche */
+  position: fixed; /* Positionnement fixe de l'en-tête */
+  padding: 20px 20px; /* Rembourrage de l'en-tête */
+  display: flex; /* Affichage en flexbox */
+  justify-content: space-between; /* Alignement des éléments en espacement égal */
+  align-items: center; /* Alignement vertical des éléments au centre */
+  z-index: 1000; /* Indice de positionnement de l'en-tête */
 }
+
 header .logo {
-  color: #094b65;
-  font-weight: 700;
-  text-decoration: none;
-  padding-left: 7px;
-  font-size: 40px;
+  color: #094b65; /* Couleur du texte du logo */
+  font-weight: 700; /* Poids de la police du logo */
+  text-decoration: none; /* Aucune décoration de texte pour le logo */
+  padding-left: 7px; /* Rembourrage à gauche du logo */
+  font-size: 40px; /* Taille de la police du logo */
 }
+
 header ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
+  display: flex; /* Affichage en flexbox pour la liste */
+  justify-content: center; /* Alignement des éléments de la liste au centre */
+  align-items: center; /* Alignement vertical des éléments de la liste au centre */
+  gap: 18px; /* Espace entre les éléments de la liste */
 }
+
 header ul li {
-  list-style: none;
+  list-style: none; /* Aucun style de liste pour les éléments de la liste */
 }
+
 header ul li a {
-  text-decoration: none;
-  padding: 6px 15px;
-  color: #094b65;
-  border-radius: 20px;
-  
+  text-decoration: none; /* Aucune décoration de texte pour les liens */
+  padding: 6px 15px; /* Rembourrage des liens */
+  color: #094b65; /* Couleur du texte des liens */
+  border-radius: 20px; /* Bordure arrondie pour les liens */
 }
 
+/* Styles pour les bordures de connexion */
 .connexion-border {
-  border: 2px solid #094b65;
-  border-radius: 10px;
-  padding: 8px 12px;
-  text-decoration: none;
-  display: inline-block;
+  border: 2px solid #094b65; /* Bordure solide de 2px avec couleur définie */
+  border-radius: 10px; /* Bordure arrondie */
+  padding: 8px 12px; /* Rembourrage */
+  text-decoration: none; /* Aucune décoration de texte */
+  display: inline-block; /* Affichage en bloc inline */
 }
 
+/* Styles pour la section principale */
 main {
-  padding: 20px 0px;
+  padding: 20px 0px; /* Rembourrage de la section principale */
 }
 
+/* Styles pour la section d'accueil */
 .welcome {
-  background-image: url(../Ressources/back-image.jpeg);
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: 800px;
-  display: block;
-  margin: 0 auto;
-}
-.welcome h1 {
-  color: #fff;
-  text-align: center;
-  font-size: 60px;
-  letter-spacing: 3px;
-  padding-top: 160px;
+  background-image: url(../Ressources/back-image.jpeg); /* Image de fond pour la section d'accueil */
+  background-size: cover; /* Redimensionne l'image pour couvrir la section */
+  background-position: center; /* Position de l'image au centre */
+  width: 100%; /* Largeur de la section */
+  height: 800px; /* Hauteur de la section */
+  display: block; /* Affichage en bloc */
+  margin: 0 auto; /* Marge automatique à gauche et à droite pour centrer la section */
 }
 
+.welcome h1 {
+  color: #fff; /* Couleur du texte en blanc */
+  text-align: center; /* Alignement du texte au centre */
+  font-size: 60px; /* Taille de la police */
+  letter-spacing: 3px; /* Espacement entre les lettres */
+  padding-top: 160px; /* Rembourrage en haut */
+}
+
+/* Styles pour la barre de recherche */
 .search-container {
-  width: 100%;
-  min-height: 50%;
-  padding: 5%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%; /* Largeur de la barre de recherche */
+  min-height: 50%; /* Hauteur minimale de la barre de recherche */
+  padding: 5%; /* Rembourrage */
+  display: flex; /* Affichage en flexbox */
+  align-items: center; /* Alignement vertical des éléments au centre */
+  justify-content: center; /* Alignement horizontal des éléments au centre */
 }
 
 .search-bar {
-  width: 100%;
-  max-width: 700px;
-  background: rgb(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  border-radius: 60px;
-  padding: 10px 20px;
-  backdrop-filter: blur(1px) saturate(160%);
+  width: 100%; /* Largeur de la barre de recherche */
+  max-width: 700px; /* Largeur maximale de la barre de recherche */
+  background: rgb(255, 255, 255, 0.2); /* Fond semi-transparent */
+  display: flex; /* Affichage en flexbox */
+  align-items: center; /* Alignement vertical des éléments au centre */
+  border-radius: 60px; /* Bordure arrondie */
+  padding: 10px 20px; /* Rembourrage */
+  backdrop-filter: blur(1px) saturate(160%); /* Effet de flou pour le fond */
 }
 
 .search-bar input {
-  background: transparent;
-  flex: 1;
-  border: 0;
-  outline: none;
-  padding: 24px 20px;
-  font-size: 20px;
-  color: #fff;
+  background: transparent; /* Fond transparent */
+  flex: 1; /* Étend le champ de saisie sur toute la largeur disponible */
+  border: 0; /* Pas de bordure */
+  outline: none; /* Pas de contour de sélection */
+  padding: 24px 20px; /* Rembourrage */
+  font-size: 20px; /* Taille de la police */
+  color: #fff; /* Couleur du texte en blanc */
 }
 
 .search-bar ::placeholder{
-  color: #cac7ff;
+  color: #cac7ff; /* Couleur du texte de l'espace réservé */
 }
 
 .search-bar button img{
-  width: 25px;
+  width: 25px; /* Largeur de l'image à l'intérieur du bouton */
 }
 
 .search-bar button {
-  border: 0;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  background: #58629b;
-  cursor: pointer;
+  border: 0; /* Pas de bordure */
+  border-radius: 50%; /* Bordure arrondie */
+  width: 60px; /* Largeur du bouton */
+  height: 60px; /* Hauteur du bouton */
+  background: #58629b; /* Couleur de fond */
+  cursor: pointer; /* Curseur de type pointeur */
 }
 
-
-
-
-section {
-  text-align: justify;
-}
-
+/* Styles pour le pied de page */
 footer {
-  padding-left: 20px;
-  color: #094b65;
+  padding-left: 20px; /* Rembourrage à gauche */
+  color: #094b65; /* Couleur du texte */
 }
 
+/* Styles pour les titres */
 h1 {
-  text-align: center;
+  text-align: center; /* Alignement du texte au centre */
 }
 
 h2 {
-  text-decoration: underline;
+  text-decoration: underline; /* Soulignement du texte */
 }
 
+/* Styles pour le conteneur utilisateur */
 .container_user {
-  display: flex;
+  display: flex; /* Affichage en flexbox */
 }
 
 .container_connection {
@@ -162,20 +169,23 @@ h2 {
   align-items: center; /* Centre verticalement les enfants */
 }
 
+
 .container_connection_bgd_img_left {
-  width: 42vw;
-  max-width: 776px;
-  height: 100%;
-  border-radius: 29px 0px 0px 29px;
-  overflow: hidden;
+  width: 42vw; /* Largeur du conteneur en 42% de la largeur de la fenêtre */
+  max-width: 776px; /* Largeur maximale du conteneur */
+  height: 100%; /* Hauteur du conteneur à 100% */
+  border-radius: 29px 0px 0px 29px; /* Bordure arrondie sur le côté gauche */
+  overflow: hidden; /* Masquer tout contenu dépassant du conteneur */
 }
 
+
 .container_connection_bgd_img_left img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 20%;
+  width: 100%; /* Largeur de l'image à 100% */
+  height: 100%; /* Hauteur de l'image à 100% */
+  object-fit: cover; /* Redimensionne l'image pour couvrir le conteneur */
+  object-position: 50% 20%; /* Position de l'image centrée horizontalement et décalée verticalement de 20% vers le bas */
 }
+
 
 .container_connection_form_right {
   width: 25vw; /* Largeur restante */
@@ -280,63 +290,73 @@ h2 {
   margin-top: -20px;
 }
 
+/* Styles pour le carré */
 .carre {
-  padding-top: 20%;
-  width: auto;
-  height: 500px;
-  border: 5px solid purple;
-  text-align: center;
-  align-content: center;
-  font-weight: bold;
-  color: black;
+  padding-top: 20%; /* Rembourrage en haut équivalent à 20% de la largeur de l'élément parent */
+  width: auto; /* Largeur automatique */
+  height: 500px; /* Hauteur de l'élément */
+  border: 5px solid purple; /* Bordure solide de 5px de couleur violette */
+  text-align: center; /* Alignement du texte au centre */
+  align-content: center; /* Alignement du contenu au centre */
+  font-weight: bold; /* Police en gras */
+  color: black; /* Couleur du texte en noir */
 }
 
+/* Styles pour le conteneur des boutons Modifier et Supprimer */
 .container_button_modifiez_supprimer {
-  display: flex;
-  justify-content: flex-end;
+  display: flex; /* Affichage en flexbox */
+  justify-content: flex-end; /* Alignement des éléments sur le côté droit */
 }
 
+/* Styles pour le bouton Voir */
 .bouton_voir {
-  padding: 10px 20px;
-  background-color: green;
-  color: #fff;
-  border: 2px solid #094b65; /* Bordure solide */
+  padding: 10px 20px; /* Rembourrage */
+  background-color: green; /* Couleur de fond verte */
+  color: #fff; /* Couleur du texte en blanc */
+  border: 2px solid #094b65; /* Bordure solide de couleur */
   border-radius: 5px; /* Coins arrondis */
 }
+
+/* Styles pour le bouton Modifier */
 .bouton_modifier {
-  margin-left: 2%;
-  margin-right: 5%;
-  padding: 10px 20px;
-  background-color: orange;
-  color: #fff;
-  border: 2px solid #094b65; /* Bordure solide */
+  margin-left: 2%; /* Marge à gauche */
+  margin-right: 5%; /* Marge à droite */
+  padding: 10px 20px; /* Rembourrage */
+  background-color: orange; /* Couleur de fond orange */
+  color: #fff; /* Couleur du texte en blanc */
+  border: 2px solid #094b65; /* Bordure solide de couleur */
   border-radius: 5px; /* Coins arrondis */
 }
 
+/* Styles pour le bouton Supprimer */
 .bouton_supprimer {
-  padding: 10px 20px;
-  background-color: red;
-  color: #fff;
-  border: 2px solid #094b65; /* Bordure solide */
+  padding: 10px 20px; /* Rembourrage */
+  background-color: red; /* Couleur de fond rouge */
+  color: #fff; /* Couleur du texte en blanc */
+  border: 2px solid #094b65; /* Bordure solide de couleur */
   border-radius: 5px; /* Coins arrondis */
 }
 
-.container_titre{
-  display: flex;
-  justify-content: left;
-  margin-top: 5%;
+/* Styles pour le conteneur du titre */
+.container_titre {
+  display: flex; /* Affichage en flexbox */
+  justify-content: left; /* Alignement du contenu à gauche */
+  margin-top: 5%; /* Marge en haut */
 }
 
-.container_main{
-  display: flex;
+/* Styles pour le conteneur principal */
+.container_main {
+  display: flex; /* Affichage en flexbox */
 }
 
-.affiche_text{
-  margin-top: 2%;
-  width: 73%;
+/* Styles pour l'affichage du texte */
+.affiche_text {
+  margin-top: 2%; /* Marge en haut */
+  width: 73%; /* Largeur de 73% */
 }
 
-.affiche_image{
-  margin: 2%;
-  width: 25%;
+/* Styles pour l'affichage de l'image */
+.affiche_image {
+  margin: 2%; /* Marge */
+  width: 25%; /* Largeur de 25% */
 }
