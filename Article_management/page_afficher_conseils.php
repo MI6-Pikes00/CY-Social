@@ -22,7 +22,7 @@ function getOneArticle($num_article)
         error_log("fichier :  $user_folder.");
 
         // Chemin complet du fichier JSON de l'article
-        $nom_fichier_json = $user_folder. '/article-' . $num_article . '/article-' . $num_article . '.json';
+        $nom_fichier_json = $user_folder . '/article-' . $num_article . '/article-' . $num_article . '.json';
 
         // Vérifie si le fichier JSON de l'article existe
         if (file_exists($nom_fichier_json)) {
@@ -109,12 +109,10 @@ $article = getOneArticle($numero_article);
                     <img src="<?php echo $image; ?>" alt="Image de l'article">
                 <?php } ?>
                 <h3>Vidéos :</h3>
-                <?php foreach ($article['videos'] as $video) { ?>
-                    <video controls>
-                        <source src="<?php echo $video; ?>" type="video/mp4">
-                        Votre navigateur ne supporte pas la lecture de vidéos.
-                    </video>
-                <?php } ?>
+                <video controls>
+                    <source src="<?php echo $article['video']; ?>" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
             </div>
             <!-- FIN DE LA SECTION POUR AFFICHER LES IMAGES ET VIDÉOS DE L'ARTICLE -->
 
@@ -130,9 +128,4 @@ $article = getOneArticle($numero_article);
         </p>
     </footer>
 </body>
-
 </html>
-
-<?php
-
-?>
