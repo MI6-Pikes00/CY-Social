@@ -119,7 +119,7 @@ function getArticles($user_email)
             <ul>
                 <li><a href="../Accueil.php">Accueil</a></li>
                 <li><a href="../Conseils/Conseils.php">Nos conseils</a></li>
-                <li><a href="../Conseils/Formulaire_soumission.php">Donner un conseils</a></li>
+                <li><a href="../Conseils/formulaire_dynamique.php">Donner un conseils</a></li>
                 <li><a href="Deconnexion.php">Déconnexion</a></li>
                 </ul>
         </nav>
