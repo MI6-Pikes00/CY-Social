@@ -267,16 +267,6 @@ h2 {
 } */
 
 
-.container_inscription_form_right img {
-  width: 95px;
-  height: 95px;
-  border-radius: 50%;
-  border: 2px solid white;
-  /* box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2); */
-  margin-top: 40px;
-  margin-bottom: 30px;
-}
-
 .profile-picture {
   width: 95px; /* Taille de la zone ronde */
   height: 95px; /* Taille de la zone ronde */
@@ -288,12 +278,6 @@ h2 {
   background-color: white;
   cursor: pointer; /* Change le curseur en pointeur pour indiquer que c'est cliquable */
   margin-top: -20px;
-}
-
-
-.container_inscription {
-  display: flex;
-  justify-content: center;
 }
 
 .carre {

@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Lit chaque ligne du fichier CSV
             while (($ligne = fgetcsv($handle, 1000, ',')) !== false) {
                 // Vérifie si l'email et le mot de passe correspondent
-                if ($ligne[2] === $email && $ligne[5] === $password) { // L'email est en index 2 et le mot de passe en index 5 (vous pouvez ajuster cela selon votre structure de fichier CSV)
+                if ($ligne[2] === $email && $ligne[3] === $password) { // L'email est en index 2 et le mot de passe en index 5 (vous pouvez ajuster cela selon votre structure de fichier CSV)
 
                     // Message d'information que l'user est bien connecter a son compte
                     error_log("Connexion réussie pour $email.");
@@ -41,9 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         'nom' => $ligne[0],
                         'prenom' => $ligne[1],
                         'email' => $ligne[2],
-                        'age' => $ligne[3],
-                        'telephone' => $ligne[4],
-                        'password' => $ligne[5]
+                        'password' => $ligne[3]
                     );
 
                     // Redirige l'utilisateur vers la page de profil
@@ -113,20 +111,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
 
-
-    <!--
-        <div class="container_connection">
-            <fieldset style="width: 25%;">
-                <!- Formulaire de connection qui va exécuter le scripts si dessus quand on clique sur le bouton submit ->
-                <legend>Connection</legend>
-                <form name="#" method="post">
-                    <input type="email" name="email" placeholder="Email" required="required" />
-                    <input type="password" name="password" placeholder="Mot de passe" required="required">
-                    <input type="submit" name="inscription" value="Se connecter" />
-                </form>
-            </fieldset>
-        </div>
-    -->
     </main>
     <footer>
         <!-- Section qui affiche les auteurs du site web -->

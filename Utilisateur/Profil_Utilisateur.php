@@ -21,8 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user['nom'] = $_POST['nom'];
     $user['prenom'] = $_POST['prenom'];
     $user['email'] = $_POST['email'];
-    $user['age'] = $_POST['age'];
-    $user['telephone'] = $_POST['telephone'];
 
     // Récupérer le mot de passe de l'utilisateur
     $user['password'] = $user_session_info['password'];
@@ -144,12 +142,6 @@ function getArticles($user_email)
 
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" value="<?php echo $user_session_info['email']; ?>"><br>
-
-                    <label for="age">Âge:</label>
-                    <input type="number" id="age" name="age" value="<?php echo $user_session_info['age']; ?>"><br>
-
-                    <label for="telephone">Téléphone:</label>
-                    <input type="tel" id="telephone" name="telephone" value="<?php echo $user_session_info['telephone']; ?>"><br>
 
                     <input type="submit" value="Modifier">
                 </form>

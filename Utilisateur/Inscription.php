@@ -137,27 +137,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
         </div>
-    
-    
-    <!--
-        <div class="container_inscription">
-            <fieldset class="formulaire">
-                <legend>Inscription</legend>
-                <!- Formulaire d’inscription avec des inputs de type différents suivant l'information que l'on veut collecté et
-                    qui va exécuter le scripts si dessus quand on clique sur le bouton submit ->
-                <form name="inscription" method="post" action="#">
-                    <input type="text" name="nom" placeholder="Nom" required="required" />
-                    <input type="text" name="prenom" placeholder="Prénom" required="required" />
-                    <input type="email" name="email" placeholder="Email" required="required" />
-                    <input type="number" name="age" placeholder="Age" min="18" max="100" required="required" />
-                    <input type="tel" name="telephone" placeholder="Téléphone" />
-                    <input type="password" name="password" placeholder="Mot de passe" required="required">
-                    <input type="password" name="confirm_password" placeholder="Confirmer le mot de passe" required="required">
-                    <input type="submit" name="inscription" value="S'inscrire" />
-                </form>
-            </fieldset>
-        </div>
-    -->
 
     </main>
     <footer>
