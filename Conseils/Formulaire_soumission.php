@@ -177,9 +177,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="categorie">Catégorie :</label>
                 <select id="categorie" name="categorie" required>
                     <option value="">Sélectionner une catégorie</option>
-                    <option value="Technologie">Technologie</option>
-                    <option value="Santé">Santé</option>
                     <option value="Cuisine">Cuisine</option>
+                    <option value="Loisirs">Loisirs</option>
+                    <option value="Maison & Jardin">Maison & Jardin</option>
+                    <option value="Mode & Beauté">Mode & Beauté</option>
+                    <option value="Santé">Santé</option>
+                    <option value="Technologie">Technologie</option>
+                    <option value="Voyages">Voyages</option>
                     <option value="Autre">Autre</option>
                 </select>
                 <!-- Section pour rentrer le texte -->
