@@ -91,9 +91,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </nav>
     </header>
     <main>
+
+        <div class="container_connection">
+            <div class="container_connection_bgd_img_left">
+                <img src="../Ressources/connexion-image-sized.jpg" alt="connexion-image">
+            </div>
+            <div class="container_connection_form_right">
+                <form name="#" method="post">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="pswd">Mot de passe</label>
+                    <input type="password" id="pswd" name="password" style="letter-spacing: 1px" required>
+
+                    <span class="pswd">Mot de passe oublié ? <a href="#">Cliquez ici</a></span>
+
+                    <button type="submit">Se connecter</button>
+
+                    <span class="pswd" style="text-align: center; margin-top: 18px">Pas encore inscrit ? <a href="Inscription.php">Créer un compte</a></span>
+                </form>
+            </div>
+        </div>
+
+
+    <!--
         <div class="container_connection">
             <fieldset style="width: 25%;">
-                <!-- Formulaire de connection qui va exécuter le scripts si dessus quand on clique sur le bouton submit -->
+                <!- Formulaire de connection qui va exécuter le scripts si dessus quand on clique sur le bouton submit ->
                 <legend>Connection</legend>
                 <form name="#" method="post">
                     <input type="email" name="email" placeholder="Email" required="required" />
@@ -102,6 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </form>
             </fieldset>
         </div>
+    -->
     </main>
     <footer>
         <!-- Section qui affiche les auteurs du site web -->

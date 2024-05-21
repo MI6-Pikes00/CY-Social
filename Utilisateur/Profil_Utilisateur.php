@@ -123,8 +123,7 @@ function getArticles($user_email)
                 <li><a href="../Conseils/Conseils.php">Nos conseils</a></li>
                 <li><a href="../Conseils/Formulaire_soumission.php">Donner un conseils</a></li>
                 <li><a href="Deconnexion.php">Déconnexion</a></li>
-                <li><input type="text" placeholder="Rechercher..."><input type="submit" name="rechercher" value="Rechercher" /></li>
-            </ul>
+                </ul>
         </nav>
     </header>
     <main>

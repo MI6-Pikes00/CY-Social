@@ -24,11 +24,13 @@ session_start()
                 <li><a href="./Conseils/Conseils.php">Nos conseils</a></li>
                 <li><a href="./Conseils/Formulaire_soumission.php">Donner un conseil</a></li>
                 <!-- Permet d'afficher un bouton d'action différents selon si un utilisateur est connecté à un compte -->
-                <?php if (isset($_SESSION['user'])) { ?>
-                    <a href="./Utilisateur/Profil_Utilisateur.php" class="connexion-border"><b>Profil</b></a>
-                <?php } else { ?>
-                    <a href="./Utilisateur/Connection.php" class="connexion-border"><b>Connexion</b></a>
-                <?php } ?>
+                <li>
+                    <?php if (isset($_SESSION['user'])) { ?>
+                        <a href="./Utilisateur/Profil_Utilisateur.php" class="connexion-border"><b>Mon compte</b></a>
+                    <?php } else { ?>
+                        <a href="./Utilisateur/Connection.php" class="connexion-border"><b>Connexion</b></a>
+                    <?php } ?>
+                </li>
             </ul>
         </nav>
     </header>

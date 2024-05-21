@@ -28,6 +28,7 @@ main fieldset legend {
 }
 
 /* Style pour les champs du formulaire */
+
 main form input[type="text"],
 main form input[type="email"],
 main form input[type="tel"],
@@ -39,12 +40,13 @@ main form textarea,
 main form select {
   width: 100%; /* Largeur de 100% */
   padding: 10px; /* Espacement intérieur */
-  border: 2px solid #094b65; /* Bordure solide */
-  border-radius: 5px; /* Coins arrondis */
+  /* border: 2px solid #094b65; /* Bordure solide */
+  border-radius: 2px; /* Coins arrondis */
   font-size: 16px; /* Taille de police */
-  color: #094b65; /* Couleur du texte */
+  /* color: #094b65; /* Couleur du texte */
   margin-bottom: 10px; /* Marge inférieure */
 }
+
 
 /* Style pour le bouton de connexion en orange */
 main form input[type="submit"] {

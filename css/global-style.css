@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Rancho&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
 
 * {
   margin: 0;
@@ -53,20 +54,8 @@ header ul li a {
   display: inline-block;
 }
 
-header input[type="text"],
-header input[type="submit"] {
-  display: inline;
-  width: 100%; /* Largeur de 100% */
-  padding: 10px; /* Espacement intérieur */
-  border: 2px solid #094b65; /* Bordure solide */
-  border-radius: 5px; /* Coins arrondis */
-  color: #094b65; /* Couleur du texte */
-  margin-bottom: 10px; /* Marge inférieure */
-}
-
 main {
   padding: 20px 0px;
-  color: #094b65;
 }
 
 .welcome {
@@ -116,7 +105,7 @@ main {
   color: #fff;
 }
 
-::placeholder{
+.search-bar ::placeholder{
   color: #cac7ff;
 }
 
@@ -158,9 +147,149 @@ h2 {
 }
 
 .container_connection {
-  display: flex;
-  justify-content: center;
+  width: 75vw; /* Largeur de 75% de la largeur du viewport */
+  height: 80vh; /* Hauteur de 80% de la hauteur du viewport */
+  max-width: 1421px; /* Limite maximale de la largeur */
+  max-height: 828px; /* Limite maximale de la hauteur */
+  border: 1px solid black; /* Bordure noire de 1px */
+  border-radius: 30px; /* Bords arrondis de 30px */
+  margin: 0 auto; /* Centre horizontalement */
+  position: absolute; /* Permet de centrer verticalement */
+  top: calc(50% + 30px); /* Centre verticalement en tenant compte de la hauteur de la barre de navigation */
+  left: 50%; /* Centre horizontalement */
+  transform: translate(-50%, -50%); /* Centre parfaitement la boîte */
+  display: flex; /* Utilise flexbox pour disposer les enfants */
+  align-items: center; /* Centre verticalement les enfants */
 }
+
+.container_connection_bgd_img_left {
+  width: 42vw;
+  max-width: 776px;
+  height: 100%;
+  border-radius: 29px 0px 0px 29px;
+  overflow: hidden;
+}
+
+.container_connection_bgd_img_left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+
+.container_connection_form_right {
+  width: 25vw; /* Largeur restante */
+  max-width: calc(1421px - 776px); /* Limite maximale de la largeur */
+  height: 100%; /* Hauteur de 100% de la boîte parente */
+  padding: 20px; /* Espacement intérieur */
+  display: flex;
+  flex-direction: column; /* Disposition verticale des éléments */
+  justify-content: center; /* Centre verticalement */
+  align-items: center; /* Aligne les éléments à droite */
+  margin: 0 auto -40px; /* Centre la box au milieu */
+  border-radius: 0px 29px 29px 0px; /* Coins arrondis à droite */
+  box-sizing: border-box; /* Inclut le padding dans la largeur et la hauteur */
+}
+
+.container_connection_form_right form {
+  width: 100%; /* Formulaire occupe toute la largeur disponible */
+}
+
+.container_connection_form_right .name-fields {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px; /* Espacement entre les champs */
+}
+
+.container_connection_form_right .name-fields .field {
+  flex: 1;
+}
+
+.container_connection_form_right label {
+  display: block; /* Affiche chaque label sur une nouvelle ligne */
+  padding-top: 15px;
+  margin-bottom: 10px; /* Espacement en dessous des labels */
+  color: black;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  text-rendering: geometricPrecision;
+}
+
+.container_connection_form_right input {
+  width: 100%; /* Champs de formulaire occupent toute la largeur disponible */
+  padding: 10px; /* Espacement intérieur des champs */
+  margin-bottom: 20px; /* Espacement en dessous des champs */
+  border: none;
+  background: rgba(177, 178, 181, 0.3);
+  border-radius: 2px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.container_connection_form_right .pswd {
+  display: block; /* Affiche chaque span sur une nouvelle ligne */
+  margin-bottom: 20px; /* Espacement en dessous des spans */
+  text-indent: 5px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 14px;
+  text-rendering: geometricPrecision;
+  color: rgba(153, 153, 153, 1);
+  width: 100%; /* Span occupe toute la largeur disponible */
+}
+
+.container_connection_form_right ::placeholder {
+  font-size: 14px;
+  color: rgba(61, 61, 61, 1);
+}
+
+.container_connection_form_right .pswd a {
+  color: rgba(36, 36, 36, 1);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 14px;
+  text-rendering: geometricPrecision;
+}
+
+.container_connection_form_right button {
+  width: 100%; /* Bouton occupe toute la largeur disponible */
+  margin-top: 10px;
+  padding: 15px; /* Espacement intérieur du bouton */
+  background-color: #313131; /* Couleur de fond bleue */
+  color: white; /* Couleur du texte blanche */
+  border: none; /* Supprime les bordures par défaut */
+  border-radius: 2px; /* Coins légèrement arrondis */
+  cursor: pointer; /* Curseur de pointeur */
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+}
+
+/* .container_connection_form_right button:hover {
+  background-color: #005fc4; /* Couleur de fond plus foncée au survol
+} */
+
+
+.container_inscription_form_right img {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  border: 2px solid white;
+  /* box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2); */
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.profile-picture {
+  width: 95px; /* Taille de la zone ronde */
+  height: 95px; /* Taille de la zone ronde */
+  border-radius: 50%; /* Rend la zone ronde */
+  border: 2px solid white; /* Contours blancs de 2px */
+  background-image: url('../Ressources/profil-picture.png'); /* Image par défaut en fond */
+  background-size: cover; /* Ajuste l'image pour couvrir toute la zone */
+  background-position: center; /* Centre l'image dans la zone */
+  background-color: white;
+  cursor: pointer; /* Change le curseur en pointeur pour indiquer que c'est cliquable */
+  margin-top: -20px;
+}
+
 
 .container_inscription {
   display: flex;

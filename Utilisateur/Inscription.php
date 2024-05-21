@@ -3,22 +3,22 @@
 // Vérification si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupération des données du formulaire
+    $prenom = $_POST['prenom'];    
     $nom = $_POST['nom'];
-    $prenom = $_POST['prenom'];
     $email = $_POST['email'];
-    $age = $_POST['age'];
-    $telephone = $_POST['telephone'];
+    // $age = $_POST['age'];
+    // $telephone = $_POST['telephone'];
     $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+    // $confirm_password = $_POST['confirm_password'];
 
     // Messages d'information dans la console php
     error_log("Données du formulaire récupéré");
 
     // Vérification si les mots de passe correspondent
-    if ($password !== $confirm_password) {
+    /* if ($password !== $confirm_password) {
         echo "Les mots de passe ne correspondent pas.";
     } else {
-
+    */
         // Chemin complet du fichier CSV dans le dossier 'data'
         $dossier_utilisateur = '../data/' . md5($email);
 
@@ -44,7 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Vérifie si l'ouverture du fichier a réussi
             if ($handle !== false) {
                 // Écriture des données dans le fichier CSV
-                $ligne = array($nom, $prenom, $email, $age, $telephone, $password);
+                $ligne = array($prenom, $nom, $email, $password);
+                //$ligne = array($prenom, $nom, $email, $age, $telephone, $password);
 
                 // Écrit les données en langage csv pour les accent et caractère spéciaux pour une meilleur retranscription par la suite
                 fputcsv($handle, $ligne);
@@ -58,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Erreur lors de l'ouverture du fichier $nom_fichier.";
             }
         }
-    }
+    //}
     // Envoie vers le formulaire de connexion une fois l'inscription terminé
     return header("Location: ./Connection.php");
 } else {
@@ -94,11 +95,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </nav>
     </header>
     <main>
+        
+        <div class="container_connection">
+            <div class="container_connection_bgd_img_left">
+                <img src="../Ressources/connexion-image-sized.jpg" alt="connexion-image">
+            </div>
+            <div class="container_connection_form_right">
+                <form name="#" method="post">
+                    
+                    <div class="profile-picture" onclick="document.getElementById('file-input').click();">
+                        <input type="file" id="file-input" accept="image/*" style="display: none;" onchange="loadFile(event)">
+                    </div>
+                    
+                    <div class="name-fields">
+                        <div class="field">
+                            <label for="ufname">Prénom</label>
+                            <input type="text" name="prenom" required>
+                        </div>
+                        <div class="field">
+                            <label for="uname">Nom</label>
+                            <input type="text" name="nom" required>
+                        </div>
+                    </div>
+
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="pswd">Mot de passe</label>
+                    <input type="password" id="pswd" name="password" placeholder="6+ characters" style="letter-spacing: 1px; margin-bottom: 30px; text-indent: 3px" required>
+
+                    <button type="submit">Create account</button>
+
+                    <span class="pswd" style="text-align: center; margin-top: 18px">Déjà membre ? <a href="Connection.php">Se connecter</a></span>
+                </form>
+                <script>
+                    function loadFile(event) {
+                        var image = document.querySelector('.profile-picture');
+                        image.style.backgroundImage = 'url(' + URL.createObjectURL(event.target.files[0]) + ')';
+                    }
+                </script>
+            </div>
+
+        </div>
+    
+    
+    <!--
         <div class="container_inscription">
             <fieldset class="formulaire">
                 <legend>Inscription</legend>
-                <!-- Formulaire d’inscription avec des inputs de type différents suivant l'information que l'on veut collecté et
-                    qui va exécuter le scripts si dessus quand on clique sur le bouton submit -->
+                <!- Formulaire d’inscription avec des inputs de type différents suivant l'information que l'on veut collecté et
+                    qui va exécuter le scripts si dessus quand on clique sur le bouton submit ->
                 <form name="inscription" method="post" action="#">
                     <input type="text" name="nom" placeholder="Nom" required="required" />
                     <input type="text" name="prenom" placeholder="Prénom" required="required" />
@@ -111,6 +157,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </form>
             </fieldset>
         </div>
+    -->
+
     </main>
     <footer>
         <!-- Section qui affiche les auteurs du site web -->
