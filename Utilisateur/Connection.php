@@ -41,7 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         'nom' => $ligne[0],
                         'prenom' => $ligne[1],
                         'email' => $ligne[2],
-                        'password' => $ligne[3]
+                        'password' => $ligne[3],
+                        'profil_picture' => $ligne[4]
                     );
 
                     // Redirige l'utilisateur vers la page de profil

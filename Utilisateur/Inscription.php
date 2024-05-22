@@ -2,14 +2,18 @@
 <?php
 // Vérification si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     // Récupération des données du formulaire
-    $prenom = $_POST['prenom'];    
+    $prenom = $_POST['prenom'];
     $nom = $_POST['nom'];
     $email = $_POST['email'];
     // $age = $_POST['age'];
     // $telephone = $_POST['telephone'];
     $password = $_POST['password'];
     // $confirm_password = $_POST['confirm_password'];
+
+    // Chemin complet du fichier CSV dans le dossier 'data'
+    $dossier_utilisateur = '../data/' . md5($email);
 
     // Messages d'information dans la console php
     error_log("Données du formulaire récupéré");
@@ -19,46 +23,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Les mots de passe ne correspondent pas.";
     } else {
     */
-        // Chemin complet du fichier CSV dans le dossier 'data'
-        $dossier_utilisateur = '../data/' . md5($email);
 
-        // Vérifie si le dossier utilisateur existe, sinon le crée
-        if (!file_exists($dossier_utilisateur)) {
-            mkdir($dossier_utilisateur, 0777, true); // Crée le dossier avec les permissions 0777
-        }
+    // Vérifie si le dossier utilisateur existe, sinon le crée
+    if (!file_exists($dossier_utilisateur)) {
+        mkdir($dossier_utilisateur, 0777, true); // Crée le dossier avec les permissions 0777
+    }
 
-        // Chemin complet du fichier CSV dans le dossier utilisateur
-        $nom_fichier = $dossier_utilisateur . '/user-info.csv'; // Utilise l'email pour le nom de fichier, mais vous pouvez utiliser un autre identifiant unique
+    // Chemin complet du fichier CSV dans le dossier utilisateur
+    $nom_fichier = $dossier_utilisateur . '/user-info.csv'; // Utilise l'email pour le nom de fichier, mais vous pouvez utiliser un autre identifiant unique
 
-        // Vérifie si l'utilisateur existe déjà
-        if (file_exists($nom_fichier)) {
-            // Messages d'information dans la console php 
-            error_log("L'utilisateur existe déjà.");
-            // Renvoie vers le formulaire de connexion
-            return header("Location: ./Connection.php");
-        } else {
+    // Vérifie si l'utilisateur existe déjà
+    if (file_exists($nom_fichier)) {
+        // Messages d'information dans la console php 
+        error_log("L'utilisateur existe déjà.");
+        // Renvoie vers le formulaire de connexion
+        return header("Location: ./Connection.php");
+    } else {
 
-            // Ouvre le fichier CSV en mode écriture, en créant le fichier s'il n'existe pas
-            $handle = fopen($nom_fichier, 'a');
+        $picture_file = ""; // Pour stocker le chemin de la vidéo téléchargée
 
-            // Vérifie si l'ouverture du fichier a réussi
-            if ($handle !== false) {
-                // Écriture des données dans le fichier CSV
-                $ligne = array($prenom, $nom, $email, $password);
-                //$ligne = array($prenom, $nom, $email, $age, $telephone, $password);
+        if (!empty($_FILES['file-input']['name'])) {
+            $picture_nom = basename($_FILES['file-input']['name']);
+            $picture_tmp = $_FILES['file-input']['tmp_name'];
+            $picture_filepath = $dossier_utilisateur . '/' . $picture_nom;
 
-                // Écrit les données en langage csv pour les accent et caractère spéciaux pour une meilleur retranscription par la suite
-                fputcsv($handle, $ligne);
-
-                // Fermeture du fichier
-                fclose($handle);
-
-                // Message de confirmation de l'enregistrement de l'user
-                error_log("Les données ont été enregistrées dans le fichier $nom_fichier avec succès.");
+            // Déplacement du fichier vidéo vers le dossier approprié
+            if (move_uploaded_file($picture_tmp, $picture_filepath)) {
+                error_log("Le fichier vidéo $picture_nom a été chargé avec succès.");
+                $picture_file = $picture_filepath; // Enregistre le chemin de la vidéo
             } else {
-                echo "Erreur lors de l'ouverture du fichier $nom_fichier.";
+                error_log("Erreur lors du chargement du fichier vidéo $picture_nom");
             }
         }
+
+        // Ouvre le fichier CSV en mode écriture, en créant le fichier s'il n'existe pas
+        $handle = fopen($nom_fichier, 'a');
+
+        // Vérifie si l'ouverture du fichier a réussi
+        if ($handle !== false) {
+            // Écriture des données dans le fichier CSV
+            $ligne = array($prenom, $nom, $email, $password, $picture_file);
+            //$ligne = array($prenom, $nom, $email, $age, $telephone, $password);
+
+            // Écrit les données en langage csv pour les accent et caractère spéciaux pour une meilleur retranscription par la suite
+            fputcsv($handle, $ligne);
+
+            // Fermeture du fichier
+            fclose($handle);
+
+            // Message de confirmation de l'enregistrement de l'user
+            error_log("Les données ont été enregistrées dans le fichier $nom_fichier avec succès.");
+        } else {
+            echo "Erreur lors de l'ouverture du fichier $nom_fichier.";
+        }
+    }
     //}
     // Envoie vers le formulaire de connexion une fois l'inscription terminé
     return header("Location: ./Connection.php");
@@ -95,18 +113,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </nav>
     </header>
     <main>
-        
+
         <div class="container_connection">
             <div class="container_connection_bgd_img_left">
                 <img src="../Ressources/connexion-image-sized.jpg" alt="connexion-image">
             </div>
             <div class="container_connection_form_right">
-                <form name="#" method="post">
-                    
+                <form name="#" method="post" enctype="multipart/form-data">
+
                     <div class="profile-picture" onclick="document.getElementById('file-input').click();">
-                        <input type="file" id="file-input" accept="image/*" style="display: none;" onchange="loadFile(event)">
+                        <input type="file" id="file-input" name="file-input" accept="image/*" style="display: none;" onchange="loadFile(event)">
                     </div>
-                    
+
                     <div class="name-fields">
                         <div class="field">
                             <label for="ufname">Prénom</label>

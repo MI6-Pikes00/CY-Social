@@ -360,3 +360,9 @@ h2 {
   margin: 2%; /* Marge */
   width: 25%; /* Largeur de 25% */
 }
+
+.image95x95 {
+  width: 95px;
+  height: 95px;
+  /* Ajoutez d'autres styles si nécessaire */
+}

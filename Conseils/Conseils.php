@@ -19,7 +19,7 @@ function getAllArticles()
         // Parcours de chaque sous-dossier (utilisateur)
         foreach ($utilisateurs as $dossier_utilisateur) {
             // Récupération de tous les fichiers d'articles dans le dossier utilisateur
-            $fichiers = glob($dossier_utilisateur . '/article-*');
+            $fichiers = glob($dossier_utilisateur . '/*');
 
             // Parcours de chaque fichier pour récupérer les données des articles
             foreach ($fichiers as $fichier) {

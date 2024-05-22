@@ -64,7 +64,7 @@ function getArticles($user_email)
     if (file_exists($dossier_utilisateur) && is_dir($dossier_utilisateur)) {
 
         // Récupération de tous les dossiers d'articles dans le dossier utilisateur
-        $dossiers_articles = glob($dossier_utilisateur . '/article-*', GLOB_ONLYDIR);
+        $dossiers_articles = glob($dossier_utilisateur . '/*', GLOB_ONLYDIR);
 
         // Parcours de chaque dossier d'article pour récupérer les données des articles
         foreach ($dossiers_articles as $dossier_article) {
@@ -133,6 +133,9 @@ function getArticles($user_email)
             <fieldset class="formulaire">
                 <legend>Information personnel</legend>
                 <form action="" method="post">
+
+                    <img src="<?php echo $user_session_info['profil_picture']; ?>" alt="Description de l'image" class="image95x95">
+
                     <label for="nom">Nom:</label>
                     <!-- Utilise les variables PHP pour remplir les valeurs des champs -->
                     <input type="text" id="nom" name="nom" value="<?php echo $user_session_info['nom']; ?>"><br>
