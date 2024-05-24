@@ -146,13 +146,11 @@ function getUserArticles($utilisateur_email)
         </nav>
     </header>
     <main>
-        <!-- Section qui affiche dans un formulaire les informations de l'utilisateur et ses articles -->
-        <h1>Profil Utilisateur</h1>
 
         <div class="container_utilisateur">
             <!-- Permet d'afficher et de modifier les informations d'utilisateur -->
-            <fieldset class="formulaire">
-                <legend>Information personnel</legend>
+            <fieldset class="container-info-perso">
+                <legend>Vos informations</legend>
                 <form action="" method="post">
 
                     <?php if (!empty($utilisateur_session_info['profil_image'])) { ?>
@@ -177,25 +175,32 @@ function getUserArticles($utilisateur_email)
                 </form>
             </fieldset>
             <!-- Affichage les différents articles, et option pour les visualiser, les modifier ou les supprimer -->
-            <fieldset class="article">
+            <fieldset class="container-article-perso">
                 <legend>Mes articles</legend>
                 <?php foreach (getUserArticles($utilisateur_session_info['email']) as $article) : ?>
                     <fieldset>
-                        <legend><?php echo $article['titre']; ?></legend>
+                        <legend style="font-size: 20px"><?php echo $article['titre']; ?></legend>
                         <?php if (isset($article['categorie'])) { ?>
-                            <p>Catégorie: <?php echo $article['categorie']; ?></p>
+                            <p style="padding:5px">Catégorie: <?php echo $article['categorie']; ?></p>
                         <?php } ?>
 
-                        <div> <?php
-                                $instructions = $article['instructions'];
-                                if (strlen($instructions) > 300) {
-                                    $instructions = substr($instructions, 0, 300) . '...';
-                                }
-                                echo htmlspecialchars($instructions);
-                                ?></div>
+                        <div class="preview-article-perso-content"><?php
+                            $instructions = $article['instructions'];
+                            if (strlen($instructions) > 300) {
+                                $instructions = substr($instructions, 0, 300) . '...';
+                            }
+                            echo htmlspecialchars($instructions);
+                        ?></div>
 
                         <!-- Section de formulaire pour faire des buttons interactif -->
-                        <div class="container_button_modifiez_supprimer">
+                        <div class="article-buttons">
+                            <!-- Button pour supprimer -->
+                            <form action="../Article_management/supprimer_article.php" method="post">
+                                <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
+                                <button type="submit" name="submit" class="bouton_supprimer">
+                                    <img src="../Ressources/trash-icon.png" alt="Supprimer" class="icon-supprimer">
+                                </button>
+                            </form>
                             <!-- Button pour voir -->
                             <form action="../Article_management/page_afficher_conseils.php" method="post">
                                 <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
@@ -206,11 +211,7 @@ function getUserArticles($utilisateur_email)
                                 <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
                                 <button type="submit" name="submit" class="bouton_modifier">Modifier</button>
                             </form>
-                            <!-- Button pour supprimer -->
-                            <form action="../Article_management/supprimer_article.php" method="post">
-                                <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
-                                <button type="submit" name="submit" class="bouton_supprimer">Supprimer</button>
-                            </form>
+
                         </div>
                     </fieldset>
                     <br>

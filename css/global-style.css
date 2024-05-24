@@ -489,11 +489,125 @@ footer {
   height: 100%;
 }
 
+/*  FIN STYLE DE LA PAGE D'ACCUEIL  */
 
-/* Styles pour le conteneur des boutons Modifier et Supprimer */
-.container_button_modifiez_supprimer {
-  display: flex; /* Affichage en flexbox */
-  justify-content: flex-end; /* Alignement des éléments sur le côté droit */
+
+
+/*  DÉBUT STYLE PAGE INFORMATIONS PERSONNELLES  */
+
+.container_utilisateur {
+  width: 100%;
+  margin-top: 80px;
+}
+
+.container-info-perso {
+  width: 29vw;
+  max-width: calc(1421px - 776px);
+  margin-left: 20px;
+  box-sizing: border-box;
+  border: 2px solid #094b65;
+  border-radius: 10px;
+  display: block;
+  padding: 20px;
+  margin: 10px 10px;
+}
+
+.container-info-perso legend {
+  /*margin-bottom: 20px;*/
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  background-color: #094b65;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.container-info-perso form {
+  width: 100%;
+}
+
+.container-info-perso label {
+  display: block;
+  padding-top: 15px;
+  margin-bottom: 10px;
+  color: black;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  text-rendering: geometricPrecision;
+}
+
+.container-info-perso input[type="text"],
+.container-info-perso input[type="email"],
+.container-info-perso input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  background: rgba(177, 178, 181, 0.3);
+  border-radius: 2px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.container-info-perso input[type="submit"] {
+  background-color: #187799;
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+  margin-top: 30px;
+}
+
+.container-info-perso input[type="submit"]:hover {
+  background-color: #083546;
+}
+
+/* Style pour l'image de profil */
+.container-info-perso .profile-image {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  background: url('../Ressources/profil-picture.png') center/cover no-repeat;
+  margin: 0 auto 20px;
+  cursor: pointer;
+}
+
+.container-info-perso img.image95x95 {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+
+/*  STYLE POUR LES ARTICLES PERSO DANS LA PAGE DU COMPTE  */
+.container-article-perso {
+  box-sizing: border-box;
+  border: 2px solid #094b65;
+  border-radius: 10px;
+  display: block;
+  padding: 20px;
+  margin: 10px 10px;
+}
+
+.preview-article-perso-content {
+  width: 92%;
+  margin-top: 3px;
+  margin-left: 5px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style pour les boutons dans la section de prévisualisation de l'article */
+.article-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espacement entre les boutons */
+  position: absolute;
+  top: 100px;
+  right: 0;
+  margin-top: 10px; /* Espacement des boutons par rapport au texte */
 }
 
 /* Styles pour le bouton Voir */
@@ -507,8 +621,6 @@ footer {
 
 /* Styles pour le bouton Modifier */
 .bouton_modifier {
-  margin-left: 2%; /* Marge à gauche */
-  margin-right: 5%; /* Marge à droite */
   padding: 10px 20px; /* Rembourrage */
   background-color: orange; /* Couleur de fond orange */
   color: #fff; /* Couleur du texte en blanc */
@@ -518,12 +630,24 @@ footer {
 
 /* Styles pour le bouton Supprimer */
 .bouton_supprimer {
-  padding: 10px 20px; /* Rembourrage */
-  background-color: red; /* Couleur de fond rouge */
-  color: #fff; /* Couleur du texte en blanc */
-  border: 2px solid #094b65; /* Bordure solide de couleur */
-  border-radius: 5px; /* Coins arrondis */
+  background: none;
+  border: none;
+  cursor: pointer;
 }
+
+.bouton_supprimer .icon-supprimer {
+  width: 20px; /* Ajustez la taille de l'icône selon vos besoins */
+  height: 20px;
+  transition: filter 0.3s;
+  filter: grayscale(100%) brightness(50%); /* Applique le filtre pour rendre l'icône grise */
+}
+
+.bouton_supprimer:hover .icon-supprimer {
+  filter: grayscale(100%) brightness(70%); /* Effet au survol */
+}
+
+
+
 
 /* Styles pour le conteneur du titre */
 .container_titre {
@@ -549,8 +673,3 @@ footer {
   width: 25%; /* Largeur de 25% */
 }
 
-.image95x95 {
-  width: 95px;
-  height: 95px;
-  /* Ajoutez d'autres styles si nécessaire */
-}
