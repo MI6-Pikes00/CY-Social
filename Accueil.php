@@ -53,18 +53,50 @@ session_start()
         </div>
 
         <!-- Section des articles les plus populaires -->
+        <!-- Nav Bar pour catégorie d'articles, vidéos, citations tendances... -->
+        <div class="topic-section">
+            <ul class="topic-section-list">
+                <li><a href="#" class="active">Tendances</a></li>
+                <li><a href="#">Cuisine</a></li>
+                <li><a href="#">Sport</a></li>
+                <li><a href="#">Mode</a></li>
+                <li><a href="#">Voyage</a></li>
+                <li><a href="#"><img src="./Ressources/filter-icon-static.png" alt="Filter Icon" class="filter-icon"></a></li>
+            </ul>
+        </div>
 
-        <section class="popular-articles">
-            <h2>Les plus populaires</h2>
-            <p class="carre"> Contiendra les articles les plus populaires </p>
-        </section>
+        <div class="container-popular">
 
-        <!-- Section des articles les plus récents -->
+            <div class="top-sections">
+                <div class="article-preview-section">
+                    <h2 class="article-title">Titre de l'article</h2>
+                    <div class="article-container">
+                    <img src="chemin-vers-votre-image.jpg" alt="Aperçu de l'article" class="article-preview-image">
+                    <button class="learn-more-button">En savoir plus...</button>
+                    </div>
+                </div>
+                
+                <div class="citation-preview-section">
+                    <div class="citation-header">READ ALSO</div>
+                    <div class="citation-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>
+                    </div>
+                    <div class="citation-footer">
+                        <div class="pp-citation-image">
+                            <img src="../Ressources/profil-picture.png" alt="Round Image">
+                        </div>
+                        <div class="citation-author">
+                            <span class="author-nickname">Nickname Name</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <section class="recent-articles">
-            <h2>Les plus récents</h2>
-            <p class="carre"> Contiendra les articles les plus récents </p>
-        </section>
+            <div class="video-preview-section">
+                <iframe src="../Ressources/video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+        </div>
 
     </main>
 

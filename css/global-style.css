@@ -139,14 +139,7 @@ footer {
   color: #094b65; /* Couleur du texte */
 }
 
-/* Styles pour les titres */
-h1 {
-  text-align: center; /* Alignement du texte au centre */
-}
 
-h2 {
-  text-decoration: underline; /* Soulignement du texte */
-}
 
 /* Styles pour le conteneur utilisateur */
 .container_user {
@@ -290,17 +283,211 @@ h2 {
   margin-top: -20px;
 }
 
-/* Styles pour le carré */
-.carre {
-  padding-top: 20%; /* Rembourrage en haut équivalent à 20% de la largeur de l'élément parent */
-  width: auto; /* Largeur automatique */
-  height: 500px; /* Hauteur de l'élément */
-  border: 5px solid purple; /* Bordure solide de 5px de couleur violette */
-  text-align: center; /* Alignement du texte au centre */
-  align-content: center; /* Alignement du contenu au centre */
-  font-weight: bold; /* Police en gras */
-  color: black; /* Couleur du texte en noir */
+
+/*  Style pour la barre de naviguation de topics  */
+.topic-section {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 65px 0;
 }
+
+.topic-section-list {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.topic-section-list li {
+  margin: 0 45px; /* Écart de 90px entre chaque <li> */
+}
+
+.topic-section-list a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.5); /* Noir avec 50% d'opacité */
+  font-size: 18px;
+  transition: color 0.3s, opacity 0.3s;
+}
+
+/* Style pour l'élément actif */
+.topic-section-list a.active,
+.topic-section-list a:hover {
+  color: black;
+  opacity: 1;
+}
+
+.filter-icon {
+  width: 25px;
+  height: 25px;
+}
+
+
+/*  Section pour article populaire  */
+.container-popular {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 120px;
+}
+
+/*  Container pour les sections du haut (article + citation)  */
+.top-sections {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Style pour la section de prévisualisation de l'article */
+.article-preview-section {
+  width: 100%;
+  max-width: 780px;
+  padding: 20px 0; /* Espace supérieur et inférieur */
+}
+
+/* Style pour le titre de l'article */
+.article-title {
+  font-weight: bold;
+  margin-bottom: 65px; /* Espace sous le titre */
+  font-size: 28px;
+}
+
+/* Style pour le conteneur de l'article */
+.article-container {
+  position: relative; /* Nécessaire pour positionner le bouton */
+  border: 1px solid black; /* Contour noir */
+  width: 100%;
+  max-width: 780px;
+  height: 500px;
+  overflow: hidden; /* Cacher le dépassement de l'image */
+}
+
+/* Style pour l'image de prévisualisation */
+.article-preview-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Couvrir l'espace sans déformation */
+}
+
+/* Style pour le bouton 'En savoir plus...' */
+.learn-more-button {
+  position: absolute; /* Position absolue pour placer en bas de l'image */
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+}
+
+.learn-more-button:hover {
+  background-color: #555; /* Couleur de fond au survol */
+}
+
+/* Style pour la section de prévisualisation de la citation */
+.citation-preview-section {
+  width: 100%;
+  max-width: 370px;
+  height: 600px;
+  background-color: #B1B2B5;
+  border-radius: 15px;
+  margin-left: 60px; /* Espacement entre les deux sections */
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style pour l'en-tête de la citation */
+.citation-header {
+  width: 290px;
+  height: 80px;
+  margin-top: 30px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+/* Style pour le contenu de la citation */
+.citation-content {
+  width: 290px;
+  height: 550px;
+  margin-top: 30px;
+  overflow-y: auto;
+  color: #000;
+  font-size: 16px;
+}
+
+/* Style pour le pied de la citation */
+.citation-footer {
+  width: 220px;
+  height: 86px;
+  background-color: white;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -95px;
+}
+
+/* Style pour le conteneur d'image ronde */
+.pp-citation-image {
+  width: 53px;
+  height: 53px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: -20px; /* Espacement à droite de l'image */
+}
+
+/* Style pour l'image ronde */
+.pp-citation-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Style pour l'auteur de la citation */
+.citation-author {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.author-nickname {
+  font-size: 14px;
+}
+
+
+/* Style pour la section vidéo */
+.video-preview-section {
+  width: 100%;
+  max-width: 1010px;
+  height: 600px;
+  border: 1px solid black;
+  margin-top: 50px;
+  margin-left: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-preview-section iframe {
+  width: 100%;
+  height: 100%;
+}
+
 
 /* Styles pour le conteneur des boutons Modifier et Supprimer */
 .container_button_modifiez_supprimer {
