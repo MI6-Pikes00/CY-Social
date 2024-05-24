@@ -40,19 +40,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         return header("Location: ./Connection.php");
     } else {
 
-        $picture_file = ""; // Pour stocker le chemin de la vidéo téléchargée
+        $image_fichier = ""; // Pour stocker le chemin de la vidéo téléchargée
 
-        if (!empty($_FILES['file-input']['name'])) {
-            $picture_nom = basename($_FILES['file-input']['name']);
-            $picture_tmp = $_FILES['file-input']['tmp_name'];
-            $picture_filepath = $dossier_utilisateur . '/' . $picture_nom;
+        if (!empty($_FILES['fichier_racine']['nom'])) {
+            $image_nom = basename($_FILES['fichier_racine']['nom']);
+            $image_tmp = $_FILES['fichier_racine']['tmp_nom'];
+            $image_chemin = $dossier_utilisateur . '/' . $image_nom;
 
             // Déplacement du fichier vidéo vers le dossier approprié
-            if (move_uploaded_file($picture_tmp, $picture_filepath)) {
-                error_log("Le fichier vidéo $picture_nom a été chargé avec succès.");
-                $picture_file = $picture_filepath; // Enregistre le chemin de la vidéo
+            if (move_uploaded_file($image_tmp, $image_chemin)) {
+                error_log("Le fichier vidéo $image_nom a été chargé avec succès.");
+                $image_fichier = $image_chemin; // Enregistre le chemin de la vidéo
             } else {
-                error_log("Erreur lors du chargement du fichier vidéo $picture_nom");
+                error_log("Erreur lors du chargement du fichier vidéo $image_nom");
             }
         }
 
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Vérifie si l'ouverture du fichier a réussi
         if ($handle !== false) {
             // Écriture des données dans le fichier CSV
-            $ligne = array($prenom, $nom, $email, $password, $picture_file);
+            $ligne = array($prenom, $nom, $email, $password, $image_fichier);
             //$ligne = array($prenom, $nom, $email, $age, $telephone, $password);
 
             // Écrit les données en langage csv pour les accent et caractère spéciaux pour une meilleur retranscription par la suite
@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <ul>
                 <li><a href="../Accueil.php">Accueil</a></li>
                 <li><a href="../Conseils/Conseils.php">Nos conseils</a></li>
-                <li><a href="../Conseils/Formulaire_soumission.php">Donner un conseils</a></li>
+                <li><a href="../Conseils/formulaire_dynamique.php">Donner un conseils</a></li>
                 <li><a href="Connection.php">Connexion</a>/<a href="Inscription.php">Inscription</a></li>
             </ul>
         </nav>
@@ -121,8 +121,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="container_connection_form_right">
                 <form name="#" method="post" enctype="multipart/form-data">
 
-                    <div class="profile-picture" onclick="document.getElementById('file-input').click();">
-                        <input type="file" id="file-input" name="file-input" accept="image/*" style="display: none;" onchange="loadFile(event)">
+                    <div class="profile-image" onclick="document.getElementById('fichier_racine').click();">
+                        <input type="file" id="fichier_racine" name="fichier_racine" accept="image/*" style="display: none;" onchange="loadFile(event)">
                     </div>
 
                     <div class="name-fields">
@@ -148,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </form>
                 <script>
                     function loadFile(event) {
-                        var image = document.querySelector('.profile-picture');
+                        var image = document.querySelector('.profile-image');
                         image.style.backgroundImage = 'url(' + URL.createObjectURL(event.target.files[0]) + ')';
                     }
                 </script>

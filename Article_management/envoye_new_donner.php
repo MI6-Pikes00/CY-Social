@@ -1,14 +1,14 @@
 <?php
 session_start();
 // Vérification de l'authentification de l'utilisateur
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['utilisateur'])) {
     // Redirection vers la page de connexion
     header("Location: ../Utilisateur/Connection.php");
     exit;
 } else {
     //Récupération des données pour effectuer le traitement
-    $user_email = $_SESSION['user']['email'];
-    $num_article = $_POST['num_article'];
+    $utilisateur_email = $_SESSION['utilisateur']['email'];
+    $numero_article = $_POST['id_article'];
 
     // Vérification si le formulaire a été soumis
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,7 +19,7 @@ if (!isset($_SESSION['user'])) {
 
 
         // Chemin complet du dossier utilisateur
-        $dossier_utilisateur = '../data/' . md5($user_email);
+        $dossier_utilisateur = '../data/' . md5($utilisateur_email);
 
         // Vérifie si le dossier utilisateur existe, sinon le crée
         if (!file_exists($dossier_utilisateur)) {
@@ -27,7 +27,7 @@ if (!isset($_SESSION['user'])) {
         }
 
         // Chemin complet du fichier JSON dans le dossier utilisateur
-        $nom_fichier = $dossier_utilisateur . '/article-' . $num_article . "/article-" . $num_article . '.json';
+        $nom_fichier = $dossier_utilisateur . '/article-' . $numero_article . "/article-" . $numero_article . '.json';
         // Vérifie si le fichier existe
         if (file_exists($nom_fichier)) {
             // Lit le contenu du fichier JSON

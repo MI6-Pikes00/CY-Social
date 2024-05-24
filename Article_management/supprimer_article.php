@@ -4,25 +4,25 @@
 session_start();
 
 // Vérifier si l'utilisateur est connecté en vérifiant si les informations de l'utilisateur sont présentes dans la session
-if (isset($_SESSION['user'])) {
+if (isset($_SESSION['utilisateur'])) {
 
     // Récupérer les données de l'utilisateur à partir de la session
-    $user_session_info = $_SESSION['user'];
+    $utilisateur_session_info = $_SESSION['utilisateur'];
 
     // Messages d'information dans la console php
     error_log("User récupéré sur Profil_Utilisateur.php");
 
     //Récupération des données pour effectuer le traitement
-    $user_email = $user_session_info['email'];
-    $num_article = $_POST['num_article'];
+    $utilisateur_email = $utilisateur_session_info['email'];
+    $numero_article = $_POST['id_article'];
 
     // Chemin complet du dossier de l'article à supprimer
-    $dossier_article = '../data/' . md5($user_email) . '/article-' . $num_article;
+    $dossier_article = '../data/' . md5($utilisateur_email) . '/article-' . $numero_article;
 
     // Vérifie si le dossier de l'article existe et le supprime s'il existe
     if (is_dir($dossier_article)) {
         // Supprimer le fichier JSON de l'article
-        $nom_fichier_json = $dossier_article . '/article-' . $num_article . '.json';
+        $nom_fichier_json = $dossier_article . '/article-' . $numero_article . '.json';
         if (file_exists($nom_fichier_json)) {
             unlink($nom_fichier_json);
         }

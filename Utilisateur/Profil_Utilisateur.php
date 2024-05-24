@@ -4,9 +4,9 @@
 session_start();
 
 // Vérifier si l'utilisateur est connecté en vérifiant si les informations de l'utilisateur sont présentes dans la session
-if (isset($_SESSION['user'])) {
+if (isset($_SESSION['utilisateur'])) {
     // Récupérer les données de l'utilisateur à partir de la session
-    $user_session_info = $_SESSION['user'];
+    $utilisateur_session_info = $_SESSION['utilisateur'];
     // Messages d'information dans la console php
     error_log("User récupéré sur Profil_Utilisateur.php");
 } else {
@@ -18,15 +18,36 @@ if (isset($_SESSION['user'])) {
 // Traitement du formulaire de modification s'il est soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
-    $user['nom'] = $_POST['nom'];
-    $user['prenom'] = $_POST['prenom'];
-    $user['email'] = $_POST['email'];
+    $utilisateur['nom'] = $_POST['nom'];
+    $utilisateur['prenom'] = $_POST['prenom'];
+    $utilisateur['email'] = $_POST['email'];
 
     // Récupérer le mot de passe de l'utilisateur
-    $user['password'] = $user_session_info['password'];
+    $utilisateur['password'] = $utilisateur_session_info['password'];
 
-    // Chemin complet du fichier CSV dans le dossier 'user-information'
-    $nom_fichier = '../data/' . md5($user['email']) . '/user-info.csv';
+    // NE FONCTIONNE PAS ENCORE
+    // 
+    // $image_chemin_fichier = "";
+    // if (!empty($_FILES['fichier_racine']['nom'])) {
+    //     $image_nom = basename($_FILES['fichier_racine']['nom']);
+    //     $image_tmp = $_FILES['fichier_racine']['tmp_nom'];
+    //     $image_chemin = $dossier_utilisateur . '/' . $image_nom;
+
+    //     // Déplacement du fichier vidéo vers le dossier approprié
+    //     if (move_uploaded_file($image_tmp, $image_chemin)) {
+    //         $image_chemin_fichier = $image_chemin;
+    //         error_log("Le fichier vidéo $image_nom a été chargé avec succès.");
+    //     } else {
+    //         error_log("Erreur lors du chargement du fichier vidéo $image_nom");
+    //     }
+    // }
+
+    // $utilisateur['profil_image'] = $image_chemin_fichier;
+
+    $utilisateur['profil_image'] = $utilisateur_session_info['profil_image'];
+
+    // Chemin complet du fichier CSV dans le dossier 'user-info'
+    $nom_fichier = '../data/' . md5($utilisateur['email']) . '/user-info.csv';
 
     // Modifier les données dans le fichier CSV
     if (file_exists($nom_fichier)) {
@@ -34,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $handle = fopen($nom_fichier, 'w');
 
         // Écrit les données en langage csv pour les accent et caractère spéciaux pour une meilleur retranscription par la suite
-        fputcsv($handle, $user);
+        fputcsv($handle, $utilisateur);
 
         // Enregistre puis ferme le fichier
         fclose($handle);
@@ -49,13 +70,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Fonction qui va récupérer tout les articles de l'utilisateur via son e-mail
-function getArticles($user_email)
+function getUserArticles($utilisateur_email)
 {
     // Message d'information
     error_log("Récupération des données de l'article en cours...");
 
     // Chemin complet du dossier utilisateur
-    $dossier_utilisateur = '../data/' . md5($user_email);
+    $dossier_utilisateur = '../data/' . md5($utilisateur_email);
 
     // Initialisation d'un tableau pour stocker les articles
     $articles = array();
@@ -112,7 +133,7 @@ function getArticles($user_email)
 </head>
 
 <body>
-        <!-- Section pour la barre de navigation -->
+    <!-- Section pour la barre de navigation -->
     <header id="header">
         <a href="../Accueil.php" class="logo">CY-Social</a>
         <nav>
@@ -121,30 +142,36 @@ function getArticles($user_email)
                 <li><a href="../Conseils/Conseils.php">Nos conseils</a></li>
                 <li><a href="../Conseils/formulaire_dynamique.php">Donner un conseils</a></li>
                 <li><a href="Deconnexion.php">Déconnexion</a></li>
-                </ul>
+            </ul>
         </nav>
     </header>
     <main>
         <!-- Section qui affiche dans un formulaire les informations de l'utilisateur et ses articles -->
         <h1>Profil Utilisateur</h1>
 
-        <div class="container_user">
+        <div class="container_utilisateur">
             <!-- Permet d'afficher et de modifier les informations d'utilisateur -->
             <fieldset class="formulaire">
                 <legend>Information personnel</legend>
                 <form action="" method="post">
 
-                    <img src="<?php echo $user_session_info['profil_picture']; ?>" alt="Description de l'image" class="image95x95">
+                    <?php if (!empty($utilisateur_session_info['profil_image'])) { ?>
+                        <img src="<?php echo $utilisateur_session_info['profil_image']; ?>" alt="Description de l'image" class="image95x95">
+                    <?php } else { ?>
+                    <div class="profile-image" onclick="document.getElementById('fichier_racine').click();">
+                        <input type="file" id="fichier_racine" name="fichier_racine" accept="image/*" style="display: none;" onchange="loadFile(event)">
+                    </div>
+                    <?php } ?>
 
                     <label for="nom">Nom:</label>
                     <!-- Utilise les variables PHP pour remplir les valeurs des champs -->
-                    <input type="text" id="nom" name="nom" value="<?php echo $user_session_info['nom']; ?>"><br>
+                    <input type="text" id="nom" name="nom" value="<?php echo $utilisateur_session_info['nom']; ?>"><br>
 
                     <label for="prenom">Prénom:</label>
-                    <input type="text" id="prenom" name="prenom" value="<?php echo $user_session_info['prenom']; ?>"><br>
+                    <input type="text" id="prenom" name="prenom" value="<?php echo $utilisateur_session_info['prenom']; ?>"><br>
 
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="<?php echo $user_session_info['email']; ?>"><br>
+                    <input type="email" id="email" name="email" value="<?php echo $utilisateur_session_info['email']; ?>"><br>
 
                     <input type="submit" value="Modifier">
                 </form>
@@ -152,27 +179,36 @@ function getArticles($user_email)
             <!-- Affichage les différents articles, et option pour les visualiser, les modifier ou les supprimer -->
             <fieldset class="article">
                 <legend>Mes articles</legend>
-                <?php foreach (getArticles($user_session_info['email']) as $article) : ?>
+                <?php foreach (getUserArticles($utilisateur_session_info['email']) as $article) : ?>
                     <fieldset>
                         <legend><?php echo $article['titre']; ?></legend>
-                        <p>Catégorie: <?php echo $article['categorie']; ?></p>
-                        <div><?php echo $article['instructions']; ?></div>
-                        
+                        <?php if (isset($article['categorie'])) { ?>
+                            <p>Catégorie: <?php echo $article['categorie']; ?></p>
+                        <?php } ?>
+
+                        <div> <?php
+                                $instructions = $article['instructions'];
+                                if (strlen($instructions) > 300) {
+                                    $instructions = substr($instructions, 0, 300) . '...';
+                                }
+                                echo htmlspecialchars($instructions);
+                                ?></div>
+
                         <!-- Section de formulaire pour faire des buttons interactif -->
                         <div class="container_button_modifiez_supprimer">
                             <!-- Button pour voir -->
                             <form action="../Article_management/page_afficher_conseils.php" method="post">
-                                <input type="hidden" name="num_article" value="<?php echo $article['numero_article']; ?>">
+                                <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
                                 <button type="submit" name="submit" class="bouton_voir">Voir</button>
                             </form>
                             <!-- Button pour modifier -->
                             <form action="../Article_management/Formulaire_modification.php" method="post">
-                                <input type="hidden" name="num_article" value="<?php echo $article['numero_article']; ?>">
+                                <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
                                 <button type="submit" name="submit" class="bouton_modifier">Modifier</button>
                             </form>
                             <!-- Button pour supprimer -->
                             <form action="../Article_management/supprimer_article.php" method="post">
-                                <input type="hidden" name="num_article" value="<?php echo $article['numero_article']; ?>">
+                                <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
                                 <button type="submit" name="submit" class="bouton_supprimer">Supprimer</button>
                             </form>
                         </div>

@@ -4,20 +4,20 @@ session_start();
 
 // Vérifier si l'utilisateur est connecté en vérifiant si les informations de l'utilisateur sont présentes dans la session pour 
 // pour créer une "sécurité" des données 
-if (isset($_SESSION['user'])) {
+if (isset($_SESSION['utilisateur'])) {
 
     // Récupérer les données de l'utilisateur à partir de la session
-    $user_session_info = $_SESSION['user'];
-    $user_email = $user_session_info['email'];
+    $utilisateur_session_info = $_SESSION['utilisateur'];
+    $utilisateur_email = $utilisateur_session_info['email'];
 
     // Messages d'information dans la console php
     error_log("User récupéré sur Formulaire_modification.php");
 
     //Récupération des données pour effectuer le traitement à partir des données de formulaire
-    $num_article = $_POST['num_article'];
+    $numero_article = $_POST['id_article'];
 
     // Chemin complet du fichier JSON de l'article
-    $nom_fichier = '../data/' . md5($user_email) . '/article-' . $num_article . "/article-" . $num_article . '.json';
+    $nom_fichier = '../data/' . md5($utilisateur_email) . '/article-' . $numero_article . "/article-" . $numero_article . '.json';
 
     // Vérifie si le fichier existe
     if (file_exists($nom_fichier)) {
@@ -35,9 +35,9 @@ if (isset($_SESSION['user'])) {
     $titre = $article['titre'];
     $categorie = $article['categorie'];
     $instructions = $article['instructions'];
-    $num_article = $article['numero_article'];
-    $images_filepaths[]= $article['images'];
-    $videos_filepaths[]= $article['videos'];
+    $numero_article = $article['numero_article'];
+    $images_chemins[]= $article['images'];
+    $video_chemin[]= $article['video'];
 } else {
     // Rediriger l'utilisateur vers la page de connexion si les informations de l'utilisateur ne sont pas présentes dans la session
     return header('Location: ../Utilisateur/Connexion.php');
@@ -65,9 +65,9 @@ if (isset($_SESSION['user'])) {
             <ul>
                 <li><a href="../Accueil.php">Accueil</a></li>
                 <li><a href="../Conseils/Conseils.php">Nos conseils</a></li>
-                <li><a href="../Conseils/Formulaire_soumission.php">Donner un conseils</a></li>
+                <li><a href="../Conseils/formulaire_dynamique.php">Donner un conseils</a></li>
                 <li>
-                    <?php if (isset($_SESSION['user'])) { ?>
+                    <?php if (isset($_SESSION['utilisateur'])) { ?>
                         <a href="../Utilisateur/Profil_Utilisateur.php">Profil</a>
                     <?php } else { ?>
                         <a href="../Utilisateur/Connection.php">Connexion</a>/<a href="../Utilisateur/Inscription.php">Inscription</a>
@@ -108,8 +108,8 @@ if (isset($_SESSION['user'])) {
                 <input type="file" id="video" name="video" accept="video/*"> 
 -->
 
-                <input type="hidden" name="email" value="<?php echo $user_session_info['email']; ?>">
-                <input type="hidden" name="num_article" value="<?php echo $num_article; ?>">
+                <input type="hidden" name="email" value="<?php echo $utilisateur_session_info['email']; ?>">
+                <input type="hidden" name="id_article" value="<?php echo $numero_article; ?>">
 
                 <input type="submit" name="envoyer" value="Modifier">
             </form>

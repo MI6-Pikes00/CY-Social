@@ -4,7 +4,7 @@
 session_start();
 
 // Vérifie si une session est active
-if(isset($_SESSION['user'])) {
+if(isset($_SESSION['utilisateur'])) {
 
     // Messages d'information dans la console php
     error_log("Déconnexion en cours...");

@@ -142,7 +142,7 @@ footer {
 
 
 /* Styles pour le conteneur utilisateur */
-.container_user {
+.container_utilisateur {
   display: flex; /* Affichage en flexbox */
 }
 
@@ -270,7 +270,7 @@ footer {
 } */
 
 
-.profile-picture {
+.profile-image {
   width: 95px; /* Taille de la zone ronde */
   height: 95px; /* Taille de la zone ronde */
   border-radius: 50%; /* Rend la zone ronde */
@@ -527,14 +527,14 @@ footer {
 
 /* Styles pour le conteneur du titre */
 .container_titre {
-  display: flex; /* Affichage en flexbox */
+  display: block;
   justify-content: left; /* Alignement du contenu à gauche */
   margin-top: 5%; /* Marge en haut */
 }
 
 /* Styles pour le conteneur principal */
 .container_main {
-  display: flex; /* Affichage en flexbox */
+  display:block; /* Affichage en block */
 }
 
 /* Styles pour l'affichage du texte */

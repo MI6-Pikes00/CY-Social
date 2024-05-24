@@ -22,10 +22,10 @@ session_start()
             <ul>
                 <li><a href="./Accueil.php">Accueil</a></li>
                 <li><a href="./Conseils/Conseils.php">Nos conseils</a></li>
-                <li><a href="./Conseils/Formulaire_soumission.php">Donner un conseil</a></li>
+                <li><a href="./Conseils/formulaire_dynamique.php">Donner un conseil</a></li>
                 <!-- Permet d'afficher un bouton d'action différents selon si un utilisateur est connecté à un compte -->
                 <li>
-                    <?php if (isset($_SESSION['user'])) { ?>
+                    <?php if (isset($_SESSION['utilisateur'])) { ?>
                         <a href="./Utilisateur/Profil_Utilisateur.php" class="connexion-border"><b>Mon compte</b></a>
                     <?php } else { ?>
                         <a href="./Utilisateur/Connection.php" class="connexion-border"><b>Connexion</b></a>

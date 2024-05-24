@@ -1,1 +1,23 @@
-{"type":"video","numero_article":"664d19e3a3ee4","date_creation":"2024-05-21 22:02:11","auteur":"Luc Letailleur","titre":"mer","instructions":"petite vague for sympatique","video":"..\/data\/fe07b52deb8723f76a7bd4c403af2d0d\/video-664d19e3a3ee4\/videos\/9946641-sd_640_360_30fps.mp4"}
+{
+    "type": "video",
+    "numero_article": "664d19e3a3ee4",
+    "date_creation": "2024-05-21 22:02:11",
+    "auteur": "Luc Letailleur",
+    "titre": "mer",
+    "instructions": "petite vague for sympatique",
+    "video": "..\/data\/fe07b52deb8723f76a7bd4c403af2d0d\/video-664d19e3a3ee4\/videos\/9946641-sd_640_360_30fps.mp4",
+    "notes": [
+        4,
+        4
+    ],
+    "commentaires": [
+        {
+            "utilisateur": "Thomas Herriau",
+            "commentaire": "wouah"
+        },
+        {
+            "utilisateur": "Luc Letailleur",
+            "commentaire": "pololo c&#039;est beau"
+        }
+    ]
+}

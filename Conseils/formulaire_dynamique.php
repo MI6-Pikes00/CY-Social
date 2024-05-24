@@ -3,7 +3,7 @@
 session_start();
 
 // Vérification de l'authentification de l'utilisateur
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['utilisateur'])) {
     // Redirection vers la page de connexion
     header("Location: ../Utilisateur/Connection.php");
     exit;
@@ -54,7 +54,7 @@ if (!isset($_SESSION['user'])) {
                 echo "<label for='image'>Image :</label><br>";
                 echo "<input type='file' name='images[]' multiple><br>";
                 echo "<label for='video'>Vidéo :</label><br>";
-                echo "<input type='file' id='video' name='video' accept='video/*' required><br>";
+                echo "<input type='file' id='video' name='video' accept='video/*'><br>";
                 echo "<input type='hidden' name='type' value='article'>";
                 echo "<input type='submit' value='Submit'>";
                 echo "</form>";

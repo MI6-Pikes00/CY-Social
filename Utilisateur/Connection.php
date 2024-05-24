@@ -1,7 +1,7 @@
-<!-- Ici le php permet de connecter un user qui est inscrit via son mail et mot de passe
+<!-- Ici le php permet de connecter un utilisateur qui est inscrit via son mail et mot de passe
 Elle ajoute tout les information nécessaire dans la session-->
 <?php
-// Création de la session pour dire que l'user est connecté
+// Création de la session pour dire que l'utilisateur est connecté
 session_start();
 
 // Vérification si le formulaire a été soumis
@@ -33,16 +33,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Vérifie si l'email et le mot de passe correspondent
                 if ($ligne[2] === $email && $ligne[3] === $password) { // L'email est en index 2 et le mot de passe en index 5 (vous pouvez ajuster cela selon votre structure de fichier CSV)
 
-                    // Message d'information que l'user est bien connecter a son compte
+                    // Message d'information que l'utilisateur est bien connecter a son compte
                     error_log("Connexion réussie pour $email.");
 
                     // Stocke toutes les données de l'utilisateur dans la session pour des utilisations future
-                    $_SESSION['user'] = array(
+                    $_SESSION['utilisateur'] = array(
                         'nom' => $ligne[0],
                         'prenom' => $ligne[1],
                         'email' => $ligne[2],
                         'password' => $ligne[3],
-                        'profil_picture' => $ligne[4]
+                        'profil_image' => $ligne[4]
                     );
 
                     // Redirige l'utilisateur vers la page de profil
@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <ul>
                 <li><a href="../Accueil.php">Accueil</a></li>
                 <li><a href="../Conseils/Conseils.php">Nos conseils</a></li>
-                <li><a href="../Conseils/Formulaire_soumission.php">Donner un conseils</a></li>
+                <li><a href="../Conseils/formulaire_dynamique.php">Donner un conseils</a></li>
                 <li><a href="Connection.php">Connexion</a>/<a href="Inscription.php">Inscription</a></li>
             </ul>
         </nav>
