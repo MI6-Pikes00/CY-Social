@@ -1,51 +1,70 @@
 <?php
-// Démarre la session PHP pour permettre le stockage de données de session
 session_start();
 
-// Vérifier si l'utilisateur est connecté en vérifiant si les informations de l'utilisateur sont présentes dans la session pour 
-// pour créer une "sécurité" des données 
-if (isset($_SESSION['utilisateur'])) {
+$chemin_fichier = "";
 
-    // Récupérer les données de l'utilisateur à partir de la session
-    $utilisateur_session_info = $_SESSION['utilisateur'];
-    $utilisateur_email = $utilisateur_session_info['email'];
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['utilisateur'])) {
+    header("Location: ../Utilisateur/Connection.php");
+    exit();
+}
 
-    // Messages d'information dans la console php
-    error_log("User récupéré sur Formulaire_modification.php");
+$utilisateur_session_info = $_SESSION['utilisateur'];
+$utilisateur_email = $utilisateur_session_info['email'];
+$numero_article = $_POST['id_article'];
 
-    //Récupération des données pour effectuer le traitement à partir des données de formulaire
-    $numero_article = $_POST['id_article'];
+function getOneArticle($id_article, &$chemin_fichier)
+{
+    error_log("Récupération des données de l'article en cours...");
 
-    // Chemin complet du fichier JSON de l'article
-    $nom_fichier = '../data/' . md5($utilisateur_email) . '/article-' . $numero_article . "/article-" . $numero_article . '.json';
+    $utilisateurs_chemin = '../data/';
+    $utilisateurs_fichiers = glob($utilisateurs_chemin . '*', GLOB_ONLYDIR);
+    $types_dossiers = ['article-', 'video-', 'citation-'];
 
-    // Vérifie si le fichier existe
-    if (file_exists($nom_fichier)) {
-        // Lit le contenu du fichier JSON
-        $contenu = file_get_contents($nom_fichier);
+    foreach ($utilisateurs_fichiers as $utilisateur_fichier) {
+        error_log("fichier :  $utilisateur_fichier.");
 
-        // Décodage des données JSON
-        $article = json_decode($contenu, true);
-    } else {
-        // Le fichier n'existe pas, redirige vers le profil
-        return header("Location: ../Utilisateur/Profil_Utilisateur.php");
+        foreach ($types_dossiers as $type_dossier) {
+            $chemin_fichier_json = $utilisateur_fichier . '/' . $type_dossier . $id_article . '/' . $type_dossier . $id_article . '.json';
+            $chemin_fichier = $chemin_fichier_json;
+
+            if (file_exists($chemin_fichier_json)) {
+                $contenu = file_get_contents($chemin_fichier_json);
+
+                if ($contenu !== false) {
+                    $article_data = json_decode($contenu, true);
+                    $article_data['type'] = rtrim($type_dossier, '-'); // Ajoute le type d'article
+                    return $article_data;
+                } else {
+                    error_log("Erreur lors de la lecture du fichier $chemin_fichier_json.");
+                    return null;
+                }
+            } else {
+                error_log("Le fichier $chemin_fichier_json n'existe pas, utilisateur suivant ...");
+            }
+        }
     }
 
-    // Récupère les valeurs transmises via la variable $article 
-    $titre = $article['titre'];
-    $categorie = $article['categorie'];
-    $instructions = $article['instructions'];
-    $numero_article = $article['numero_article'];
-    $images_chemins[]= $article['images'];
-    $video_chemin[]= $article['video'];
-} else {
-    // Rediriger l'utilisateur vers la page de connexion si les informations de l'utilisateur ne sont pas présentes dans la session
-    return header('Location: ../Utilisateur/Connexion.php');
+    return null;
 }
+
+$article = getOneArticle($numero_article, $chemin_fichier);
+
+if (!$article || empty($chemin_fichier)) {
+    die("Article non trouvé ou chemin du fichier JSON non défini.");
+}
+
+// Variables de l'article
+$type = $article['type'];
+$titre = $article['titre'];
+$categorie = isset($article['categorie']) ? $article['categorie'] : '';
+$instructions = isset($article['instructions']) ? $article['instructions'] : '';
+$image = isset($article['images']) ? $article['images'] : '';
+$video = isset($article['video']) ? $article['video'] : '';
+$notes = isset($article['notes']) ? $article['notes'] : [];
+$commentaires = isset($article['commentaires']) ? $article['commentaires'] : [];
+
 ?>
-
-<!-- Ici commence le code de la page html -->
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -58,14 +77,13 @@ if (isset($_SESSION['utilisateur'])) {
 </head>
 
 <body>
-    <!-- Section pour la barre de navigation -->
     <header id="header">
         <a href="../Accueil.php" class="logo">CY-Social</a>
         <nav>
             <ul>
                 <li><a href="../Accueil.php">Accueil</a></li>
                 <li><a href="../Conseils/Conseils.php">Nos conseils</a></li>
-                <li><a href="../Conseils/formulaire_dynamique.php">Donner un conseils</a></li>
+                <li><a href="../Conseils/formulaire_dynamique.php">Donner un conseil</a></li>
                 <li>
                     <?php if (isset($_SESSION['utilisateur'])) { ?>
                         <a href="../Utilisateur/Profil_Utilisateur.php">Profil</a>
@@ -77,46 +95,79 @@ if (isset($_SESSION['utilisateur'])) {
         </nav>
     </header>
     <main>
-        <!-- Section qui affiche dans un formulaire les données de l'article que l'on souhaite modifier -->
         <fieldset>
             <legend>Modifier l'article</legend>
             <form action="./envoye_new_donner.php" method="post" enctype="multipart/form-data">
                 <label for="titre">Titre :</label>
-                <!-- Utilise les variables PHP pour remplir les valeurs des champs -->
                 <input type="text" id="titre" name="titre" required value="<?php echo $titre; ?>">
 
-                <label for="categorie">Catégorie :</label>
-                <select id="categorie" name="categorie" required>
-                    <option value="">Sélectionner une catégorie</option>
-                    <option value="Technologie" <?php if ($categorie == "Technologie") echo "selected"; ?>>Technologie</option>
-                    <option value="Santé" <?php if ($categorie == "Santé") echo "selected"; ?>>Santé</option>
-                    <option value="Cuisine" <?php if ($categorie == "Cuisine") echo "selected"; ?>>Cuisine</option>
-                    <option value="Autre" <?php if ($categorie == "Autre") echo "selected"; ?>>Autre</option>
-                </select>
+                <?php if ($type === 'article' || $type === 'video') { ?>
+                    <label for="categorie">Catégorie :</label>
+                    <select id="categorie" name="categorie" required>
+                        <option value="">Sélectionner une catégorie</option>
+                        <option value="Cuisine" <?php if ($categorie == "Cuisine") echo "selected"; ?>>Cuisine</option>
+                        <option value="Loisirs" <?php if ($categorie == "Loisirs") echo "selected"; ?>>Loisirs</option>
+                        <option value="Maison & Jardin" <?php if ($categorie == "Maison & Jardin") echo "selected"; ?>>Maison & Jardin</option>
+                        <option value="Mode & Beauté" <?php if ($categorie == "Mode & Beauté") echo "selected"; ?>>Mode & Beauté</option>
+                        <option value="Santé" <?php if ($categorie == "Santé") echo "selected"; ?>>Santé</option>
+                        <option value="Technologie" <?php if ($categorie == "Technologie") echo "selected"; ?>>Technologie</option>
+                        <option value="Voyages" <?php if ($categorie == "Voyages") echo "selected"; ?>>Voyages</option>
+                        <option value="Autre" <?php if ($categorie == "Autre") echo "selected"; ?>>Autre</option>
+                    </select>
+                <?php } ?>
 
-                <label for="instructions">Instructions :</label>
-                <textarea id="instructions" name="instructions" required><?php echo $instructions; ?></textarea>
+                <?php if ($type === 'article' || $type === 'video') { ?>
+                    <label for="instructions">Instructions :</label>
+                    <textarea id="instructions" name="instructions" required><?php echo $instructions; ?></textarea>
+                <?php } ?>
 
-                <!-- NE FONCTIONNE PAS -->
-                <!-- 
-                <!- Section pour modifier DES images // taille max du fichier on ajoutera après maxlength="5242880" ->
-                <label for="image">Image :</label>
-                <input type="file" name="images[]" multiple> 
+                <?php if ($type === 'citation') { ?>
+                    <label for="instructions">Instructions :</label>
+                    <textarea id="instructions" name="instructions" required><?php echo $instructions; ?></textarea>
+                <?php } ?>
 
-                <!- Section pour modifier LA vidéo ->
-                <label for="video">Vidéo :</label>
-                <input type="file" id="video" name="video" accept="video/*"> 
--->
+                <?php if ($type === 'video') { ?>
+                    <label for="instructions">Instructions :</label>
+                    <textarea id="instructions" name="instructions" required><?php echo $instructions; ?></textarea>
+                <?php } ?>
+
+                <?php if ($type === 'article') { ?>
+                    <label for="image">Image :</label>
+                    <input type="file" name="images[]" multiple>
+
+                    <label for="video">Vidéo :</label>
+                    <input type="file" id="video" name="video" accept="video/*">
+                <?php } ?>
+
+                <?php if ($type === 'video') { ?>
+                    <label for="video">Vidéo :</label>
+                    <input type="file" id="video" name="video" accept="video/*">
+                <?php } ?>
+
+                <!-- Champs cachés pour les notes -->
+                <?php if (!empty($notes)) { ?>
+                    <?php foreach ($notes as $index => $note) { ?>
+                        <input type="hidden" name="notes[]" value="<?php echo $note; ?>">
+                    <?php } ?>
+                <?php } ?>
+
+                <!-- Champs cachés pour les commentaires -->
+                <?php if (!empty($commentaires)) { ?>
+                    <?php foreach ($commentaires as $index => $commentaire) { ?>
+                        <input type="hidden" name="commentaires[<?php echo $index; ?>][utilisateur]" value="<?php echo $commentaire['utilisateur']; ?>">
+                        <input type="hidden" name="commentaires[<?php echo $index; ?>][commentaire]" value="<?php echo $commentaire['commentaire']; ?>">
+                    <?php } ?>
+                <?php } ?>
 
                 <input type="hidden" name="email" value="<?php echo $utilisateur_session_info['email']; ?>">
                 <input type="hidden" name="id_article" value="<?php echo $numero_article; ?>">
+                <input type="hidden" name="type" value="<?php echo $type; ?>">
 
                 <input type="submit" name="envoyer" value="Modifier">
             </form>
         </fieldset>
     </main>
     <footer>
-        <!-- Section qui affiche les auteurs du site web -->
         <p>
             <small>
                 Copyrights 2024 - Luc Letailleur et Thomas Herriau
