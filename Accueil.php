@@ -92,7 +92,7 @@ $video_populaire = obtenir_meilleure_video("./data");
                         ?>
                         <?php if (isset($article_populaire['images']) && !empty($article_populaire['images'])) { ?>
                             <?php foreach ($article_populaire['images'] as $image) { ?>
-                                <img style="margin: 0 10px 15px max-width: 50%; max-height: 50%;" src="<?php echo str_replace('../', './', $image)?>" alt="Image de l'article">
+                                <img style="margin: 0 10px 15px max-width: 50%; max-height: 50%;" src="<?php echo str_replace('../', './', $image) ?>" alt="Image de l'article">
                             <?php } ?>
                         <?php } ?>
                         <br>
@@ -109,21 +109,24 @@ $video_populaire = obtenir_meilleure_video("./data");
                     </div>
                 </div>
 
-                <div class="citation-preview-section">
-                    <div class="citation-header">À regarder</div>
-                    <div class="citation-content">
-                        <h3><?php echo $citation_recent['titre']; ?></h3>
-                        <p><?php echo $citation_recent['instructions']; ?></p>
-                    </div>
-                    <div class="citation-footer">
-                        <div class="pp-citation-image">
-                            <img src="./Ressources/profil-picture.png" alt="Round Image">
+                <!-- Section de prévisualisation de la citation la plus récente -->
+                <a style="text-decoration: none;" href="./Article_management/page_afficher_conseils.php?id_article=<?php echo htmlspecialchars($citation_recent['numero_article']); ?>">
+                    <div class="citation-preview-section">
+                        <div class="citation-header">À regarder</div>
+                        <div class="citation-content">
+                            <h3><?php echo $citation_recent['titre']; ?></h3>
+                            <p><?php echo $citation_recent['instructions']; ?></p>
                         </div>
-                        <div class="citation-author">
-                            <span class="author-nickname"><?php echo $citation_recent['auteur']; ?></span>
+                        <div class="citation-footer">
+                            <div class="pp-citation-image">
+                                <img src="./Ressources/profil-picture.png" alt="Round Image">
+                            </div>
+                            <div class="citation-author">
+                                <span class="author-nickname"><?php echo $citation_recent['auteur']; ?></span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="video-preview-section">

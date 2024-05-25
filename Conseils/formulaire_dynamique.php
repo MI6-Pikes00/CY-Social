@@ -32,7 +32,7 @@ if (!isset($_SESSION['utilisateur'])) {
                 <li><a href="Formulaire_soumission.php">Donner un conseils</a></li>
                 <li>
                     <!-- Permet d'afficher un bouton d'action différents selon si un utilisateur est connecté à un compte -->
-                    <?php if (isset($_SESSION['user'])) { ?>
+                    <?php if (isset($_SESSION['utilisateur'])) { ?>
                         <a href="../Utilisateur/Profil_Utilisateur.php">Profil</a>
                     <?php } else { ?>
                         <a href="../Utilisateur/Connection.php">Connexion</a>/<a href="./Utilisateur/Inscription.php">Inscription</a>

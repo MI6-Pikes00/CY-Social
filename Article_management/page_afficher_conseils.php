@@ -170,14 +170,20 @@ if (!empty($article['notes'])) {
 
             <!-- SECTION COMMENTAIRE ET NOTE -->
 
-            <fieldidset id="commentaires_et_notes">
+            <fieldset id="commentaires_et_notes">
                 <legend>Commentaires et Notes :</legend>
+                <?php 
+                    if (empty($article['notes'])) {
+                        echo '<p class="no-comments">Aucune note sur ce post pour le moment.</p>';
+                    } else {
+                        echo "<p style = 'margin-left: 1%;'>Note moyenne:$moyenne_note/5</p>";
+                    }
+                    ?>
                 <div class="comment-container">
                     <?php 
                     if (empty($article['commentaires'])) {
                         echo '<p class="no-comments">Aucun commentaire sur ce post pour le moment.</p>';
                     } else {
-                        echo "<p>Note moyenne:$moyenne_note/5</p>";
                         // Boucle sur chaque commentaire            
                         foreach ($article['commentaires'] as $index => $commentaire) {
                             $comment = html_entity_decode(htmlspecialchars($commentaire['commentaire'])) ;
