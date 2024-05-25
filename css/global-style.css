@@ -648,6 +648,57 @@ footer {
 
 
 
+/*  STYLE POUR COMMENTAIRE DANS PAGE_AFFICHER_CONSEIL  */
+  fieldset #commantaires_et_notes {
+    width: 100%;
+    margin: 20px 20px;
+  }
+  .comment-container {
+    margin: 15px 14px 35px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacement entre les boîtes de commentaire */
+  }
+  .comment-box {
+    width: 180px;
+    height: 130px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: #f9f9f9;
+  }
+
+  .comment-text, .comment-rating, .comment-author {
+    margin-bottom: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+  .comment-text {
+    font-size: 14px;
+    color: #333;
+  }
+
+  .comment-rating {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+  }
+
+  .comment-author {
+    font-size: 14px;
+    font-style: italic;
+    color: #777;
+  }
+
+  .no-comments {
+    font-size: 16px;
+    color: #333;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+
 
 /* Styles pour le conteneur du titre */
 .container_titre {

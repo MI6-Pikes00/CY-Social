@@ -1,1 +1,23 @@
-{"type":"video","numero_article":"66510b56a1c03","date_creation":"2024-05-24 21:49:10","auteur":"Thomas HERRIAU","titre":"Test n\u00b02 (vid\u00e9o)","instructions":"Vid\u00e9o Croatie ","video":"..\/data\/3241d670ba1943eebd6d95bea17ebc7a\/video-66510b56a1c03\/videos\/EC8A5409-0B9D-46C1-BF1C-DD1309E0C32A.mov"}
+{
+    "type": "video",
+    "numero_article": "66510b56a1c03",
+    "date_creation": "2024-05-24 21:49:10",
+    "auteur": "Thomas HERRIAU",
+    "titre": "Test n\u00b02 (vid\u00e9o)",
+    "instructions": "Vid\u00e9o Croatie ",
+    "video": "..\/data\/3241d670ba1943eebd6d95bea17ebc7a\/video-66510b56a1c03\/videos\/EC8A5409-0B9D-46C1-BF1C-DD1309E0C32A.mov",
+    "notes": [
+        5,
+        3
+    ],
+    "commentaires": [
+        {
+            "utilisateur": "Thomas HERRIAU",
+            "commentaire": "Nice vid\u00e9o !! \ud83c\udded\ud83c\uddf7"
+        },
+        {
+            "utilisateur": "Thomas HERRIAU",
+            "commentaire": "2e commentaire pour test"
+        }
+    ]
+}

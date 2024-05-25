@@ -119,10 +119,6 @@ if (!empty($article['notes'])) {
         <!-- Section qui permet d'afficher le titre de l'article -->
         <div class="container_titre">
             <h1><?php echo $article['titre']; ?></h1>
-            <br>
-            <?php if (isset($article['notes'])) : ?>
-                <h3>Notes des utilisateurs: <?php echo number_format($moyenne_note, 1); ?>/5</h3>
-            <?php endif; ?>
         </div>
 
         <!-- Section qui permet d'afficher la catégorie de l'article -->
@@ -146,34 +142,46 @@ if (!empty($article['notes'])) {
                         <img src="<?php echo $image; ?>" alt="Image de l'article">
                     <?php } ?>
                 <?php } ?>
+                <br>
                 <?php if (isset($article['video']) && !empty($article['video'])) { ?>
-                    <h3>Vidéos :</h3>
-                    <video controls>
-                        <source src="<?php echo $article['video']; ?>" type="video/mp4">
-                        Votre navigateur ne supporte pas la lecture de vidéos.
-                    </video>
+                    <h3>Vidéo(s) :</h3>
+                    <center><!--  Centrage de la vidéo sur la page  -->
+                        <video controls width="70%" style="margin-bottom: 15px">
+                            <source src="<?php echo $article['video']; ?>" type="video/mp4">
+                            Votre navigateur ne supporte pas la lecture de vidéos.
+                        </video>
+                    </center>
                 <?php } ?>
                 </div>
                 <!-- FIN DE LA SECTION POUR AFFICHER LES IMAGES ET VIDÉOS DE L'ARTICLE -->
 
                 <!-- SECTION COMMENTAIRE ET NOTE -->
 
-                <fieldset class="comment-container">
+                <fieldidset id="commentaires_et_notes">
                     <legend>Commentaires et Notes :</legend>
-                    <?php if (isset($article['commentaires']) && !empty($article['commentaires'])) { ?>
-                        <?php foreach ($article['commentaires'] as $index => $commentaire) { ?>
-                            <p>
-                                <strong><?php echo $commentaire['utilisateur']; ?> :</strong>
-                                <?php echo $commentaire['commentaire']; ?>
-                                <br>
-                                <strong>Note :</strong> <?php echo $article['notes'][$index]; ?>
-                            </p>
-                        <?php } ?>
-                    <?php } else { ?>
-                        <p>Aucun commentaire pour le moment.</p>
-                    <?php } ?>
+                    <p>Note moyenne: <?php echo number_format($moyenne_note, 1); ?>/5</p>
+                    <div class="comment-container">
+                        <?php 
+                        if (empty($article['commentaires'])) {
+                            echo '<p class="no-comments">Aucun commentaire sur ce post pour le moment.</p>';
+                        } else {
+                            // Boucle sur chaque commentaire            
+                            foreach ($article['commentaires'] as $index => $commentaire) {
+                                $comment = $commentaire['commentaire'];
+                                $rating = $article['notes'][$index];
+                                $name = $commentaire['utilisateur'];
+                        ?>
+                            <div class="comment-box">
+                                <p class="comment-text"><?php echo htmlspecialchars($comment); ?></p>
+                                <p class="comment-rating">Note: <?php echo htmlspecialchars($rating); ?>/5</p>
+                                <p class="comment-author"><?php echo htmlspecialchars($name); ?></p>
+                            </div>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </div>
                 </fieldset>
-
 
                 <form action="./note_commentaire.php" method="post">
                     <!-- Champ pour la note -->
@@ -192,7 +200,7 @@ if (!empty($article['notes'])) {
 
                     <!-- Champ pour le commentaire -->
                     <label for="commentaire">Commentaire :</label>
-                    <textarea name="commentaire" id="commentaire"></textarea>
+                    <textarea name="commentaire" id="commentaire" placeholder="300 caractères max."></textarea>
 
                     <!-- Bouton de soumission -->
                     <button type="submit">Envoyer</button>
