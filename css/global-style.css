@@ -647,70 +647,85 @@ footer {
 }
 
 
+/*  --- DÉBUT AFFICHAGE DE TOUS LES POSTS ---  */
 
-/*  STYLE POUR COMMENTAIRE DANS PAGE_AFFICHER_CONSEIL  */
-  fieldset #commantaires_et_notes {
+  .container-main-article {
     width: 100%;
-    margin: 20px 20px;
-  }
-  .comment-container {
-    margin: 15px 14px 35px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; /* Espacement entre les boîtes de commentaire */
-  }
-  .comment-box {
-    width: 180px;
-    height: 130px;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-    overflow: hidden;
-    background-color: #f9f9f9;
+    display: block;
+    margin-left: 30px;
+    margin-top: 85px;
   }
 
-  .comment-text, .comment-rating, .comment-author {
-    margin-bottom: 20px;
+  /* Styles pour le conteneur du titre */
+  .article-titre {
+    display: block;
+  }
+  /* Styles pour le conteneur de l'auteur */
+  .article-author {
+    display: block; /* Affiche chaque span sur une nouvelle ligne */
+    margin-top: -3px;
+    margin-bottom: 20px; /* Espacement en dessous des spans */
+    text-indent: 15px;
     font-family: 'Source Sans Pro', sans-serif;
+    font-size: 15px;
+    text-rendering: geometricPrecision;
+    color: rgba(136, 136, 136);
+    width: 100%; /* Span occupe toute la largeur disponible */
   }
 
-  .comment-text {
-    font-size: 14px;
-    color: #333;
-  }
+  /*  STYLE POUR COMMENTAIRE DANS PAGE_AFFICHER_CONSEIL  */
+    fieldset #commantaires_et_notes {
+      width: 100%;
+      margin: 20px 20px;
+    }
+    .comment-container {
+      margin: 15px 14px 35px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px; /* Espacement entre les boîtes de commentaire */
+    }
+    .comment-box {
+      width: 180px;
+      height: 130px;
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+      overflow: hidden;
+      background-color: #f9f9f9;
+    }
 
-  .comment-rating {
-    font-size: 16px;
-    font-weight: bold;
-    color: #555;
-  }
+    .comment-text, .comment-rating, .comment-author {
+      margin-bottom: 20px;
+      font-family: 'Source Sans Pro', sans-serif;
+    }
 
-  .comment-author {
-    font-size: 14px;
-    font-style: italic;
-    color: #777;
-  }
+    .comment-text {
+      font-size: 14px;
+      color: #333;
+    }
 
-  .no-comments {
-    font-size: 16px;
-    color: #333;
-    font-family: 'Source Sans Pro', sans-serif;
-  }
+    .comment-rating {
+      font-size: 16px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .comment-author {
+      font-size: 14px;
+      font-style: italic;
+      color: #777;
+    }
+
+    .no-comments {
+      font-size: 16px;
+      color: #333;
+      font-family: 'Source Sans Pro', sans-serif;
+    }
 
 
+/*  --- FIN AFFICHAGE DE TOUS LES POSTS ---  */
 
-/* Styles pour le conteneur du titre */
-.container_titre {
-  display: block;
-  justify-content: left; /* Alignement du contenu à gauche */
-  margin-top: 5%; /* Marge en haut */
-}
-
-/* Styles pour le conteneur principal */
-.container_main {
-  display:block; /* Affichage en block */
-}
 
 /* Styles pour l'affichage du texte */
 .affiche_text {

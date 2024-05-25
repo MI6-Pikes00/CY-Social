@@ -116,30 +116,33 @@ if (!empty($article['notes'])) {
 
     <!-- Section qui permet d'afficher le contenu de l'article -->
     <main>
-        <!-- Section qui permet d'afficher le titre de l'article -->
-        <div class="container_titre">
-            <h1><?php echo $article['titre']; ?></h1>
-        </div>
-
-        <!-- Section qui permet d'afficher la catégorie de l'article -->
-        <?php if (isset($article['categorie']) && !empty($article['catégorie'])) { ?>
-            <div class="container_catégorie">
-                <h2><?php echo $article['categorie']; ?></h2>
+        <!-- Structure de tout l'article -->
+        <div class="container-main-article">
+            <!-- Section qui permet d'afficher le titre de l'article -->
+            <div class="article-titre">
+                <h1><?php echo $article['titre']; ?></h1>
             </div>
-        <?php } ?>
 
-        <!-- Section qui permet d'afficher le texte et les images de l'article -->
-        <div class="container_main">
+            <span class="article-author">par <?php echo $article['auteur'] ?></span>
+
+            <!-- Section qui permet d'afficher la catégorie de l'article -->
+            <?php if (isset($article['categorie']) && !empty($article['catégorie'])) { ?>
+                <div class="container_catégorie">
+                    <h2><?php echo $article['categorie']; ?></h2>
+                </div>
+            <?php } ?>
+
+            <!-- Section qui permet d'afficher le texte et les images de l'article -->
             <div class="carre affiche_text">
                 <p><?php echo $article['instructions']; ?></p>
             </div>
-
+            <br>
             <!-- SECTION POUR AFFICHER LES IMAGES ET VIDÉOS DE L'ARTICLE -->
-            <?php if (isset($article['images']) && !empty($article['images'])) { ?>
-                <div class="container_media">
+            <div class="container_media">
+                <?php if (isset($article['images']) && !empty($article['images'])) { ?>
                     <h3>Images :</h3>
                     <?php foreach ($article['images'] as $image) { ?>
-                        <img src="<?php echo $image; ?>" alt="Image de l'article">
+                        <img style="margin: 0 10px 15px" src="<?php echo $image; ?>" alt="Image de l'article">
                     <?php } ?>
                 <?php } ?>
                 <br>
@@ -152,59 +155,59 @@ if (!empty($article['notes'])) {
                         </video>
                     </center>
                 <?php } ?>
-                </div>
-                <!-- FIN DE LA SECTION POUR AFFICHER LES IMAGES ET VIDÉOS DE L'ARTICLE -->
+            </div>
+            <!-- FIN DE LA SECTION POUR AFFICHER LES IMAGES ET VIDÉOS DE L'ARTICLE -->
 
-                <!-- SECTION COMMENTAIRE ET NOTE -->
+            <!-- SECTION COMMENTAIRE ET NOTE -->
 
-                <fieldidset id="commentaires_et_notes">
-                    <legend>Commentaires et Notes :</legend>
-                    <p>Note moyenne: <?php echo number_format($moyenne_note, 1); ?>/5</p>
-                    <div class="comment-container">
-                        <?php 
-                        if (empty($article['commentaires'])) {
-                            echo '<p class="no-comments">Aucun commentaire sur ce post pour le moment.</p>';
-                        } else {
-                            // Boucle sur chaque commentaire            
-                            foreach ($article['commentaires'] as $index => $commentaire) {
-                                $comment = $commentaire['commentaire'];
-                                $rating = $article['notes'][$index];
-                                $name = $commentaire['utilisateur'];
-                        ?>
-                            <div class="comment-box">
-                                <p class="comment-text"><?php echo htmlspecialchars($comment); ?></p>
-                                <p class="comment-rating">Note: <?php echo htmlspecialchars($rating); ?>/5</p>
-                                <p class="comment-author"><?php echo htmlspecialchars($name); ?></p>
-                            </div>
-                        <?php
-                            }
+            <fieldidset id="commentaires_et_notes">
+                <legend>Commentaires et Notes :</legend>
+                <p>Note moyenne: <?php echo number_format($moyenne_note, 1); ?>/5</p>
+                <div class="comment-container">
+                    <?php 
+                    if (empty($article['commentaires'])) {
+                        echo '<p class="no-comments">Aucun commentaire sur ce post pour le moment.</p>';
+                    } else {
+                        // Boucle sur chaque commentaire            
+                        foreach ($article['commentaires'] as $index => $commentaire) {
+                            $comment = $commentaire['commentaire'];
+                            $rating = $article['notes'][$index];
+                            $name = $commentaire['utilisateur'];
+                    ?>
+                        <div class="comment-box">
+                            <p class="comment-text"><?php echo htmlspecialchars($comment); ?></p>
+                            <p class="comment-rating">Note: <?php echo htmlspecialchars($rating); ?>/5</p>
+                            <p class="comment-author"><?php echo htmlspecialchars($name); ?></p>
+                        </div>
+                    <?php
                         }
-                        ?>
-                    </div>
-                </fieldset>
+                    }
+                    ?>
+                </div>
+            </fieldset>
 
-                <form action="./note_commentaire.php" method="post">
-                    <!-- Champ pour la note -->
-                    <label for="note">Note :</label>
-                    <select name="note" id="note">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
+            <form action="./note_commentaire.php" method="post">
+                <!-- Champ pour la note -->
+                <label for="note">Note :</label>
+                <select name="note" id="note">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
 
-                    <!-- Champ caché pour l'ID de l'article et chemin -->
-                    <input type="hidden" name="chemin_fichier" value="<?php echo $chemin_fichier; ?>">
-                    <input type="hidden" name="id_article" value="<?php echo $numero_article; ?>">
+                <!-- Champ caché pour l'ID de l'article et chemin -->
+                <input type="hidden" name="chemin_fichier" value="<?php echo $chemin_fichier; ?>">
+                <input type="hidden" name="id_article" value="<?php echo $numero_article; ?>">
 
-                    <!-- Champ pour le commentaire -->
-                    <label for="commentaire">Commentaire :</label>
-                    <textarea name="commentaire" id="commentaire" placeholder="300 caractères max."></textarea>
+                <!-- Champ pour le commentaire -->
+                <label for="commentaire">Commentaire :</label>
+                <textarea name="commentaire" id="commentaire" placeholder="300 caractères max."></textarea>
 
-                    <!-- Bouton de soumission -->
-                    <button type="submit">Envoyer</button>
-                </form>
+                <!-- Bouton de soumission -->
+                <button type="submit">Envoyer</button>
+            </form>
 
         </div>
 
