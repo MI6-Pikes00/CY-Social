@@ -70,6 +70,7 @@ function rechercher_articles($mot_cle, $data_folder)
     foreach ($articles as $article) {
         // Vérification de la présence du mot clé dans le titre, la catégorie ou les instructions de l'article
         if (
+            (isset($article['type']) && stripos($article['type'], $mot_cle) !== false) ||
             (isset($article['titre']) && stripos($article['titre'], $mot_cle) !== false) ||
             (isset($article['categorie']) && stripos($article['categorie'], $mot_cle) !== false) ||
             (isset($article['instructions']) && stripos($article['instructions'], $mot_cle) !== false)

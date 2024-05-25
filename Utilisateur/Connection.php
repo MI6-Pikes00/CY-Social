@@ -113,14 +113,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
     </main>
-    <footer>
-        <!-- Section qui affiche les auteurs du site web -->
-        <p>
-            <small>
-                Copyrights 2024 - Luc Letailleur et Thomas Herriau
-            </small>
-        </p>
-    </footer>
 </body>
 
 </html>

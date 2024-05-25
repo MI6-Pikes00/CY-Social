@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['q'])) {
     <main>
         <!-- Affichage les différents articles, et option pour les visualiser -->
         <fieldset class="article">
-            <legend>Mes articles</legend>
+            <legend style="margin-bottom: 1%;">Ma recherche</legend>
             <?php foreach ($articles_trouves as $article) : ?>
                 <fieldset>
                     <legend><?php echo htmlspecialchars($article['titre']); ?></legend>

@@ -98,7 +98,7 @@ $articles = getAllArticles();
     <main>
         <!-- Affichage les différents articles, et option pour les visualiser -->
         <fieldset class="article">
-            <legend>Mes articles</legend>
+            <legend style="margin-bottom: 1%;">Nos conseils</legend>
             <?php foreach ($articles as $article) : ?>
                 <fieldset>
                     <legend><?php echo htmlspecialchars($article['titre']); ?></legend>
