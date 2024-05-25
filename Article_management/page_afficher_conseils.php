@@ -174,7 +174,7 @@ if (!empty($article['notes'])) {
                 <legend>Commentaires et Notes :</legend>
                 <?php 
                     if (empty($article['notes'])) {
-                        echo '<p class="no-comments">Aucune note sur ce post pour le moment.</p>';
+                        echo '<p style = "margin-left: 1%;" class="no-comments">Aucune note sur ce post pour le moment.</p>';
                     } else {
                         echo "<p style = 'margin-left: 1%;'>Note moyenne:$moyenne_note/5</p>";
                     }
