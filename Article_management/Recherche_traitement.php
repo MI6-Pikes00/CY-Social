@@ -1,65 +1,19 @@
 <?php
-// Démarre la session PHP pour permettre le stockage de données de session
-session_start();
+// Inclure le fichier contenant les fonctions de recherche
+include './Recherche.php';
 
-include '../Article_management/Recherche.php';
+// Vérifier si le formulaire de recherche a été soumis
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['q'])) {
+    // Récupérer le terme de recherche depuis le formulaire
+    $mot_cle = $_GET['q'];
 
-// Fonction qui récupère tous les articles présent dans la base de donnée pour ensuite pour les afficher
-function getAllArticles()
-{
     // Chemin relatif vers le dossier 'data'
-    $dossier = '../data';
+    $data_folder = '../data';
 
-    // Initialisation d'un tableau pour stocker tous les articles
-    $articles = array();
+    // Utilisation de la fonction de recherche pour trouver les articles correspondants
+    $articles_trouves = rechercher_articles($mot_cle, $data_folder);
 
-    // Vérifie si le dossier 'data' existe et est un dossier
-    if (file_exists($dossier) && is_dir($dossier)) {
-        // Récupération de tous les sous-dossiers (utilisateurs) dans le dossier 'data'
-        $utilisateurs = glob($dossier . '/*', GLOB_ONLYDIR);
-
-        // Liste des types de dossiers à vérifier
-        $types_dossiers = ['article-', 'video-', 'citation-'];
-
-        // Parcours de chaque sous-dossier (utilisateur)
-        foreach ($utilisateurs as $dossier_utilisateur) {
-            // Parcours des types de dossiers
-            foreach ($types_dossiers as $type_dossier) {
-                // Récupération de tous les sous-dossiers spécifiques (articles, vidéos, citations) dans le dossier utilisateur
-                $sous_dossiers = glob($dossier_utilisateur . '/' . $type_dossier . '*', GLOB_ONLYDIR);
-
-                // Parcours de chaque sous-dossier spécifique
-                foreach ($sous_dossiers as $sous_dossier) {
-                    // Récupération de tous les fichiers JSON dans le sous-dossier
-                    $fichiers = glob($sous_dossier . '/*.json');
-
-                    // Parcours de chaque fichier pour récupérer les données
-                    foreach ($fichiers as $fichier) {
-                        // Récupération du contenu du fichier
-                        $contenu = file_get_contents($fichier);
-
-                        // Vérification si la lecture du fichier s'est bien passée
-                        if ($contenu !== false) {
-                            // Décodage des données JSON
-                            $article = json_decode($contenu, true);
-
-                            // Ajout de l'article au tableau d'articles
-                            $articles[] = $article;
-                        } else {
-                            // Affichage d'un message d'erreur si on ne peut pas obtenir les données présentes dans le fichier
-                            error_log("Erreur lors de la lecture du fichier $fichier.");
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    // Retourne le tableau d'articles
-    return $articles;
 }
-
-$articles = getAllArticles();
 ?>
 
 <!-- Ici commence le code de la page html -->
@@ -82,8 +36,8 @@ $articles = getAllArticles();
         <nav>
             <ul>
                 <li><a href="../Accueil.php">Accueil</a></li>
-                <li><a href="Conseils.php">Nos conseils</a></li>
-                <li><a href="formulaire_dynamique.php">Donner un conseils</a></li>
+                <li><a href="../Conseils/Conseils.php">Nos conseils</a></li>
+                <li><a href="../Conseils/formulaire_dynamique.php">Donner un conseils</a></li>
                 <li>
                     <!-- Permet d'afficher un bouton d'action différents selon si un utilisateur est connecté à un compte -->
                     <?php if (isset($_SESSION['utilisateur'])) { ?>
@@ -99,7 +53,7 @@ $articles = getAllArticles();
         <!-- Affichage les différents articles, et option pour les visualiser -->
         <fieldset class="article">
             <legend>Mes articles</legend>
-            <?php foreach ($articles as $article) : ?>
+            <?php foreach ($articles_trouves as $article) : ?>
                 <fieldset>
                     <legend><?php echo htmlspecialchars($article['titre']); ?></legend>
                     <?php if (isset($article['categorie'])) : ?>
@@ -138,5 +92,4 @@ $articles = getAllArticles();
         </p>
     </footer>
 </body>
-
 </html>

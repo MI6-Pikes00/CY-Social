@@ -1,6 +1,19 @@
 <?php
 // Démarre la session PHP pour permettre le stockage de données de session
-session_start()
+session_start();
+include './Article_management/Recherche.php';
+$article_recent = obtenir_dernier_article("./data");
+$citation_recent = obtenir_derniere_citation("./data");
+$video_recent = obtenir_derniere_video("./data");
+$article_populaire = obtenir_meilleur_article("./data");
+$citation_populaire = obtenir_meilleure_citation("./data");
+$video_populaire = obtenir_meilleure_video("./data");
+
+
+
+// $article_populaire = trier_articles("meilleure_note", "./data");
+// $article_p = $article_populaire[1];
+
 ?>
 <!-- Ici commence le code de la page html -->
 <!DOCTYPE html>
@@ -43,7 +56,7 @@ session_start()
             <h1>Bienvenue sur CY-Social</h1>
 
             <div class="search-container">
-                <form action="" method="get" class="search-bar" autocomplete="off">
+                <form action="./Article_management/Recherche_traitement.php" method="get" class="search-bar" autocomplete="off">
                     <input type="text" name="q" placeholder="Conseil...">
                     <button type="submit"><img src="./Ressources/search.png"></button>
             </div>
@@ -66,34 +79,57 @@ session_start()
         </div>
 
         <div class="container-popular">
-
             <div class="top-sections">
                 <div class="article-preview-section">
-                    <h2 class="article-title">Titre de l'article</h2>
+                    <h2 class="article-title"><?php echo $article_populaire['titre']; ?></h2>
                     <div class="article-container">
-                    <img src="chemin-vers-votre-image.jpg" alt="Aperçu de l'article" class="article-preview-image">
-                    <button class="learn-more-button">En savoir plus...</button>
+                        <?php
+                        $instructions = $article_populaire['instructions'];
+                        if (strlen($instructions) > 300) {
+                            $instructions = substr($instructions, 0, 300) . '...';
+                        }
+                        echo htmlspecialchars($instructions);
+                        ?>
+                        <?php if (isset($article_populaire['images']) && !empty($article_populaire['images'])) { ?>
+                            <?php foreach ($article_populaire['images'] as $image) { ?>
+                                <img style="margin: 0 10px 15px max-width: 50%; max-height: 50%;" src="<?php echo str_replace('../', './', $image)?>" alt="Image de l'article">
+                            <?php } ?>
+                        <?php } ?>
+                        <br>
+                        <?php if (isset($article_populaire['video']) && !empty($article_populaire['video'])) { ?>
+                            <h3>Vidéo(s) :</h3>
+                            <center><!--  Centrage de la vidéo sur la page  -->
+                                <video controls width="70%" style="margin-bottom: 15px">
+                                    <source src="<?php echo $article_populaire['video']; ?>" type="video/mp4">
+                                    Votre navigateur ne supporte pas la lecture de vidéos.
+                                </video>
+                            </center>
+                        <?php } ?>
+                        <?php echo " <a href='./Article_management/page_afficher_conseils.php?id_article=" . htmlspecialchars($article_populaire['numero_article']) . "'> <button class='learn-more-button'>En savoir plus...</button> </a>" ?>
                     </div>
                 </div>
-                
+
                 <div class="citation-preview-section">
-                    <div class="citation-header">READ ALSO</div>
+                    <div class="citation-header">À regarder</div>
                     <div class="citation-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>
+                        <h3><?php echo $citation_recent['titre']; ?></h3>
+                        <p><?php echo $citation_recent['instructions']; ?></p>
                     </div>
                     <div class="citation-footer">
                         <div class="pp-citation-image">
-                            <img src="../Ressources/profil-picture.png" alt="Round Image">
+                            <img src="./Ressources/profil-picture.png" alt="Round Image">
                         </div>
                         <div class="citation-author">
-                            <span class="author-nickname">Nickname Name</span>
+                            <span class="author-nickname"><?php echo $citation_recent['auteur']; ?></span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="video-preview-section">
-                <iframe src="../Ressources/video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <video src="<?php echo str_replace('../', './', $video_populaire['video']); ?>" controls>
+                    Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
             </div>
 
         </div>
