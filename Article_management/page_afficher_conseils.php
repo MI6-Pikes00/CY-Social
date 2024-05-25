@@ -134,18 +134,25 @@ if (!empty($article['notes'])) {
                 </div>
             <?php } ?>
 
-            <!-- Section qui permet d'afficher le texte et les images de l'article -->
+            <!-- Section qui permet d'afficher le texte de l'article -->
             <div class="article_text">
                 <p><?php echo $article['instructions']; ?></p>
+                <?php if (isset($article['images']) && !empty($article['images'])) { ?>
+                    <div class="first-image">
+                        <img src="<?php echo $article['images'][0]; ?>" alt="Première image de l'article">
+                    </div>
+                <?php } ?>
             </div>
             <br>
             <!-- SECTION POUR AFFICHER LES IMAGES ET VIDÉOS DE L'ARTICLE -->
             <div class="container_media">
                 <?php if (isset($article['images']) && !empty($article['images'])) { ?>
                     <h3>Images :</h3>
-                    <?php foreach ($article['images'] as $image) { ?>
-                        <img style="margin: 0 10px 15px" src="<?php echo $image; ?>" alt="Image de l'article">
-                    <?php } ?>
+                    <div class="additional-images-container">
+                        <?php foreach (array_slice($article['images'], 1) as $image) { ?>
+                            <img class="additional-image" src="<?php echo $image; ?>" alt="Image de l'article">
+                        <?php } ?>
+                    </div>
                 <?php } ?>
                 <br>
                 <?php if (isset($article['video']) && !empty($article['video'])) { ?>
@@ -159,6 +166,7 @@ if (!empty($article['notes'])) {
                 <?php } ?>
             </div>
             <!-- FIN DE LA SECTION POUR AFFICHER LES IMAGES ET VIDÉOS DE L'ARTICLE -->
+
 
             <!-- SECTION COMMENTAIRE ET NOTE -->
 

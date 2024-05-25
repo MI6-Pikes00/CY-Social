@@ -753,11 +753,44 @@ footer {
     color: rgba(136, 136, 136);
     width: 100%; /* Span occupe toute la largeur disponible */
   }
+
   /* Styles pour l'affichage du texte */
   .article_text {
     margin-top: 2%; /* Marge en haut */
     margin-left: 2%;
-    width: 73%; /* Largeur de 73% */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .article_text p {
+    width: 65%;
+    max-width: 100%;
+  }
+
+  .article_text .first-image {
+    margin-left: 50px;
+    flex-shrink: 0;
+  }
+  .article_text .first-image img {
+    width: 280px;
+    max-width: 400px;
+    height: auto;
+  }
+  /* Styles pour les images supplémentaires */
+  .container_media .additional-images-container {
+    text-align: center; /* Centre les images */
+  }
+  .container_media .additional-image {
+    width: 310px; /* Largeur maximale de l'image */
+    height: 200px; /* Hauteur de l'image */
+    margin: 10px; /* Espacement entre les images */
+    transition: transform 0.3s ease; /* Ajout d'une transition fluide */
+  }
+  .container_media .additional-image:hover {
+    transform: scale(1.3); /* Zoom de l'image au survol */
+  }
+  .container_media .additional-images-container .additional-image {
+    display: inline-block; /* Afficher les images en ligne */
   }
 
   /*  STYLE POUR COMMENTAIRE DANS PAGE_AFFICHER_CONSEIL  */
