@@ -184,23 +184,60 @@ function getUserArticles($utilisateur_email)
                             <p style="padding:5px">Catégorie: <?php echo $article['categorie']; ?></p>
                         <?php } ?>
 
-                        <div class="preview-article-perso-content"><?php
-                                                                    $instructions = $article['instructions'];
-                                                                    if (strlen($instructions) > 300) {
-                                                                        $instructions = substr($instructions, 0, 300) . '...';
-                                                                    }
-                                                                    echo htmlspecialchars($instructions);
-                                                                    ?>
+                        <div class="preview-article-perso-content">
+                            <?php
+                                $instructions = $article['instructions'];
+                                if (strlen($instructions) > 300) {
+                                    $instructions = substr($instructions, 0, 300) . '...';
+                                }
+                                echo htmlspecialchars($instructions);
+                            ?>
                         </div>
+                        
                         <!-- Section de formulaire pour faire des buttons interactif -->
 
                         <!-- Button pour supprimer -->
-                        <form action="../Article_management/supprimer_article.php" method="post">
-                            <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
-                            <button type="submit" name="submit" class="bouton_supprimer">
-                                <img src="../Ressources/trash-icon.png" alt="Supprimer" class="icon-supprimer">
-                            </button>
-                        </form>
+                            <form id="deleteForm" action="../Article_management/supprimer_article.php" method="post">
+                                <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
+                                <button type="button" class="bouton_supprimer" onclick="showPopup()">
+                                    <img src="../Ressources/trash-icon.png" alt="Supprimer" class="icon-supprimer">
+                                </button>
+                            </form>
+                        
+                            <!-- Fenêtre de confirmation de suppression -->
+                                <div id="confirmationPopup" class="popup">
+                                    <div class="popup-content">
+                                        <h2>Confirmez-vous la suppression ?</h2>
+                                        <p>Si vous confirmez, votre publication sera <br> définitivement effacée</p>
+                                        <div class="popup-buttons">
+                                            <button class="btn-supprimer" onclick="confirmAction()">
+                                                <img src="../Ressources/trash-icon.png" alt="Supprimer" class="icon-supprimer">
+                                                <b>Supprimer</b>
+                                            </button>
+                                            <button class="btn-annuler" onclick="cancelAction()">
+                                                <img src="../Ressources/cancel-icon.png" alt="Annuler" class="icon-annuler">
+                                                <b>Annuler</b>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        <!-- Script pour confirmer la suppression du post -->
+                        <script>
+                            function showPopup() {
+                                document.getElementById('confirmationPopup').style.display = 'flex';
+                            }
+
+                            function confirmAction() {
+                                document.getElementById("deleteForm").submit();
+                            }
+
+                            function cancelAction() {
+                                document.getElementById('confirmationPopup').style.display = 'none';
+                            }
+                        </script>
+
+
                         <!-- Button pour voir -->
                         <form action="../Article_management/page_afficher_conseils.php" method="post">
                             <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">

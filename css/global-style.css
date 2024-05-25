@@ -628,34 +628,115 @@ footer {
   border-radius: 5px; /* Coins arrondis */
 }
 
-/* Styles pour le bouton Supprimer */
-.bouton_supprimer {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
+/* --- DÉBUT STYLE BOUTON SUPPRIMER POST + POP-UP DE CONFIRMATION --- */
+  .bouton_supprimer {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .bouton_supprimer .icon-supprimer {
+    width: 20px; /* Ajustez la taille de l'icône selon vos besoins */
+    height: 20px;
+    transition: filter 0.3s;
+    filter: grayscale(100%) brightness(50%); /* Applique le filtre pour rendre l'icône grise */
+  }
+  .bouton_supprimer:hover .icon-supprimer {
+    filter: grayscale(100%) brightness(70%); /* Effet au survol */
+  }       
+  .popup {
+    display: none; /* Caché par défaut */
+    position: fixed; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    justify-content: center;
+    align-items: center;
+  }
+  .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  .popup-content h2 {
+    margin: 0;
+    font-size: 22px;
+    color: #2c3e50;
+    text-rendering: geometricPrecision;
+  }
+  .popup-content p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #7f8c8d;
+  }
+  .popup-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .btn-supprimer, .btn-annuler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 135px;
+    height: 40px;
+    gap: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .btn-supprimer {
+    background-color: #e74c3c;
+    color: white;
+  }
+  .btn-supprimer img {
+    height: 16px;
+    width: 16px;
+    filter: invert(100);
+  }
+  .btn-annuler {
+    background-color: #bdc3c7;
+    color: #2c3e50;
+  }
+  .btn-annuler img {
+    height: 12px;
+    width: 12px;
+  }
+/* --- FIN STYLE BOUTON SUPPRIMER POST + POP-UP DE CONFIRMATION --- */
 
-.bouton_supprimer .icon-supprimer {
-  width: 20px; /* Ajustez la taille de l'icône selon vos besoins */
-  height: 20px;
-  transition: filter 0.3s;
-  filter: grayscale(100%) brightness(50%); /* Applique le filtre pour rendre l'icône grise */
-}
 
-.bouton_supprimer:hover .icon-supprimer {
-  filter: grayscale(100%) brightness(70%); /* Effet au survol */
-}
+/*
+  .bouton_supprimer {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .bouton_supprimer .icon-supprimer {
+    width: 20px; /* Ajustez la taille de l'icône selon vos besoins 
+    height: 20px;
+    transition: filter 0.3s;
+    filter: grayscale(100%) brightness(50%); /* Applique le filtre pour rendre l'icône grise 
+  }
+
+  .bouton_supprimer:hover .icon-supprimer {
+    filter: grayscale(100%) brightness(70%); /* Effet au survol 
+  }
+*/
 
 
 /*  --- DÉBUT AFFICHAGE DE TOUS LES POSTS ---  */
-
+  /* Style du conteneur principal */
   .container-main-article {
     width: 100%;
     display: block;
     margin-left: 30px;
     margin-top: 85px;
   }
-
   /* Styles pour le conteneur du titre */
   .article-titre {
     display: block;
@@ -702,7 +783,6 @@ footer {
       flex-direction: column;
       justify-content: space-between;
     }
-
     .comment-text {
       flex-grow: 1;
       overflow-y: auto; /* Permet le défilement du texte si trop long pour la box */
@@ -710,7 +790,6 @@ footer {
       font-family: 'Source Sans Pro', sans-serif;
       color: #333;
     }
-
     .comment-rating {
       font-size: 16px;
       font-weight: bold;
@@ -719,7 +798,6 @@ footer {
       margin-bottom: 15px;
       margin-top: 6px;
     }
-
     .comment-author {
       font-size: 14px;
       font-style: italic;
@@ -727,15 +805,16 @@ footer {
       color: #777;
       margin-bottom: 5px;
     }
-
     .no-comments {
       font-size: 16px;
       color: #333;
       font-family: 'Source Sans Pro', sans-serif;
     }
 
+  /*  --- FIN AFFICHAGE DE TOUS LES POSTS ---  */
 
 /*  --- FIN AFFICHAGE DE TOUS LES POSTS ---  */
+
 
 
 
