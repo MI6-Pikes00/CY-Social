@@ -8,7 +8,8 @@
     "video": "..\/data\/3241d670ba1943eebd6d95bea17ebc7a\/video-66510b56a1c03\/videos\/EC8A5409-0B9D-46C1-BF1C-DD1309E0C32A.mov",
     "notes": [
         5,
-        3
+        3,
+        5
     ],
     "commentaires": [
         {
@@ -18,6 +19,10 @@
         {
             "utilisateur": "Thomas HERRIAU",
             "commentaire": "2e commentaire pour test"
+        },
+        {
+            "utilisateur": "Thomas HERRIAU",
+            "commentaire": "WOW! La vid\u00e9o est tout simplement magnifique \ud83d\ude0d \u00c7a donne beaucoup envie d&#039;y aller et de visiter. On s&#039;y sent au calme..."
         }
     ]
 }

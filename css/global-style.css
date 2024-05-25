@@ -672,6 +672,12 @@ footer {
     color: rgba(136, 136, 136);
     width: 100%; /* Span occupe toute la largeur disponible */
   }
+  /* Styles pour l'affichage du texte */
+  .article_text {
+    margin-top: 2%; /* Marge en haut */
+    margin-left: 2%;
+    width: 73%; /* Largeur de 73% */
+  }
 
   /*  STYLE POUR COMMENTAIRE DANS PAGE_AFFICHER_CONSEIL  */
     fieldset #commantaires_et_notes {
@@ -691,30 +697,35 @@ footer {
       border-radius: 10px;
       padding: 10px;
       box-sizing: border-box;
-      overflow: hidden;
       background-color: #f9f9f9;
-    }
-
-    .comment-text, .comment-rating, .comment-author {
-      margin-bottom: 20px;
-      font-family: 'Source Sans Pro', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .comment-text {
+      flex-grow: 1;
+      overflow-y: auto; /* Permet le défilement du texte si trop long pour la box */
       font-size: 14px;
+      font-family: 'Source Sans Pro', sans-serif;
       color: #333;
     }
 
     .comment-rating {
       font-size: 16px;
       font-weight: bold;
+      font-family: 'Source Sans Pro', sans-serif;
       color: #555;
+      margin-bottom: 15px;
+      margin-top: 6px;
     }
 
     .comment-author {
       font-size: 14px;
       font-style: italic;
+      font-family: 'Source Sans Pro', sans-serif;
       color: #777;
+      margin-bottom: 5px;
     }
 
     .no-comments {
@@ -727,11 +738,7 @@ footer {
 /*  --- FIN AFFICHAGE DE TOUS LES POSTS ---  */
 
 
-/* Styles pour l'affichage du texte */
-.affiche_text {
-  margin-top: 2%; /* Marge en haut */
-  width: 73%; /* Largeur de 73% */
-}
+
 
 /* Styles pour l'affichage de l'image */
 .affiche_image {

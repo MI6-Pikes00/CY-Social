@@ -67,6 +67,8 @@ function getOneArticle($id_article, &$chemin_fichier)
 // Variables où sont stockées les informations de l'article pour pouvoir les afficher ensuite
 $article = getOneArticle($numero_article, $chemin_fichier);
 
+$date_creation = DateTime::createFromFormat('Y-m-d H:i:s', $article['date_creation'])->format('d/m/Y');
+
 if (!empty($article['notes'])) {
     // Calcul de la moyenne des notes
     $moyenne_note = 0;
@@ -123,7 +125,7 @@ if (!empty($article['notes'])) {
                 <h1><?php echo $article['titre']; ?></h1>
             </div>
 
-            <span class="article-author">par <?php echo $article['auteur'] ?></span>
+            <span class="article-author">par <?php echo $article['auteur'] ?> , le <?php echo $date_creation ?></span>
 
             <!-- Section qui permet d'afficher la catégorie de l'article -->
             <?php if (isset($article['categorie']) && !empty($article['catégorie'])) { ?>
@@ -133,7 +135,7 @@ if (!empty($article['notes'])) {
             <?php } ?>
 
             <!-- Section qui permet d'afficher le texte et les images de l'article -->
-            <div class="carre affiche_text">
+            <div class="article_text">
                 <p><?php echo $article['instructions']; ?></p>
             </div>
             <br>
@@ -170,12 +172,13 @@ if (!empty($article['notes'])) {
                     } else {
                         // Boucle sur chaque commentaire            
                         foreach ($article['commentaires'] as $index => $commentaire) {
-                            $comment = $commentaire['commentaire'];
-                            $rating = $article['notes'][$index];
-                            $name = $commentaire['utilisateur'];
-                    ?>
+                            $comment = html_entity_decode(htmlspecialchars($commentaire['commentaire'])) ;
+                            $rating = html_entity_decode(htmlspecialchars($article['notes'][$index]));
+                            $name = html_entity_decode(htmlspecialchars($commentaire['utilisateur']));
+                    ?>         <!-- html_entity_decode(...) permet d'afficher correctement le symbole “ ' ”
+                                tandis que htmlspecialchars(...) permet de prévenir les attaques XSS -->
                         <div class="comment-box">
-                            <p class="comment-text"><?php echo htmlspecialchars($comment); ?></p>
+                            <p class="comment-text"><?php echo $comment; ?></p>
                             <p class="comment-rating">Note: <?php echo htmlspecialchars($rating); ?>/5</p>
                             <p class="comment-author"><?php echo htmlspecialchars($name); ?></p>
                         </div>
