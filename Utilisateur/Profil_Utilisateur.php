@@ -156,9 +156,9 @@ function getUserArticles($utilisateur_email)
                     <?php if (!empty($utilisateur_session_info['profil_image'])) { ?>
                         <img src="<?php echo $utilisateur_session_info['profil_image']; ?>" alt="Description de l'image" class="image95x95">
                     <?php } else { ?>
-                    <div class="profile-image" onclick="document.getElementById('fichier_racine').click();">
-                        <input type="file" id="fichier_racine" name="fichier_racine" accept="image/*" style="display: none;" onchange="loadFile(event)">
-                    </div>
+                        <div class="profile-image" onclick="document.getElementById('fichier_racine').click();">
+                            <input type="file" id="fichier_racine" name="fichier_racine" accept="image/*" style="display: none;" onchange="loadFile(event)">
+                        </div>
                     <?php } ?>
 
                     <label for="nom">Nom:</label>
@@ -185,34 +185,34 @@ function getUserArticles($utilisateur_email)
                         <?php } ?>
 
                         <div class="preview-article-perso-content"><?php
-                            $instructions = $article['instructions'];
-                            if (strlen($instructions) > 300) {
-                                $instructions = substr($instructions, 0, 300) . '...';
-                            }
-                            echo htmlspecialchars($instructions);
-                        ?></div>
-
-                        <!-- Section de formulaire pour faire des buttons interactif -->
-                        <div class="article-buttons">
-                            <!-- Button pour supprimer -->
-                            <form action="../Article_management/supprimer_article.php" method="post">
-                                <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
-                                <button type="submit" name="submit" class="bouton_supprimer">
-                                    <img src="../Ressources/trash-icon.png" alt="Supprimer" class="icon-supprimer">
-                                </button>
-                            </form>
-                            <!-- Button pour voir -->
-                            <form action="../Article_management/page_afficher_conseils.php" method="post">
-                                <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
-                                <button type="submit" name="submit" class="bouton_voir">Voir</button>
-                            </form>
-                            <!-- Button pour modifier -->
-                            <form action="../Article_management/Formulaire_modification.php" method="post">
-                                <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
-                                <button type="submit" name="submit" class="bouton_modifier">Modifier</button>
-                            </form>
-
+                                                                    $instructions = $article['instructions'];
+                                                                    if (strlen($instructions) > 300) {
+                                                                        $instructions = substr($instructions, 0, 300) . '...';
+                                                                    }
+                                                                    echo htmlspecialchars($instructions);
+                                                                    ?>
                         </div>
+                        <!-- Section de formulaire pour faire des buttons interactif -->
+
+                        <!-- Button pour supprimer -->
+                        <form action="../Article_management/supprimer_article.php" method="post">
+                            <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
+                            <button type="submit" name="submit" class="bouton_supprimer">
+                                <img src="../Ressources/trash-icon.png" alt="Supprimer" class="icon-supprimer">
+                            </button>
+                        </form>
+                        <!-- Button pour voir -->
+                        <form action="../Article_management/page_afficher_conseils.php" method="post">
+                            <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
+                            <button type="submit" name="submit" class="bouton_voir">Voir</button>
+                        </form>
+                        <!-- Button pour modifier -->
+                        <form action="../Article_management/Formulaire_modification.php" method="post">
+                            <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
+                            <button type="submit" name="submit" class="bouton_modifier">Modifier</button>
+                        </form>
+
+
                     </fieldset>
                     <br>
                 <?php endforeach; ?>
