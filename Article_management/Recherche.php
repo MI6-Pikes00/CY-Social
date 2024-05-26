@@ -1,13 +1,19 @@
 <?php
 
 function calculerMoyenne($notes) {
+    // Vérifie si le tableau de notes est vide
     if (empty($notes)) {
+        // Si le tableau est vide, retourne 0 car la moyenne est indéfinie
         return 0;
     }
 
+    // Calcule la somme totale des notes
     $total = array_sum($notes);
+
+    // Compte le nombre de notes dans le tableau
     $nombreDeNotes = count($notes);
 
+    // Calcule et retourne la moyenne en divisant la somme totale par le nombre de notes
     return $total / $nombreDeNotes;
 }
 
