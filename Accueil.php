@@ -130,7 +130,11 @@ $video_populaire = obtenir_meilleure_video("./data");
                         </div>
                         <div class="citation-footer">
                             <div class="pp-citation-image">
-                                <img src="./Ressources/profil-picture.png" alt="Round Image">
+                                <?php if (!empty($citation_recent['profil_image'])) { ?>
+                                    <img src="<?php echo $citation_recent['profil_image']; ?>" alt="Photo de Profil">
+                                <?php } else { ?>
+                                    <img src="./Ressources/profil-picture.png" alt="Photo de Profil">
+                                <?php } ?>
                             </div>
                             <div class="citation-author">
                                 <span class="author-nickname"><?php echo $citation_recent['auteur']; ?></span>
