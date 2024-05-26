@@ -196,44 +196,45 @@ function getUserArticles($utilisateur_email)
                         
                         <!-- Section de formulaire pour faire des buttons interactif -->
 
+                        <?php $articleId = $article['numero_article']; ?>
                         <!-- Button pour supprimer -->
-                            <form id="deleteForm" action="../Article_management/supprimer_article.php" method="post">
-                                <input type="hidden" name="id_article" value="<?php echo $article['numero_article']; ?>">
-                                <button type="button" class="bouton_supprimer" onclick="showPopup()">
+                            <form id="deleteForm-<?php echo $articleId; ?>" action="../Article_management/supprimer_article.php" method="post">
+                                <input type="hidden" name="id_article" value="<?php echo $articleId; ?>">
+                                <button type="button" class="bouton_supprimer" onclick="showPopup('<?php echo $articleId; ?>')">
                                     <img src="../Ressources/trash-icon.png" alt="Supprimer" class="icon-supprimer">
                                 </button>
                             </form>
                         
                             <!-- Fenêtre de confirmation de suppression -->
-                                <div id="confirmationPopup" class="popup">
-                                    <div class="popup-content">
-                                        <h2>Confirmez-vous la suppression ?</h2>
-                                        <p>Si vous confirmez, votre publication sera <br> définitivement effacée</p>
-                                        <div class="popup-buttons">
-                                            <button class="btn-supprimer" onclick="confirmAction()">
-                                                <img src="../Ressources/trash-icon.png" alt="Supprimer" class="icon-supprimer">
-                                                <b>Supprimer</b>
-                                            </button>
-                                            <button class="btn-annuler" onclick="cancelAction()">
-                                                <img src="../Ressources/cancel-icon.png" alt="Annuler" class="icon-annuler">
-                                                <b>Annuler</b>
-                                            </button>
-                                        </div>
+                            <div id="confirmationPopup-<?php echo $articleId; ?>" class="popup" style="display: none;">
+                                <div class="popup-content">
+                                    <h2>Confirmez-vous la suppression ?</h2>
+                                    <p>Si vous confirmez, votre publication sera <br> définitivement effacée</p>
+                                    <div class="popup-buttons">
+                                        <button class="btn-supprimer" onclick="confirmAction('<?php echo $articleId; ?>')">
+                                            <img src="../Ressources/trash-icon.png" alt="Supprimer" class="icon-supprimer">
+                                            <b>Supprimer</b>
+                                        </button>
+                                        <button class="btn-annuler" onclick="cancelAction('<?php echo $articleId; ?>')">
+                                            <img src="../Ressources/cancel-icon.png" alt="Annuler" class="icon-annuler">
+                                            <b>Annuler</b>
+                                        </button>
                                     </div>
                                 </div>
+                            </div>
 
                         <!-- Script pour confirmer la suppression du post -->
                         <script>
-                            function showPopup() {
-                                document.getElementById('confirmationPopup').style.display = 'flex';
+                            function showPopup(articleId) {
+                                document.getElementById('confirmationPopup-' + articleId).style.display = 'flex';
                             }
 
-                            function confirmAction() {
-                                document.getElementById("deleteForm").submit();
+                            function confirmAction(articleId) {
+                                document.getElementById('deleteForm-' + articleId).submit();
                             }
 
-                            function cancelAction() {
-                                document.getElementById('confirmationPopup').style.display = 'none';
+                            function cancelAction(articleId) {
+                                document.getElementById('confirmationPopup-' + articleId).style.display = 'none';
                             }
                         </script>
 

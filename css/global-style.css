@@ -63,7 +63,7 @@ header ul li a {
 
 /* Styles pour la section principale */
 main {
-  margin-top: 7%;
+  padding: 20px 0px; /* Rembourrage de la section principale */
 }
 
 /* Styles pour la section d'accueil */
