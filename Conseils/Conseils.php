@@ -97,10 +97,10 @@ $articles = getAllArticles();
     </header>
     <main>
         <!-- Affichage les différents articles, et option pour les visualiser -->
-        <fieldset class="article">
-            <legend style="margin-bottom: 1%;">Nos conseils</legend>
+        <fieldset class="article" style="margin-top: 5%">
+            <legend style="margin-bottom: 20px;">Nos conseils</legend>
             <?php foreach ($articles as $article) : ?>
-                <fieldset>
+                <fieldset style="margin-left: 15px">
                     <legend><?php echo htmlspecialchars($article['titre']); ?></legend>
                     <?php if (isset($article['categorie'])) : ?>
                         <p><b>Catégorie: </b> <?php echo htmlspecialchars($article['categorie']); ?></p>
