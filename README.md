@@ -25,9 +25,7 @@ Assurez-vous que ces valeurs sont correctement configurées pour éviter tout pr
 
 1. Clonez ce dépôt sur votre machine locale.
 2. Assurez-vous que votre environnement PHP est configuré avec les paramètres spécifiés dans `php.ini`.
-3. Importez la base de données fournie dans le dossier `database`.
-4. Configurez les informations de la base de données dans le fichier `config.php`.
-5. Lancez l'application sur votre serveur local.
+3. Lancez l'application sur votre serveur local.
 
 ## Contribution
 
