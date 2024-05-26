@@ -11,55 +11,52 @@
   font-family: "Poppins", sans-serif; /* Utilisation de la police Poppins par défaut pour tout le document */
 }
 
-/* Styles pour l'en-tête */
-header {
-  background-color: #fff; /* Couleur de fond de l'en-tête en blanc */
-  height: 82px; /* Hauteur de l'en-tête */
-  width: 100%; /* Largeur de l'en-tête */
-  top: 0; /* Position de l'en-tête au sommet */
-  left: 0; /* Position de l'en-tête à gauche */
-  position: fixed; /* Positionnement fixe de l'en-tête */
-  padding: 20px 20px; /* Rembourrage de l'en-tête */
-  display: flex; /* Affichage en flexbox */
-  justify-content: space-between; /* Alignement des éléments en espacement égal */
-  align-items: center; /* Alignement vertical des éléments au centre */
-  z-index: 1000; /* Indice de positionnement de l'en-tête */
-}
+/* --- DÉBUT HEADER --- */
+  /* Styles pour l'en-tête */
+  header {
+    background-color: #fff; /* Couleur de fond de l'en-tête en blanc */
+    height: 82px; /* Hauteur de l'en-tête */
+    width: 100%; /* Largeur de l'en-tête */
+    top: 0; /* Position de l'en-tête au sommet */
+    left: 0; /* Position de l'en-tête à gauche */
+    position: fixed; /* Positionnement fixe de l'en-tête */
+    padding: 20px 20px; /* Rembourrage de l'en-tête */
+    display: flex; /* Affichage en flexbox */
+    justify-content: space-between; /* Alignement des éléments en espacement égal */
+    align-items: center; /* Alignement vertical des éléments au centre */
+    z-index: 1000; /* Indice de positionnement de l'en-tête */
+  }
 
-header .logo {
-  color: #094b65; /* Couleur du texte du logo */
-  font-weight: 700; /* Poids de la police du logo */
-  text-decoration: none; /* Aucune décoration de texte pour le logo */
-  padding-left: 7px; /* Rembourrage à gauche du logo */
-  font-size: 40px; /* Taille de la police du logo */
-}
+  header .logo {
+    color: #094b65; /* Couleur du texte du logo */
+    font-weight: 700; /* Poids de la police du logo */
+    text-decoration: none; /* Aucune décoration de texte pour le logo */
+    padding-left: 7px; /* Rembourrage à gauche du logo */
+    font-size: 40px; /* Taille de la police du logo */
+  }
 
-header ul {
-  display: flex; /* Affichage en flexbox pour la liste */
-  justify-content: center; /* Alignement des éléments de la liste au centre */
-  align-items: center; /* Alignement vertical des éléments de la liste au centre */
-  gap: 18px; /* Espace entre les éléments de la liste */
-}
+  header ul {
+    display: flex; /* Affichage en flexbox pour la liste */
+    justify-content: center; /* Alignement des éléments de la liste au centre */
+    align-items: center; /* Alignement vertical des éléments de la liste au centre */
+    gap: 18px; /* Espace entre les éléments de la liste */
+  }
 
-header ul li {
-  list-style: none; /* Aucun style de liste pour les éléments de la liste */
-}
+  header ul li {
+    list-style: none; /* Aucun style de liste pour les éléments de la liste */
+  }
 
-header ul li a {
-  text-decoration: none; /* Aucune décoration de texte pour les liens */
-  padding: 6px 15px; /* Rembourrage des liens */
-  color: #094b65; /* Couleur du texte des liens */
-  border-radius: 20px; /* Bordure arrondie pour les liens */
-}
+  header ul li a {
+    text-decoration: none; /* Aucune décoration de texte pour les liens */
+    padding: 6px 15px; /* Rembourrage des liens */
+    color: #094b65; /* Couleur du texte des liens */
+    border-radius: 20px; /* Bordure arrondie pour les liens */
+  }
+/* --- FIN HEADER --- */
 
-/* Styles pour les bordures de connexion */
-.connexion-border {
-  border: 2px solid #094b65; /* Bordure solide de 2px avec couleur définie */
-  border-radius: 10px; /* Bordure arrondie */
-  padding: 8px 12px; /* Rembourrage */
-  text-decoration: none; /* Aucune décoration de texte */
-  display: inline-block; /* Affichage en bloc inline */
-}
+
+
+
 
 /* Styles pour la section principale */
 main {
@@ -139,643 +136,634 @@ footer {
   color: #094b65; /* Couleur du texte */
 }
 
-
-
 /* Styles pour le conteneur utilisateur */
 .container_utilisateur {
   display: flex; /* Affichage en flexbox */
 }
 
-.container_connection {
-  width: 75vw; /* Largeur de 75% de la largeur du viewport */
-  height: 80vh; /* Hauteur de 80% de la hauteur du viewport */
-  max-width: 1421px; /* Limite maximale de la largeur */
-  max-height: 828px; /* Limite maximale de la hauteur */
-  border: 1px solid black; /* Bordure noire de 1px */
-  border-radius: 30px; /* Bords arrondis de 30px */
-  margin: 0 auto; /* Centre horizontalement */
-  position: absolute; /* Permet de centrer verticalement */
-  top: calc(50% + 30px); /* Centre verticalement en tenant compte de la hauteur de la barre de navigation */
-  left: 50%; /* Centre horizontalement */
-  transform: translate(-50%, -50%); /* Centre parfaitement la boîte */
-  display: flex; /* Utilise flexbox pour disposer les enfants */
-  align-items: center; /* Centre verticalement les enfants */
-}
+/* --- DÉBUT STYLE CONTENEUR CONNEXION/INSCRIPTION --- */
+
+  .container_connection {
+    width: 75vw; /* Largeur de 75% de la largeur du viewport */
+    height: 80vh; /* Hauteur de 80% de la hauteur du viewport */
+    max-width: 1421px; /* Limite maximale de la largeur */
+    max-height: 828px; /* Limite maximale de la hauteur */
+    border: 1px solid black; /* Bordure noire de 1px */
+    border-radius: 30px; /* Bords arrondis de 30px */
+    margin: 0 auto; /* Centre horizontalement */
+    position: absolute; /* Permet de centrer verticalement */
+    top: calc(50% + 30px); /* Centre verticalement en tenant compte de la hauteur de la barre de navigation */
+    left: 50%; /* Centre horizontalement */
+    transform: translate(-50%, -50%); /* Centre parfaitement la boîte */
+    display: flex; /* Utilise flexbox pour disposer les enfants */
+    align-items: center; /* Centre verticalement les enfants */
+  }
+
+  .container_connection_bgd_img_left {
+    width: 42vw; /* Largeur du conteneur en 42% de la largeur de la fenêtre */
+    max-width: 776px; /* Largeur maximale du conteneur */
+    height: 100%; /* Hauteur du conteneur à 100% */
+    border-radius: 29px 0px 0px 29px; /* Bordure arrondie sur le côté gauche */
+    overflow: hidden; /* Masquer tout contenu dépassant du conteneur */
+  }
+
+  .container_connection_bgd_img_left img {
+    width: 100%; /* Largeur de l'image à 100% */
+    height: 100%; /* Hauteur de l'image à 100% */
+    object-fit: cover; /* Redimensionne l'image pour couvrir le conteneur */
+    object-position: 50% 20%; /* Position de l'image centrée horizontalement et décalée verticalement de 20% vers le bas */
+  }
+
+  .container_connection_form_right {
+    width: 25vw; /* Largeur restante */
+    max-width: calc(1421px - 776px); /* Limite maximale de la largeur */
+    height: 100%; /* Hauteur de 100% de la boîte parente */
+    padding: 20px; /* Espacement intérieur */
+    display: flex;
+    flex-direction: column; /* Disposition verticale des éléments */
+    justify-content: center; /* Centre verticalement */
+    align-items: center; /* Aligne les éléments à droite */
+    margin: 0 auto -40px; /* Centre la box au milieu */
+    border-radius: 0px 29px 29px 0px; /* Coins arrondis à droite */
+    box-sizing: border-box; /* Inclut le padding dans la largeur et la hauteur */
+  }
+
+  .container_connection_form_right form {
+    width: 100%; /* Formulaire occupe toute la largeur disponible */
+  }
+
+  .container_connection_form_right .name-fields {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px; /* Espacement entre les champs */
+  }
+
+  .container_connection_form_right .name-fields .field {
+    flex: 1;
+  }
+
+  .container_connection_form_right label {
+    display: block; /* Affiche chaque label sur une nouvelle ligne */
+    padding-top: 15px;
+    margin-bottom: 10px; /* Espacement en dessous des labels */
+    color: black;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    text-rendering: geometricPrecision;
+  }
+
+  .container_connection_form_right input {
+    width: 100%; /* Champs de formulaire occupent toute la largeur disponible */
+    padding: 10px; /* Espacement intérieur des champs */
+    margin-bottom: 20px; /* Espacement en dessous des champs */
+    border: none;
+    background: rgba(177, 178, 181, 0.3);
+    border-radius: 2px;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+  .container_connection_form_right .pswd {
+    display: block; /* Affiche chaque span sur une nouvelle ligne */
+    margin-bottom: 20px; /* Espacement en dessous des spans */
+    text-indent: 5px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    text-rendering: geometricPrecision;
+    color: rgba(153, 153, 153, 1);
+    width: 100%; /* Span occupe toute la largeur disponible */
+  }
+
+  .container_connection_form_right ::placeholder {
+    font-size: 14px;
+    color: rgba(61, 61, 61, 1);
+  }
+
+  .container_connection_form_right .pswd a {
+    color: rgba(36, 36, 36, 1);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    text-rendering: geometricPrecision;
+  }
+
+  .container_connection_form_right button {
+    width: 100%; /* Bouton occupe toute la largeur disponible */
+    margin-top: 10px;
+    padding: 15px; /* Espacement intérieur du bouton */
+    background-color: #313131; /* Couleur de fond bleue */
+    color: white; /* Couleur du texte blanche */
+    border: none; /* Supprime les bordures par défaut */
+    border-radius: 2px; /* Coins légèrement arrondis */
+    cursor: pointer; /* Curseur de pointeur */
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+  }
+
+  /* .container_connection_form_right button:hover {
+    background-color: #005fc4; /* Couleur de fond plus foncée au survol
+  } */
+
+  .profile-image {
+    width: 95px; /* Taille de la zone ronde */
+    height: 95px; /* Taille de la zone ronde */
+    border-radius: 50%; /* Rend la zone ronde */
+    border: 2px solid white; /* Contours blancs de 2px */
+    background-image: url('../Ressources/profil-picture.png'); /* Image par défaut en fond */
+    background-size: cover; /* Ajuste l'image pour couvrir toute la zone */
+    background-position: center; /* Centre l'image dans la zone */
+    background-color: white;
+    cursor: pointer; /* Change le curseur en pointeur pour indiquer que c'est cliquable */
+    margin-top: -20px;
+  }
+
+/* --- FIN STYLE CONTENEUR CONNEXION/INSCRIPTION --- */
 
 
-.container_connection_bgd_img_left {
-  width: 42vw; /* Largeur du conteneur en 42% de la largeur de la fenêtre */
-  max-width: 776px; /* Largeur maximale du conteneur */
-  height: 100%; /* Hauteur du conteneur à 100% */
-  border-radius: 29px 0px 0px 29px; /* Bordure arrondie sur le côté gauche */
-  overflow: hidden; /* Masquer tout contenu dépassant du conteneur */
-}
+/* --- DÉBUT STYLE BARRE DE NAVIAGUATION TOPICS ACCUEIL --- */
+
+  .topic-section {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 65px 0;
+  }
+
+  .topic-section-list {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .topic-section-list li {
+    margin: 0 45px; /* Écart de 90px entre chaque <li> */
+  }
+
+  .topic-section-list a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.5); /* Noir avec 50% d'opacité */
+    font-size: 18px;
+    transition: color 0.3s, opacity 0.3s;
+  }
+
+  /* Style pour l'élément actif */
+  .topic-section-list a.active,
+  .topic-section-list a:hover {
+    color: black;
+    opacity: 1;
+  }
+
+  .filter-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+/* --- FIN STYLE BARRE DE NAVIGUATION TOPICS ACCUEIL --- */
 
 
-.container_connection_bgd_img_left img {
-  width: 100%; /* Largeur de l'image à 100% */
-  height: 100%; /* Hauteur de l'image à 100% */
-  object-fit: cover; /* Redimensionne l'image pour couvrir le conteneur */
-  object-position: 50% 20%; /* Position de l'image centrée horizontalement et décalée verticalement de 20% vers le bas */
-}
+/* --- DÉBUT STYLE POSTS TENDANCES --- */
+  /*  Section pour article populaire  */
+  .container-popular {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 auto;
+    max-width: 1210px;
+  }
+
+  /*  Container pour les sections du haut (article + citation)  */
+  .top-sections {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  /* Style pour la section de prévisualisation de l'article */
+  .article-preview-section {
+    width: 100%;
+    max-width: 780px;
+    padding: 20px 0; /* Espace supérieur et inférieur */
+  }
+
+  /* Style pour le titre de l'article */
+  .article-title {
+    font-weight: bold;
+    margin-bottom: 65px; /* Espace sous le titre */
+    font-size: 28px;
+  }
+
+  /* Style pour le conteneur de l'article */
+  .article-container {
+    position: relative; /* Nécessaire pour positionner le bouton */
+    border: 1px solid black; /* Contour noir */
+    width: 100%;
+    max-width: 780px;
+    height: 500px;
+    overflow: hidden; /* Cacher le dépassement de l'image */
+  }
+
+  /* Style pour l'image de prévisualisation */
+  .article-preview-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Couvrir l'espace sans déformation */
+  }
+
+  /* Style pour le rond note */
+  .article-container-note {
+    position: absolute; /* Pour permettre le positionnement */
+    bottom: 50px; /* Ajustez pour positionner verticalement */
+    right: 40px; /* Ajustez pour positionner horizontalement */
+  }
+
+  .note-circle {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: black;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%; /* Pour créer un cercle */
+    position: absolute;
+    top: 0; /* Pour aligner le haut du cercle avec le haut du conteneur parent */
+    right: -20px; /* Pour décaler le cercle vers la droite */
+  }
 
 
-.container_connection_form_right {
-  width: 25vw; /* Largeur restante */
-  max-width: calc(1421px - 776px); /* Limite maximale de la largeur */
-  height: 100%; /* Hauteur de 100% de la boîte parente */
-  padding: 20px; /* Espacement intérieur */
-  display: flex;
-  flex-direction: column; /* Disposition verticale des éléments */
-  justify-content: center; /* Centre verticalement */
-  align-items: center; /* Aligne les éléments à droite */
-  margin: 0 auto -40px; /* Centre la box au milieu */
-  border-radius: 0px 29px 29px 0px; /* Coins arrondis à droite */
-  box-sizing: border-box; /* Inclut le padding dans la largeur et la hauteur */
-}
+  /* Style pour le bouton 'En savoir plus...' */
+  .learn-more-button {
+    position: absolute; /* Position absolue pour placer en bas de l'image */
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(177, 178, 181, 0.425) -30%, transparent 70%);
+    width: 760px;
+    height: 45px;
+    color: rgba(47, 47, 47, 0.6);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .learn-more-button:hover {
+    background-color: #b7b7b7; /* Couleur de fond au survol */
+  }
 
-.container_connection_form_right form {
-  width: 100%; /* Formulaire occupe toute la largeur disponible */
-}
+  /* Style pour la section de prévisualisation de la citation */
+  .citation-preview-section {
+    width: 100%;
+    max-width: 370px;
+    height: 600px;
+    background-color: #B1B2B5;
+    border-radius: 15px;
+    margin-left: 60px; /* Espacement entre les deux sections */
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Nécessaire pour positionner la note */
+  }
 
-.container_connection_form_right .name-fields {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  gap: 20px; /* Espacement entre les champs */
-}
+  /* Style pour l'en-tête de la citation */
+  .citation-header {
+    width: 290px;
+    height: 80px;
+    margin-top: 30px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    text-transform: uppercase;
+  }
 
-.container_connection_form_right .name-fields .field {
-  flex: 1;
-}
+  /* Style pour le contenu de la citation */
+  .citation-content {
+    width: 290px;
+    height: 550px;
+    margin-top: 30px;
+    overflow-y: auto;
+    color: #000;
+    font-size: 16px;
+  }
 
-.container_connection_form_right label {
-  display: block; /* Affiche chaque label sur une nouvelle ligne */
-  padding-top: 15px;
-  margin-bottom: 10px; /* Espacement en dessous des labels */
-  color: black;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 16px;
-  text-rendering: geometricPrecision;
-}
+  /* Style pour la note circulaire */
+  .citation-note {
+    position: absolute; /* Pour permettre le positionnement */
+    bottom: 10px; /* Ajustez pour positionner verticalement */
+    right: 10px; /* Ajustez pour positionner horizontalement */
+  }
 
-.container_connection_form_right input {
-  width: 100%; /* Champs de formulaire occupent toute la largeur disponible */
-  padding: 10px; /* Espacement intérieur des champs */
-  margin-bottom: 20px; /* Espacement en dessous des champs */
-  border: none;
-  background: rgba(177, 178, 181, 0.3);
-  border-radius: 2px;
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
-.container_connection_form_right .pswd {
-  display: block; /* Affiche chaque span sur une nouvelle ligne */
-  margin-bottom: 20px; /* Espacement en dessous des spans */
-  text-indent: 5px;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 14px;
-  text-rendering: geometricPrecision;
-  color: rgba(153, 153, 153, 1);
-  width: 100%; /* Span occupe toute la largeur disponible */
-}
-
-.container_connection_form_right ::placeholder {
-  font-size: 14px;
-  color: rgba(61, 61, 61, 1);
-}
-
-.container_connection_form_right .pswd a {
-  color: rgba(36, 36, 36, 1);
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 14px;
-  text-rendering: geometricPrecision;
-}
-
-.container_connection_form_right button {
-  width: 100%; /* Bouton occupe toute la largeur disponible */
-  margin-top: 10px;
-  padding: 15px; /* Espacement intérieur du bouton */
-  background-color: #313131; /* Couleur de fond bleue */
-  color: white; /* Couleur du texte blanche */
-  border: none; /* Supprime les bordures par défaut */
-  border-radius: 2px; /* Coins légèrement arrondis */
-  cursor: pointer; /* Curseur de pointeur */
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 16px;
-}
-
-/* .container_connection_form_right button:hover {
-  background-color: #005fc4; /* Couleur de fond plus foncée au survol
-} */
+  .note-cercle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    color: black;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Pour créer un cercle */
+    z-index: 1; /* Pour amener l'élément au premier plan */
+  }
 
 
-.profile-image {
-  width: 95px; /* Taille de la zone ronde */
-  height: 95px; /* Taille de la zone ronde */
-  border-radius: 50%; /* Rend la zone ronde */
-  border: 2px solid white; /* Contours blancs de 2px */
-  background-image: url('../Ressources/profil-picture.png'); /* Image par défaut en fond */
-  background-size: cover; /* Ajuste l'image pour couvrir toute la zone */
-  background-position: center; /* Centre l'image dans la zone */
-  background-color: white;
-  cursor: pointer; /* Change le curseur en pointeur pour indiquer que c'est cliquable */
-  margin-top: -20px;
-}
+  /* Style pour le pied de la citation */
+  .citation-footer {
+    width: 220px;
+    height: 86px;
+    background-color: white;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -95px;
+  }
+
+  /* Style pour le conteneur d'image ronde */
+  .pp-citation-image {
+    width: 53px;
+    height: 53px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: -20px; /* Espacement à droite de l'image */
+  }
+
+  /* Style pour l'image ronde */
+  .pp-citation-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Style pour l'auteur de la citation */
+  .citation-author {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  .author-nickname {
+    font-size: 14px;
+  }
 
 
-/*  Style pour la barre de naviguation de topics  */
-.topic-section {
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  padding: 65px 0;
-}
+  /* Style pour la section vidéo */
+  .video-preview-section {
+    width: 100%;
+    max-width: 1010px;
+    height: 600px;
+    border: 1px solid black;
+    margin-top: 50px;
+    margin-left: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.topic-section-list {
-  display: flex;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
+  .video-preview-section video {
+    width: 100%;
+    height: 100%;
+  }
 
-.topic-section-list li {
-  margin: 0 45px; /* Écart de 90px entre chaque <li> */
-}
-
-.topic-section-list a {
-  text-decoration: none;
-  color: rgba(0, 0, 0, 0.5); /* Noir avec 50% d'opacité */
-  font-size: 18px;
-  transition: color 0.3s, opacity 0.3s;
-}
-
-/* Style pour l'élément actif */
-.topic-section-list a.active,
-.topic-section-list a:hover {
-  color: black;
-  opacity: 1;
-}
-
-.filter-icon {
-  width: 25px;
-  height: 25px;
-}
-
-
-/*  Section pour article populaire  */
-.container-popular {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin: 0 auto;
-  max-width: 1210px;
-}
-
-/*  Container pour les sections du haut (article + citation)  */
-.top-sections {
-  display: flex;
-  align-items: flex-start;
-  width: 100%;
-}
-
-/* Style pour la section de prévisualisation de l'article */
-.article-preview-section {
-  width: 100%;
-  max-width: 780px;
-  padding: 20px 0; /* Espace supérieur et inférieur */
-}
-
-/* Style pour le titre de l'article */
-.article-title {
-  font-weight: bold;
-  margin-bottom: 65px; /* Espace sous le titre */
-  font-size: 28px;
-}
-
-/* Style pour le conteneur de l'article */
-.article-container {
-  position: relative; /* Nécessaire pour positionner le bouton */
-  border: 1px solid black; /* Contour noir */
-  width: 100%;
-  max-width: 780px;
-  height: 500px;
-  overflow: hidden; /* Cacher le dépassement de l'image */
-}
-
-/* Style pour l'image de prévisualisation */
-.article-preview-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover; /* Couvrir l'espace sans déformation */
-}
-
-/* Style pour le rond note */
-.article-container-note {
-  position: absolute; /* Pour permettre le positionnement */
-  bottom: 50px; /* Ajustez pour positionner verticalement */
-  right: 40px; /* Ajustez pour positionner horizontalement */
-}
-
-.note-circle {
-  display: inline-block;
-  background-color: #f0f0f0;
-  color: black;
-  font-weight: bold;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  border-radius: 50%; /* Pour créer un cercle */
-  position: absolute;
-  top: 0; /* Pour aligner le haut du cercle avec le haut du conteneur parent */
-  right: -20px; /* Pour décaler le cercle vers la droite */
-}
-
-
-/* Style pour le bouton 'En savoir plus...' */
-.learn-more-button {
-  position: absolute; /* Position absolue pour placer en bas de l'image */
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(177, 178, 181, 0.425) -30%, transparent 70%);
-  width: 760px;
-  height: 45px;
-  color: rgba(47, 47, 47, 0.6);
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-size: 16px;
-  text-transform: uppercase;
-  transition: background-color 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.learn-more-button:hover {
-  background-color: #b7b7b7; /* Couleur de fond au survol */
-}
-
-/* Style pour la section de prévisualisation de la citation */
-.citation-preview-section {
-  width: 100%;
-  max-width: 370px;
-  height: 600px;
-  background-color: #B1B2B5;
-  border-radius: 15px;
-  margin-left: 60px; /* Espacement entre les deux sections */
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative; /* Nécessaire pour positionner la note */
-}
-
-/* Style pour l'en-tête de la citation */
-.citation-header {
-  width: 290px;
-  height: 80px;
-  margin-top: 30px;
-  background-color: black;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  text-transform: uppercase;
-}
-
-/* Style pour le contenu de la citation */
-.citation-content {
-  width: 290px;
-  height: 550px;
-  margin-top: 30px;
-  overflow-y: auto;
-  color: #000;
-  font-size: 16px;
-}
-
-/* Style pour la note circulaire */
-.citation-note {
-  position: absolute; /* Pour permettre le positionnement */
-  bottom: 10px; /* Ajustez pour positionner verticalement */
-  right: 10px; /* Ajustez pour positionner horizontalement */
-}
-
-.note-cercle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f0f0f0;
-  color: black;
-  font-weight: bold;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%; /* Pour créer un cercle */
-  z-index: 1; /* Pour amener l'élément au premier plan */
-}
-
-
-/* Style pour le pied de la citation */
-.citation-footer {
-  width: 220px;
-  height: 86px;
-  background-color: white;
-  border-radius: 15px;
-  margin-bottom: 25px;
-  margin-top: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: -95px;
-}
-
-/* Style pour le conteneur d'image ronde */
-.pp-citation-image {
-  width: 53px;
-  height: 53px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-left: -20px; /* Espacement à droite de l'image */
-}
-
-/* Style pour l'image ronde */
-.pp-citation-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Style pour l'auteur de la citation */
-.citation-author {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-  margin-left: 10px;
-}
-
-.author-nickname {
-  font-size: 14px;
-}
-
-
-/* Style pour la section vidéo */
-.video-preview-section {
-  width: 100%;
-  max-width: 1010px;
-  height: 600px;
-  border: 1px solid black;
-  margin-top: 50px;
-  margin-left: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.video-preview-section video {
-  width: 100%;
-  height: 100%;
-}
+  /* --- FIN STYLE POSTS TENDANCES --- */
 
 /*  FIN STYLE DE LA PAGE D'ACCUEIL  */
 
 
-
 /*  DÉBUT STYLE PAGE INFORMATIONS PERSONNELLES  */
 
-.container_utilisateur {
-  width: 100%;
-  margin-top: 80px;
-}
-
-.container-info-perso {
-  width: 29vw;
-  max-width: calc(1421px - 776px);
-  margin-left: 20px;
-  box-sizing: border-box;
-  border: 2px solid #094b65;
-  border-radius: 10px;
-  display: block;
-  padding: 20px;
-  margin: 10px 10px;
-}
-
-.container-info-perso legend {
-  /*margin-bottom: 20px;*/
-  font-size: 22px;
-  font-weight: bold;
-  color: white;
-  background-color: #094b65;
-  padding: 10px 20px;
-  border-radius: 5px;
-}
-
-.container-info-perso form {
-  width: 100%;
-}
-
-.container-info-perso label {
-  display: block;
-  padding-top: 15px;
-  margin-bottom: 10px;
-  color: black;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 16px;
-  text-rendering: geometricPrecision;
-}
-
-.container-info-perso input[type="text"],
-.container-info-perso input[type="email"],
-.container-info-perso input[type="submit"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: none;
-  background: rgba(177, 178, 181, 0.3);
-  border-radius: 2px;
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
-.container-info-perso input[type="submit"] {
-  background-color: #187799;
-  color: white;
-  cursor: pointer;
-  text-transform: uppercase;
-  transition: background-color 0.3s;
-  margin-top: 30px;
-}
-
-.container-info-perso input[type="submit"]:hover {
-  background-color: #083546;
-}
-
-/* Style pour l'image de profil */
-.container-info-perso .profile-image {
-  width: 95px;
-  height: 95px;
-  border-radius: 50%;
-  background: url('../Ressources/profil-picture.png') center/cover no-repeat;
-  margin: 0 auto 20px;
-  cursor: pointer;
-}
-
-.container-info-perso img.image95x95 {
-  width: 95px;
-  height: 95px;
-  border-radius: 50%;
-  display: block;
-  margin: 0 auto 20px;
-}
-
-
-/*  STYLE POUR LES ARTICLES PERSO DANS LA PAGE DU COMPTE  */
-.container-article-perso {
-  box-sizing: border-box;
-  border: 2px solid #094b65;
-  border-radius: 10px;
-  display: block;
-  padding: 20px;
-  margin: 10px 10px;
-}
-
-.preview-article-perso-content {
-  width: 92%;
-  margin-top: 3px;
-  margin-left: 5px;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-}
-
-/* Style pour les boutons dans la section de prévisualisation de l'article */
-.article-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* Espacement entre les boutons */
-  position: absolute;
-  top: 100px;
-  right: 0;
-  margin-top: 10px; /* Espacement des boutons par rapport au texte */
-}
-
-/* Styles pour le bouton Voir */
-.bouton_voir {
-  padding: 10px 20px; /* Rembourrage */
-  background-color: green; /* Couleur de fond verte */
-  color: #fff; /* Couleur du texte en blanc */
-  border: 2px solid #094b65; /* Bordure solide de couleur */
-  border-radius: 5px; /* Coins arrondis */
-}
-
-/* Styles pour le bouton Modifier */
-.bouton_modifier {
-  padding: 10px 20px; /* Rembourrage */
-  background-color: orange; /* Couleur de fond orange */
-  color: #fff; /* Couleur du texte en blanc */
-  border: 2px solid #094b65; /* Bordure solide de couleur */
-  border-radius: 5px; /* Coins arrondis */
-}
-
-/* --- DÉBUT STYLE BOUTON SUPPRIMER POST + POP-UP DE CONFIRMATION --- */
-  .bouton_supprimer {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  .bouton_supprimer .icon-supprimer {
-    width: 20px; /* Ajustez la taille de l'icône selon vos besoins */
-    height: 20px;
-    transition: filter 0.3s;
-    filter: grayscale(100%) brightness(50%); /* Applique le filtre pour rendre l'icône grise */
-  }
-  .bouton_supprimer:hover .icon-supprimer {
-    filter: grayscale(100%) brightness(70%); /* Effet au survol */
-  }       
-  .popup {
-    display: none; /* Caché par défaut */
-    position: fixed; 
-    left: 0;
-    top: 0;
+  .container_utilisateur {
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
-    justify-content: center;
-    align-items: center;
+    margin-top: 80px;
   }
-  .popup-content {
-    background-color: white;
+
+  .container-info-perso {
+    width: 29vw;
+    max-width: calc(1421px - 776px);
+    max-height: 610px;
+    margin-left: 20px;
+    box-sizing: border-box;
+    border: 2px solid #094b65;
+    border-radius: 10px;
+    display: block;
     padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 10px 10px;
   }
-  .popup-content h2 {
-    margin: 0;
+
+  .container-info-perso legend {
+    /*margin-bottom: 20px;*/
     font-size: 22px;
-    color: #2c3e50;
+    font-weight: bold;
+    color: white;
+    background-color: #094b65;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+
+  .container-info-perso form {
+    width: 100%;
+  }
+
+  .container-info-perso label {
+    display: block;
+    padding-top: 15px;
+    margin-bottom: 10px;
+    color: black;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
     text-rendering: geometricPrecision;
   }
-  .popup-content p {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #7f8c8d;
+
+  .container-info-perso input[type="text"],
+  .container-info-perso input[type="email"],
+  .container-info-perso input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background: rgba(177, 178, 181, 0.3);
+    border-radius: 2px;
+    font-family: 'Source Sans Pro', sans-serif;
   }
-  .popup-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+
+  .container-info-perso input[type="submit"] {
+    background-color: #187799;
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
     margin-top: 30px;
   }
-  .btn-supprimer, .btn-annuler {
+
+  .container-info-perso input[type="submit"]:hover {
+    background-color: #083546;
+  }
+
+  /* Style pour l'image de profil */
+  .container-info-perso .profile-image {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    background: url('../Ressources/profil-picture.png') center/cover no-repeat;
+    margin: 0 auto 20px;
+    cursor: pointer;
+  }
+
+  .container-info-perso img.image95x95 {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 20px;
+  }
+
+/* --- FIN STYLE INFORMATIONS PERSONNELLES --- */
+
+
+/*  DÉBUT STYLE POUR LES ARTICLES PERSO DANS LA PAGE DU COMPTE  */
+
+  .container-article-perso {
+    box-sizing: border-box;
+    border: 2px solid #094b65;
+    border-radius: 10px;
+    display: block;
+    padding: 20px;
+    margin: 10px 10px;
+  }
+
+  .preview-article-perso-content {
+    width: 92%;
+    margin-top: 3px;
+    margin-left: 5px;
+    position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 135px;
-    height: 40px;
-    gap: 5px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  .btn-supprimer {
-    background-color: #e74c3c;
-    color: white;
-  }
-  .btn-supprimer img {
-    height: 16px;
-    width: 16px;
-    filter: invert(100);
-  }
-  .btn-annuler {
-    background-color: #bdc3c7;
-    color: #2c3e50;
-  }
-  .btn-annuler img {
-    height: 12px;
-    width: 12px;
-  }
-/* --- FIN STYLE BOUTON SUPPRIMER POST + POP-UP DE CONFIRMATION --- */
-
-
-/*
-  .bouton_supprimer {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  .bouton_supprimer .icon-supprimer {
-    width: 20px; /* Ajustez la taille de l'icône selon vos besoins 
-    height: 20px;
-    transition: filter 0.3s;
-    filter: grayscale(100%) brightness(50%); /* Applique le filtre pour rendre l'icône grise 
+    justify-content: space-between;
   }
 
-  .bouton_supprimer:hover .icon-supprimer {
-    filter: grayscale(100%) brightness(70%); /* Effet au survol 
+  /* Style pour les boutons dans la section de prévisualisation de l'article */
+  .article-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacement entre les boutons */
+    position: absolute;
+    top: 100px;
+    right: 0;
+    margin-top: 10px; /* Espacement des boutons par rapport au texte */
   }
-*/
+
+  /* Styles pour le bouton Voir */
+  .bouton_voir {
+    padding: 10px 20px; /* Rembourrage */
+    background-color: green; /* Couleur de fond verte */
+    color: #fff; /* Couleur du texte en blanc */
+    border: 2px solid #094b65; /* Bordure solide de couleur */
+    border-radius: 5px; /* Coins arrondis */
+  }
+
+  /* Styles pour le bouton Modifier */
+  .bouton_modifier {
+    padding: 10px 20px; /* Rembourrage */
+    background-color: orange; /* Couleur de fond orange */
+    color: #fff; /* Couleur du texte en blanc */
+    border: 2px solid #094b65; /* Bordure solide de couleur */
+    border-radius: 5px; /* Coins arrondis */
+  }
+
+  /* --- DÉBUT STYLE BOUTON SUPPRIMER POST + POP-UP DE CONFIRMATION --- */
+    .bouton_supprimer {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .bouton_supprimer .icon-supprimer {
+      width: 20px; /* Ajustez la taille de l'icône selon vos besoins */
+      height: 20px;
+      transition: filter 0.3s;
+      filter: grayscale(100%) brightness(50%); /* Applique le filtre pour rendre l'icône grise */
+    }
+    .bouton_supprimer:hover .icon-supprimer {
+      filter: grayscale(100%) brightness(70%); /* Effet au survol */
+    }       
+    .popup {
+      display: none; /* Caché par défaut */
+      position: fixed; 
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+      justify-content: center;
+      align-items: center;
+    }
+    .popup-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .popup-content h2 {
+      margin: 0;
+      font-size: 22px;
+      color: #2c3e50;
+      text-rendering: geometricPrecision;
+    }
+    .popup-content p {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #7f8c8d;
+    }
+    .popup-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .btn-supprimer, .btn-annuler {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 135px;
+      height: 40px;
+      gap: 5px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn-supprimer {
+      background-color: #e74c3c;
+      color: white;
+    }
+    .btn-supprimer img {
+      height: 16px;
+      width: 16px;
+      filter: invert(100);
+    }
+    .btn-annuler {
+      background-color: #bdc3c7;
+      color: #2c3e50;
+    }
+    .btn-annuler img {
+      height: 12px;
+      width: 12px;
+    }
+  /* --- FIN STYLE BOUTON SUPPRIMER POST + POP-UP DE CONFIRMATION --- */
+
+/*  FIN STYLE POUR LES ARTICLES PERSO DANS LA PAGE DU COMPTE  */
+
 
 
 /*  --- DÉBUT AFFICHAGE DE TOUS LES POSTS ---  */
@@ -896,8 +884,6 @@ footer {
   /*  --- FIN AFFICHAGE DE TOUS LES POSTS ---  */
 
 /*  --- FIN AFFICHAGE DE TOUS LES POSTS ---  */
-
-
 
 
 
