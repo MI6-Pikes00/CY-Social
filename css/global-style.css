@@ -376,18 +376,22 @@ footer {
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: black;
-  color: white;
+  background: radial-gradient(circle, rgba(177, 178, 181, 0.425) -30%, transparent 70%);
+  width: 760px;
+  height: 45px;
+  color: rgba(47, 47, 47, 0.6);
   border: none;
-  padding: 10px 20px;
+  padding: 0;
   cursor: pointer;
   font-size: 16px;
   text-transform: uppercase;
   transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 .learn-more-button:hover {
-  background-color: #555; /* Couleur de fond au survol */
+  background-color: #b7b7b7; /* Couleur de fond au survol */
 }
 
 /* Style pour la section de prévisualisation de la citation */
