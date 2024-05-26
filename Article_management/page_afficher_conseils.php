@@ -2,6 +2,7 @@
 // Démarre la session PHP pour permettre le stockage de données de session
 session_start();
 
+// Initialise la variable pour le chemin du fichier
 $chemin_fichier = "";
 
 // Vérifie si le numéro de l'article est défini soit dans POST soit dans GET
@@ -10,10 +11,11 @@ if (isset($_POST['id_article'])) {
 } elseif (isset($_GET['id_article'])) {
     $numero_article = $_GET['id_article'];
 } else {
+    // Si le numéro de l'article n'est pas défini, termine le script avec un message d'erreur
     die("Numéro de l'article non défini.");
 }
 
-//Fonction qui permet d'aller chercher un article en fonction de son numéro transmis
+// Fonction qui permet d'aller chercher un article en fonction de son numéro transmis
 function getOneArticle($id_article, &$chemin_fichier)
 {
     // Message d'information
@@ -63,10 +65,11 @@ function getOneArticle($id_article, &$chemin_fichier)
     return null;
 }
 
-
 // Variables où sont stockées les informations de l'article pour pouvoir les afficher ensuite
 $article = getOneArticle($numero_article, $chemin_fichier);
 
+// Formate la date de création de l'article
+$date_creation_formatted = "Date non disponible";
 if (isset($article['date_creation']) && !empty($article['date_creation'])) {
     $date_creation = DateTime::createFromFormat('Y-m-d H:i:s', $article['date_creation']);
     if ($date_creation !== false) {
@@ -74,23 +77,16 @@ if (isset($article['date_creation']) && !empty($article['date_creation'])) {
     } else {
         $date_creation_formatted = "Format de date invalide";
     }
-} else {
-    $date_creation_formatted = "Date non disponible";}
-
-
-if (!empty($article['notes'])) {
-    // Calcul de la moyenne des notes
-    $moyenne_note = 0;
-    if (isset($article['notes']) && count($article['notes']) > 0) {
-        $total_notes = array_sum($article['notes']);
-        $nombre_notes = count($article['notes']);
-        $moyenne_note = $total_notes / $nombre_notes;
-    }
 }
 
+// Calcule la moyenne des notes si elles existent
+$moyenne_note = 0;
+if (!empty($article['notes']) && count($article['notes']) > 0) {
+    $total_notes = array_sum($article['notes']);
+    $nombre_notes = count($article['notes']);
+    $moyenne_note = $total_notes / $nombre_notes;
+}
 ?>
-
-<!-- Ici commence le code de la page HTML -->
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -99,12 +95,10 @@ if (!empty($article['notes'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/global-style.css">
-    <!-- Permet un affichage dynamique suivant l'article sélectionné -->
-    <title><?php echo $article['titre']; ?></title>
+    <title><?php echo htmlspecialchars($article['titre'] ?? 'Titre non disponible'); ?></title>
 </head>
 
 <body>
-    <!-- Section pour la barre de navigation -->
     <header>
         <a href="../Accueil.php" class="logo">CY-Social</a>
         <nav>
@@ -113,11 +107,9 @@ if (!empty($article['notes'])) {
                 <li><a href="../Conseils/Conseils.php">Nos conseils</a></li>
                 <li><a href="../Conseils/formulaire_dynamique.php">Donner un conseil</a></li>
                 <li>
-                    <!-- On regarde si une session est ouverte avec isset si oui on lui donne la possibilité de voir son profil -->
                     <?php if (isset($_SESSION['utilisateur'])) { ?>
                         <a href="../Utilisateur/Profil_Utilisateur.php">Profil</a>
                     <?php } else { ?>
-                        <!-- Sinon on affiche les options pour se connecter ou s’inscrire -->
                         <a href="../Utilisateur/Connection.php">Connexion</a>/<a href="../Utilisateur/Inscription.php">Inscription</a>
                     <?php } ?>
                 </li>
@@ -125,50 +117,46 @@ if (!empty($article['notes'])) {
         </nav>
     </header>
 
-    <!-- Section qui permet d'afficher le contenu de l'article -->
     <main>
-        <!-- Structure de tout l'article -->
         <div class="container-main-article">
-            <!-- Section qui permet d'afficher le titre de l'article -->
             <div class="article-titre">
-                <h1><?php echo $article['titre']; ?></h1>
+                <h1><?php echo htmlspecialchars($article['titre'] ?? 'Titre non disponible'); ?></h1>
             </div>
-
-            <span class="article-author">par <?php echo $article['auteur'] ?>, le <?php echo $date_creation_formatted ?></span>
+            <span class="article-author">par <?php echo htmlspecialchars($article['auteur'] ?? 'Auteur inconnu'); ?>, le <?php echo $date_creation_formatted; ?></span>
 
             <!-- Section qui permet d'afficher la catégorie de l'article -->
-            <?php if (isset($article['categorie']) && !empty($article['catégorie'])) { ?>
-                <div class="container_catégorie">
-                    <h2><?php echo $article['categorie']; ?></h2>
+            <?php if (isset($article['categorie']) && !empty($article['categorie'])) { ?>
+                <div class="container_categorie">
+                    <h2><?php echo htmlspecialchars($article['categorie']); ?></h2>
                 </div>
             <?php } ?>
 
             <!-- Section qui permet d'afficher le texte de l'article -->
             <div class="article_text">
-                <p><?php echo $article['instructions']; ?></p>
-                <?php if (isset($article['images']) && !empty($article['images'])) { ?>
+                <p><?php echo htmlspecialchars($article['instructions'] ?? ''); ?></p>
+                <?php if (isset($article['images']) && !empty($article['images'][0])) { ?>
                     <div class="first-image">
-                        <img src="<?php echo $article['images'][0]; ?>" alt="Première image de l'article">
+                        <img src="<?php echo htmlspecialchars($article['images'][0]); ?>" alt="Première image de l'article">
                     </div>
                 <?php } ?>
             </div>
             <br>
             <!-- SECTION POUR AFFICHER LES IMAGES ET VIDÉOS DE L'ARTICLE -->
             <div class="container_media">
-                <?php if (isset($article['images']) && !empty($article['images'])) { ?>
+                <?php if (isset($article['images']) && count($article['images']) > 1) { ?>
                     <h3>Images :</h3>
                     <div class="additional-images-container">
                         <?php foreach (array_slice($article['images'], 1) as $image) { ?>
-                            <img class="additional-image" src="<?php echo $image; ?>" alt="Image de l'article">
+                            <img class="additional-image" src="<?php echo htmlspecialchars($image); ?>" alt="Image de l'article">
                         <?php } ?>
                     </div>
                 <?php } ?>
                 <br>
                 <?php if (isset($article['video']) && !empty($article['video'])) { ?>
                     <h3>Vidéo(s) :</h3>
-                    <center><!--  Centrage de la vidéo sur la page  -->
+                    <center><!-- Centrage de la vidéo sur la page -->
                         <video controls width="70%" style="margin-bottom: 15px">
-                            <source src="<?php echo $article['video']; ?>" type="video/mp4">
+                            <source src="<?php echo htmlspecialchars($article['video']); ?>" type="video/mp4">
                             Votre navigateur ne supporte pas la lecture de vidéos.
                         </video>
                     </center>
@@ -176,35 +164,32 @@ if (!empty($article['notes'])) {
             </div>
             <!-- FIN DE LA SECTION POUR AFFICHER LES IMAGES ET VIDÉOS DE L'ARTICLE -->
 
-
             <!-- SECTION COMMENTAIRE ET NOTE -->
-
             <fieldset id="commentaires_et_notes">
                 <legend>Commentaires et Notes :</legend>
-                <?php 
-                    if (empty($article['notes'])) {
-                        echo '<p style = "margin-left: 1%;" class="no-comments">Aucune note sur ce post pour le moment.</p>';
-                    } else {
-                        echo "<p style = 'margin-left: 1%;'>Note moyenne:" . number_format($moyenne_note, 1) . "/5</p>";
-                    }
-                    ?>
+                <?php
+                if (empty($article['notes'])) {
+                    echo '<p style="margin-left: 1%;" class="no-comments">Aucune note sur ce post pour le moment.</p>';
+                } else {
+                    echo "<p style='margin-left: 1%;'>Note moyenne: " . number_format($moyenne_note, 1) . "/5</p>";
+                }
+                ?>
                 <div class="comment-container">
-                    <?php 
+                    <?php
                     if (empty($article['commentaires'])) {
                         echo '<p class="no-comments">Aucun commentaire sur ce post pour le moment.</p>';
                     } else {
-                        // Boucle sur chaque commentaire            
+                        // Boucle sur chaque commentaire
                         foreach ($article['commentaires'] as $index => $commentaire) {
-                            $comment = html_entity_decode(htmlspecialchars($commentaire['commentaire'])) ;
-                            $rating = html_entity_decode(htmlspecialchars($article['notes'][$index]));
-                            $name = html_entity_decode(htmlspecialchars($commentaire['utilisateur']));
-                    ?>         <!-- html_entity_decode(...) permet d'afficher correctement le symbole “ ' ”
-                                tandis que htmlspecialchars(...) permet de prévenir les attaques XSS -->
-                        <div class="comment-box">
-                            <p class="comment-text"><?php echo $comment; ?></p>
-                            <p class="comment-rating">Note: <?php echo htmlspecialchars($rating); ?>/5</p>
-                            <p class="comment-author"><?php echo htmlspecialchars($name); ?></p>
-                        </div>
+                            $comment = html_entity_decode(htmlspecialchars($commentaire['commentaire'] ?? ''));
+                            $rating = html_entity_decode(htmlspecialchars($article['notes'][$index] ?? ''));
+                            $name = html_entity_decode(htmlspecialchars($commentaire['utilisateur'] ?? ''));
+                    ?> <!-- htmlspecialchars(...) permet de prévenir les attaques XSS -->
+                            <div class="comment-box">
+                                <p class="comment-text"><?php echo $comment; ?></p>
+                                <p class="comment-rating">Note: <?php echo $rating; ?>/5</p>
+                                <p class="comment-author"><?php echo $name; ?></p>
+                            </div>
                     <?php
                         }
                     }
@@ -213,7 +198,6 @@ if (!empty($article['notes'])) {
             </fieldset>
 
             <form action="./note_commentaire.php" method="post">
-                <!-- Champ pour la note -->
                 <label for="note">Note :</label>
                 <select name="note" id="note">
                     <option value="1">1</option>
@@ -223,15 +207,12 @@ if (!empty($article['notes'])) {
                     <option value="5">5</option>
                 </select>
 
-                <!-- Champ caché pour l'ID de l'article et chemin -->
-                <input type="hidden" name="chemin_fichier" value="<?php echo $chemin_fichier; ?>">
-                <input type="hidden" name="id_article" value="<?php echo $numero_article; ?>">
+                <input type="hidden" name="chemin_fichier" value="<?php echo htmlspecialchars($chemin_fichier); ?>">
+                <input type="hidden" name="id_article" value="<?php echo htmlspecialchars($numero_article); ?>">
 
-                <!-- Champ pour le commentaire -->
                 <label for="commentaire">Commentaire :</label>
                 <textarea name="commentaire" id="commentaire" placeholder="300 caractères max."></textarea>
 
-                <!-- Bouton de soumission -->
                 <button type="submit">Envoyer</button>
             </form>
 
@@ -239,7 +220,6 @@ if (!empty($article['notes'])) {
 
     </main>
     <footer>
-        <!-- Section qui affiche les auteurs du site web -->
         <p>
             <small>
                 Copyrights 2024 - Luc Letailleur et Thomas Herriau
@@ -249,3 +229,6 @@ if (!empty($article['notes'])) {
 </body>
 
 </html>
+
+
+http://localhost:8080/Article_management/page_afficher_conseils.php?id_article=664f6cb9331f6?id_article=664f6cb9331f6

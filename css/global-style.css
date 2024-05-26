@@ -429,6 +429,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative; /* Nécessaire pour positionner la note */
 }
 
 /* Style pour l'en-tête de la citation */
@@ -458,7 +459,7 @@ footer {
 /* Style pour la note circulaire */
 .citation-note {
   position: absolute; /* Pour permettre le positionnement */
-  bottom: auto; /* Ajustez pour positionner verticalement */
+  bottom: 10px; /* Ajustez pour positionner verticalement */
   right: 10px; /* Ajustez pour positionner horizontalement */
 }
 
@@ -474,6 +475,7 @@ footer {
   border-radius: 50%; /* Pour créer un cercle */
   z-index: 1; /* Pour amener l'élément au premier plan */
 }
+
 
 /* Style pour le pied de la citation */
 .citation-footer {
