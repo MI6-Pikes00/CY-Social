@@ -130,6 +130,9 @@ $video_populaire = obtenir_meilleure_video("./data");
                         </div>
                         <div class="citation-footer">
                             <div class="pp-citation-image">
+                                <!-- Ne permet pas d'afficher la photo de profil de l'auteur car
+                                    numéro d'article pas stocker dans le fichier d'informations de l'auteur 
+                                    donc pas récupérable -->
                                 <?php if (!empty($citation_recent['profil_image'])) { ?>
                                     <img src="<?php echo $citation_recent['profil_image']; ?>" alt="Photo de Profil">
                                 <?php } else { ?>
