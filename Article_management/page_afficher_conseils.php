@@ -67,7 +67,16 @@ function getOneArticle($id_article, &$chemin_fichier)
 // Variables où sont stockées les informations de l'article pour pouvoir les afficher ensuite
 $article = getOneArticle($numero_article, $chemin_fichier);
 
-$date_creation = DateTime::createFromFormat('Y-m-d H:i:s', $article['date_creation'])->format('d/m/Y');
+if (isset($article['date_creation']) && !empty($article['date_creation'])) {
+    $date_creation = DateTime::createFromFormat('Y-m-d H:i:s', $article['date_creation']);
+    if ($date_creation !== false) {
+        $date_creation_formatted = $date_creation->format('d/m/Y');
+    } else {
+        $date_creation_formatted = "Format de date invalide";
+    }
+} else {
+    $date_creation_formatted = "Date non disponible";}
+
 
 if (!empty($article['notes'])) {
     // Calcul de la moyenne des notes
@@ -125,7 +134,7 @@ if (!empty($article['notes'])) {
                 <h1><?php echo $article['titre']; ?></h1>
             </div>
 
-            <span class="article-author">par <?php echo $article['auteur'] ?> , le <?php echo $date_creation ?></span>
+            <span class="article-author">par <?php echo $article['auteur'] ?>, le <?php echo $date_creation_formatted ?></span>
 
             <!-- Section qui permet d'afficher la catégorie de l'article -->
             <?php if (isset($article['categorie']) && !empty($article['catégorie'])) { ?>
@@ -176,7 +185,7 @@ if (!empty($article['notes'])) {
                     if (empty($article['notes'])) {
                         echo '<p style = "margin-left: 1%;" class="no-comments">Aucune note sur ce post pour le moment.</p>';
                     } else {
-                        echo "<p style = 'margin-left: 1%;'>Note moyenne:$moyenne_note/5</p>";
+                        echo "<p style = 'margin-left: 1%;'>Note moyenne:" . number_format($moyenne_note, 1) . "/5</p>";
                     }
                     ?>
                 <div class="comment-container">

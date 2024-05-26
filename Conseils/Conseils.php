@@ -106,7 +106,7 @@ $articles = getAllArticles();
                         <p><b>Catégorie: </b> <?php echo htmlspecialchars($article['categorie']); ?></p>
                     <?php endif; ?>
                     <?php if (!empty($article['notes'])) : ?>
-                        <p> <b> Moyenne des notes: </b> <?php echo number_format(calculerMoyenne($article['notes']), 2); ?></p>
+                        <p> <b> Moyenne des notes: </b> <?php echo number_format(calculerMoyenne($article['notes']), 1); ?></p>
                     <?php endif; ?>
                     <div>
                         <p><b>Contenue :</b></p>

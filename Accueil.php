@@ -105,6 +105,17 @@ $video_populaire = obtenir_meilleure_video("./data");
                                 </video>
                             </center>
                         <?php } ?>
+                        <div class="article-container-note">
+                            <?php
+                            // Vérifie s'il y a des notes
+                            if (empty($article_populaire['notes'])) {
+                                // Affiche un message si aucun commentaire n'est présent
+                                error_log("Aucune note sur ce post pour le moment");
+                            } else {
+                                echo '<div class="note-circle">' . calculerMoyenne($article_populaire['notes']) . '/5</div>';
+                            }
+                            ?>
+                        </div>
                         <?php echo " <a href='./Article_management/page_afficher_conseils.php?id_article=" . htmlspecialchars($article_populaire['numero_article']) . "'> <button class='learn-more-button'>En savoir plus...</button> </a>" ?>
                     </div>
                 </div>
@@ -124,6 +135,14 @@ $video_populaire = obtenir_meilleure_video("./data");
                             <div class="citation-author">
                                 <span class="author-nickname"><?php echo $citation_recent['auteur']; ?></span>
                             </div>
+                        </div>
+                        <div class="citation-note">
+                            <?php
+                            // Vérifie s'il y a des notes
+                            if (!empty($citation_recent['notes'])) {
+                                echo '<div class="note-cercle">' . calculerMoyenne($citation_recent['notes']) . '/5</div>';
+                            }
+                            ?>
                         </div>
                     </div>
                 </a>

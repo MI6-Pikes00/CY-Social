@@ -370,6 +370,29 @@ footer {
   object-fit: cover; /* Couvrir l'espace sans déformation */
 }
 
+/* Style pour le rond note */
+.article-container-note {
+  position: absolute; /* Pour permettre le positionnement */
+  bottom: 50px; /* Ajustez pour positionner verticalement */
+  right: 40px; /* Ajustez pour positionner horizontalement */
+}
+
+.note-circle {
+  display: inline-block;
+  background-color: #f0f0f0;
+  color: black;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%; /* Pour créer un cercle */
+  position: absolute;
+  top: 0; /* Pour aligner le haut du cercle avec le haut du conteneur parent */
+  right: -20px; /* Pour décaler le cercle vers la droite */
+}
+
+
 /* Style pour le bouton 'En savoir plus...' */
 .learn-more-button {
   position: absolute; /* Position absolue pour placer en bas de l'image */
@@ -430,6 +453,26 @@ footer {
   overflow-y: auto;
   color: #000;
   font-size: 16px;
+}
+
+/* Style pour la note circulaire */
+.citation-note {
+  position: absolute; /* Pour permettre le positionnement */
+  bottom: auto; /* Ajustez pour positionner verticalement */
+  right: 10px; /* Ajustez pour positionner horizontalement */
+}
+
+.note-cercle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  color: black;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Pour créer un cercle */
+  z-index: 1; /* Pour amener l'élément au premier plan */
 }
 
 /* Style pour le pied de la citation */
@@ -796,7 +839,7 @@ footer {
   .container_media .additional-images-container .additional-image {
     display: inline-block; /* Afficher les images en ligne */
   }
-
+  
   /*  STYLE POUR COMMENTAIRE DANS PAGE_AFFICHER_CONSEIL  */
     fieldset #commantaires_et_notes {
       width: 100%;
